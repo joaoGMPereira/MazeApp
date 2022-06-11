@@ -15,7 +15,6 @@ enum Layout {
     static let spacing: CGFloat = 8
     static let paginationOffset: CGFloat = 100
     static let numberOfColumns = CGFloat(2)
-    static let minCellHeight = CGFloat(150)
 }
 
 open class ShowsViewController: ViewController<ShowsViewModeling, UIView> {
@@ -110,7 +109,7 @@ extension ShowsViewController: UICollectionViewDelegate, UICollectionViewDelegat
         let totalCellSpace = Layout.spacing * (numberOfColumns - 1)
         let screenWidth = view.bounds.width
         let width = (screenWidth - leftRightMargin - totalCellSpace) / numberOfColumns
-        let height = max(view.bounds.height * 0.3, Layout.minCellHeight)
+        let height = view.bounds.height * 0.3
         
         return .init(width: width, height: height)
     }

@@ -1,5 +1,12 @@
 import Foundation
 
+typealias ShowItemResponses = [ShowItemResponse]
+typealias SearchShowItemResponses = [SearchShowItemResponse]
+
+struct SearchShowItemResponse: Decodable {
+    let show: ShowItemResponse
+}
+
 // MARK: - ShowItemResponse
 struct ShowItemResponse: Decodable {
     let id: Int
@@ -86,5 +93,3 @@ struct Schedule: Codable {
     let time: String
     let days: [String]
 }
-
-typealias ShowItemResponses = [ShowItemResponse]

@@ -65,6 +65,7 @@ final class ShowCell: UICollectionViewCell, ViewConfiguration {
     
     // MARK: - Initializers
     var viewModel: ShowCellViewModel?
+    var task: URLSessionDataTask?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -91,7 +92,7 @@ final class ShowCell: UICollectionViewCell, ViewConfiguration {
         label.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.bottom.equalTo(stackView.snp.top).inset(-4)
-            $0.height.greaterThanOrEqualTo(30)
+            $0.height.greaterThanOrEqualTo(20)
         }
         stackView.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(4)
@@ -123,12 +124,13 @@ final class ShowCell: UICollectionViewCell, ViewConfiguration {
     
     func setupImage(_ imageUrl: String?, dependencies: Dependencies) {
         loadingView.startAnimating()
-       // imageView.alpha = .zero
-        imageView.loandImage(urlString: imageUrl,
+        imageView.alpha = .zero
+        task = imageView.loadImage(urlString: imageUrl,
+                             placeholder: "photo.fill.on.rectangle.fill",
                              dependencies: dependencies) { [weak self] in
             self?.loadingView.stopAnimating()
             UIView.animate(withDuration: 0.3) {
-               // self?.imageView.alpha = 1
+                self?.imageView.alpha = 1
                 self?.layoutIfNeeded()
             }
         }
@@ -145,6 +147,7 @@ final class ShowCell: UICollectionViewCell, ViewConfiguration {
     
     override func prepareForReuse() {
         imageView.image = nil
+        task?.cancel()
     }
 }
 

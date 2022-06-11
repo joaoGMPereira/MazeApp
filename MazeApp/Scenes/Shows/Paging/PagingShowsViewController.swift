@@ -3,6 +3,7 @@ import UIKit
 protocol PagingShowsDisplaying: ShowsDisplaying {
     func displayError()
     func displayShows(_ shows: [ShowItem])
+    func clearShows()
     func displayNextPageLoad()
     func hideNextPageLoad()
 }
@@ -55,9 +56,14 @@ extension PagingShowsViewController {
 // MARK: - UISearchBarDelegate
 extension PagingShowsViewController: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(PagingShowsViewController.search), object: nil)
+        self.perform(#selector(PagingShowsViewController.search), with: nil, afterDelay: 1)
+    }
+    
+    @objc
+    func search() {
         let searchBar = searchController.searchBar
-        if pagingViewModel?.isSearching ?? false,
-            let searchBarText = searchBar.text {
+        if let searchBarText = searchBar.text {
             pagingViewModel?.getFilteredShows(title: searchBarText)
         }
     }
@@ -67,6 +73,10 @@ extension PagingShowsViewController: UISearchResultsUpdating, UISearchBarDelegat
 extension PagingShowsViewController: PagingShowsDisplaying {
     func displayShows(_ shows: [ShowItem]) {
         dataSource.add(items: shows, to: .zero)
+    }
+    
+    func clearShows() {
+        dataSource.clear(.zero)
     }
     
     func displayError() {

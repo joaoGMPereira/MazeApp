@@ -4,7 +4,6 @@ protocol PagingShowsViewModeling: ShowsViewModeling {
     func getFilteredShows(title: String)
     func getNextShows()
     func didTap(at index: IndexPath)
-    var isSearching: Bool { get }
 }
 
 final class PagingShowsViewModel {
@@ -17,6 +16,7 @@ final class PagingShowsViewModel {
     private var currentPage: Int = .zero
     private var isLoading = false
     private var shows = [ShowItemResponse]()
+    private var filteredShows = [ShowItemResponse]()
     private var search = String()
     
     var isSearching: Bool {
@@ -33,6 +33,7 @@ final class PagingShowsViewModel {
 // MARK: - ShowsViewModeling
 extension PagingShowsViewModel: PagingShowsViewModeling {
     func loadShows() {
+        reset()
         displayer?.displayLoad()
         getShows { [weak self] in
             self?.displayer?.hideLoad()
@@ -40,16 +41,17 @@ extension PagingShowsViewModel: PagingShowsViewModeling {
     }
     
     func getFilteredShows(title: String) {
-        if !isLoading {
-            isLoading = true
-            resetPagination()
-            displayer?.displayNextPageLoad()
-            getShows { [weak self] in
+        search = title
+        if isSearching {
+            displayer?.displayLoad()
+            getFilteredShows { [weak self] in
                 guard let self = self else { return }
                 self.isLoading = false
-                self.displayer?.hideNextPageLoad()
+                self.displayer?.hideLoad()
             }
+            return
         }
+        changeShows(shows)
     }
     
     func getNextShows() {
@@ -76,6 +78,25 @@ extension PagingShowsViewModel: PagingShowsViewModeling {
 }
 
 private extension PagingShowsViewModel {
+    func getFilteredShows(completion: @escaping () -> Void) {
+        dependencies
+            .api
+            .execute(
+                endpoint: ShowsEndpoint.list(page: nextPage, search: search)
+            ) { [weak self] (result: Result<Success<SearchShowItemResponses>, ApiError>) in
+                guard let self = self else { return }
+                switch result {
+                case .success(let success):
+                    self.filteredShows = success.model.map{ $0.show }
+                    self.changeShows(self.filteredShows)
+                case .failure(let error):
+                    self.handleResponse(.failure(error),
+                                        completion: completion)
+                }
+                
+            }
+    }
+    
     func getShows(completion: @escaping () -> Void) {
         dependencies
             .api
@@ -83,22 +104,23 @@ private extension PagingShowsViewModel {
                 endpoint: ShowsEndpoint.list(page: nextPage, search: search)
             ) { [weak self] (result: Result<Success<ShowItemResponses>, ApiError>) in
                 guard let self = self else { return }
-                DispatchQueue.main.async {
-                    switch result {
-                    case .success(let success):
-                        self.shows.append(contentsOf: success.model)
-                        self.displayer?.displayShows(self.items())
-                    case .failure(let failure):
-                        print(failure)
-                        self.backToPreviousPage()
-                        self.displayer?.displayError()
-                    }
-                    completion()
-                }
+                self.handleResponse(result, completion: completion)
             }
     }
     
-    func items() -> [ShowItem] {
+    func handleResponse(_ result: Result<Success<ShowItemResponses>, ApiError>, completion: @escaping () -> Void) {
+        switch result {
+        case .success(let success):
+            self.shows.append(contentsOf: success.model)
+            self.displayer?.displayShows(self.items(from: self.shows))
+        case .failure:
+            self.backToPreviousPage()
+            self.displayer?.displayError()
+        }
+        completion()
+    }
+    
+    func items(from shows: ShowItemResponses) -> [ShowItem] {
         shows.map {
             .init(id: "\($0.id)",
                   imageUrl: $0.image?.medium,
@@ -107,10 +129,19 @@ private extension PagingShowsViewModel {
         }
     }
     
-    func resetPagination() {
+    func changeShows(_ shows: ShowItemResponses) {
+        if filteredShows.isNotEmpty {
+            displayer?.clearShows()
+            displayer?.displayShows(self.items(from: shows))
+        }
+    }
+    
+    func reset() {
         nextPage = .zero
         currentPage = .zero
+        search = String()
     }
+    
     func backToPreviousPage() {
         nextPage = currentPage
     }
