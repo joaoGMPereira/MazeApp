@@ -1,13 +1,13 @@
 import UIKit
 import SnapKit
 
-protocol ShowsDisplaying: AnyObject {
+protocol SerieDisplaying: AnyObject {
     func displayEmptyView()
     func displayLoad()
     func hideLoad()
 }
 
-open class ShowsViewController: ViewController<ShowsViewModeling, UIView> {
+open class SerieViewController: ViewController<SerieViewModeling, UIView> {
     enum Layout {
         static let sectionInset = UIEdgeInsets(top: 8,
                                                left: 16,
@@ -23,12 +23,12 @@ open class ShowsViewController: ViewController<ShowsViewModeling, UIView> {
     let dependencies: Dependencies
     
     // MARK: - Collection
-    private(set) lazy var dataSource: CollectionViewDataSource<Int, ShowItem> = {
-        let dataSource = CollectionViewDataSource<Int, ShowItem>(view: collectionView)
+    private(set) lazy var dataSource: CollectionViewDataSource<Int, SerieResponse> = {
+        let dataSource = CollectionViewDataSource<Int, SerieResponse>(view: collectionView)
         dataSource.itemProvider = { [weak self] view, indexPath, item in
             guard let self = self else { return UICollectionViewCell() }
-            let cell = view.dequeueReusableCell(for: indexPath, cellType: ShowCell.self)
-            cell.setup(with: item, dependencies: self.dependencies)
+            let cell = view.dequeueReusableCell(for: indexPath, cellType: SerieCell.self)
+            cell.setup(with: .init(id: "", imageUrl: "", name: "label", average: 10), dependencies: self.dependencies)
             return cell
         }
         return dataSource
@@ -41,7 +41,7 @@ open class ShowsViewController: ViewController<ShowsViewModeling, UIView> {
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.delegate = self
-        collectionView.register(cellType: ShowCell.self)
+        collectionView.register(cellType: SerieCell.self)
         return collectionView
     }()
     
@@ -63,13 +63,11 @@ open class ShowsViewController: ViewController<ShowsViewModeling, UIView> {
         return barButtonItem
     }()
     
-    private(set) lazy var feedbackView = FeedbackView(frame: .zero)
-    
     // MARK: SearchBar
     private(set) lazy var searchController = UISearchController(searchResultsController: nil)
     
     // MARK: Initializers
-    init(viewModel: ShowsViewModeling, dependencies: Dependencies, title: String) {
+    init(viewModel: SerieViewModeling, dependencies: Dependencies, title: String) {
         self.dependencies = dependencies
         super.init(viewModel: viewModel)
         self.title = title
@@ -79,22 +77,16 @@ open class ShowsViewController: ViewController<ShowsViewModeling, UIView> {
     open override func viewDidLoad() {
         super.viewDidLoad()
         buildLayout()
-        viewModel.loadShows()
+        viewModel.loadSerie()
     }
     
     open override func buildViewHierarchy() {
-        view.addSubviews(collectionView, loadingView, feedbackView)
+        view.addSubviews(collectionView, loadingView)
     }
     
     open override func setupConstraints() {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
-        }
-        
-        feedbackView.snp.makeConstraints {
-            $0.top.leading.greaterThanOrEqualTo(view.layoutMarginsGuide)
-            $0.bottom.trailing.lessThanOrEqualTo(view.layoutMarginsGuide)
-            $0.centerX.centerY.equalToSuperview()
         }
         
         loadingView.snp.makeConstraints {
@@ -104,20 +96,12 @@ open class ShowsViewController: ViewController<ShowsViewModeling, UIView> {
     
     open override func configureViews() {
         collectionView.dataSource = dataSource
-        feedbackView.alpha = 0
         view.backgroundColor = .systemBackground
-    }
-    
-    func showItems(_ show: Bool) {
-        UIView.animate(withDuration: 0.3) {
-            self.collectionView.alpha = show ? 1 : 0
-            self.feedbackView.alpha = show ? 0 : 1
-        }
     }
 }
 
 // MARK: - UICollectionViewDelegate
-extension ShowsViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension SerieViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let leftRightMargin = Layout.sectionInset.left + Layout.sectionInset.right + Layout.sectionInset.top + Layout.sectionInset.bottom
         
@@ -131,8 +115,8 @@ extension ShowsViewController: UICollectionViewDelegate, UICollectionViewDelegat
     }
 }
 
-// MARK: - ShowsDisplaying
-extension ShowsViewController: ShowsDisplaying {
+// MARK: - SerieDisplaying
+extension SerieViewController: SerieDisplaying {
     @objc
     func displayEmptyView() {}
     

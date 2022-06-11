@@ -1,6 +1,7 @@
 protocol FavoritesShowsViewModeling: ShowsViewModeling {
     func changeSort()
     func reset()
+    func goToShows()
 }
 
 enum FavoritesSort {
@@ -47,6 +48,10 @@ final class FavoritesShowsViewModel {
 
 // MARK: - ShowsViewModeling
 extension FavoritesShowsViewModel: FavoritesShowsViewModeling {
+    func goToShows() {
+        coordinator.goToShows()
+    }
+    
     func loadShows() {
         displayer?.displayLoad()
         getShows { [weak self] in
@@ -55,23 +60,31 @@ extension FavoritesShowsViewModel: FavoritesShowsViewModeling {
     }
     
     func changeSort() {
-        self.sort = sort.toggle()
-        self.displayer?.displayShows(filteredShow)
-        self.displayer?.showReset()
+        sort = sort.toggle()
+        displayShows()
+        displayer?.showReset()
     }
     
     func reset() {
-        self.sort = .none
-        self.displayer?.displayShows(filteredShow)
-        self.displayer?.hideReset()
+        sort = .none
+        displayShows()
+        displayer?.hideReset()
     }
     
     func getShows(completion: @escaping () -> Void) {
         dependencies.storage.getAll(identifiable: "favorite_") { [weak self] (showItems: [ShowItem]) in
             guard let self = self else { return }
             self.shows = showItems
-            self.displayer?.displayShows(self.filteredShow)
+            self.displayShows()
             completion()
         }
+    }
+    
+    func displayShows() {
+        if filteredShow.isEmpty {
+            displayer?.displayEmptyView()
+            return
+        }
+        displayer?.displayShows(filteredShow)
     }
 }

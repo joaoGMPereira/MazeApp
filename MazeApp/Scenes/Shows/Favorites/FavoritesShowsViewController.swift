@@ -38,12 +38,18 @@ final class FavoritesShowsViewController: ShowsViewController {
 // MARK: - PagingShowsDisplaying
 extension FavoritesShowsViewController: FavoritesShowsDisplaying {
     func displayShows(_ shows: [ShowItem]) {
+        showItems(true)
         dataSource.set(items: shows, to: .zero)
         collectionView.invalidateIntrinsicContentSize()
     }
     
     override func displayEmptyView() {
-        
+        showItems(false)
+        feedbackView.setupCommponents(title: "Empty Favorites",
+                                      subtitle: "Go to Shows list and select your favorites shows",
+                                      buttonName: "OK") { [weak self] in
+            self?.favoriteViewModel?.goToShows()
+        }
     }
     
     func showReset() {

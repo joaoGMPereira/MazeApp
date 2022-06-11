@@ -37,6 +37,9 @@ extension PagingShowsViewModel: PagingShowsViewModeling {
         displayer?.displayLoad()
         getShows { [weak self] in
             self?.displayer?.hideLoad()
+            if self?.shows.isEmpty == true {
+                self?.displayer?.displayEmptyView()
+            }
         }
     }
     
@@ -46,7 +49,6 @@ extension PagingShowsViewModel: PagingShowsViewModeling {
             displayer?.displayLoad()
             getFilteredShows { [weak self] in
                 guard let self = self else { return }
-                self.isLoading = false
                 self.displayer?.hideLoad()
             }
             return
@@ -73,7 +75,7 @@ extension PagingShowsViewModel: PagingShowsViewModeling {
             //error feedback
             return
         }
-        coordinator.goToShow(show)
+        coordinator.goToSerie(show)
     }
 }
 
@@ -88,12 +90,11 @@ private extension PagingShowsViewModel {
                 switch result {
                 case .success(let success):
                     self.filteredShows = success.model.map{ $0.show }
-                    self.changeShows(self.filteredShows)
-                case .failure(let error):
-                    self.handleResponse(.failure(error),
-                                        completion: completion)
+                    self.showFilteredShows()
+                case .failure:
+                    self.displayer?.displayEmptyView()
                 }
-                
+                completion()
             }
     }
     
@@ -115,7 +116,6 @@ private extension PagingShowsViewModel {
             self.displayer?.displayShows(self.items(from: self.shows))
         case .failure:
             self.backToPreviousPage()
-            self.displayer?.displayError()
         }
         completion()
     }
@@ -129,11 +129,17 @@ private extension PagingShowsViewModel {
         }
     }
     
-    func changeShows(_ shows: ShowItemResponses) {
+    func showFilteredShows() {
         if filteredShows.isNotEmpty {
+            changeShows(filteredShows)
+        } else {
+            displayer?.displayFilteredEmptyView()
+        }
+    }
+    
+    func changeShows(_ shows: ShowItemResponses) {
             displayer?.clearShows()
             displayer?.displayShows(self.items(from: shows))
-        }
     }
     
     func reset() {

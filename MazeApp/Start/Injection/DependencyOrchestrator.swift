@@ -21,6 +21,9 @@ final class DependencyOrchestrator: DependencyOrchestrating {
         injector.register({
             Storage(dependencies: DependencyContainer())
         }, for: Storageable.self)
+        injector.register({
+            TabController.start()
+        }, for: TabControlling.self)
     }
     
     func start() {

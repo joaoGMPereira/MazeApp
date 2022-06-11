@@ -29,31 +29,31 @@ class Api: Apiable {
                 completion: completion
             )
         })
-
+        
         task.resume()
-
+        
         return task
     }
-
+    
     private func makeRequest(with endpoint: ApiEndpointExposable) throws -> URLRequest {
         var urlComponent = URLComponents(string: endpoint.absoluteStringUrl)
         if endpoint.method == .get && endpoint.parameters.isNotEmpty {
             urlComponent?.queryItems = endpoint.parameters
                 .map { URLQueryItem(name: $0.key, value: "\($0.value)") }
         }
-
+        
         guard let url = urlComponent?.url else {
             throw ApiError.malformedRequest("Unable to parse url")
         }
-
+        
         var request = URLRequest(url: url)
         request.addValue(endpoint.contentType.rawValue, forHTTPHeaderField: "Content-Type")
-
+        
         request.httpMethod = endpoint.method.rawValue
-
+        
         return request
     }
-
+    
     private func handle<E: Decodable>(
         request: URLRequest,
         responseBody: Data?,
@@ -62,24 +62,24 @@ class Api: Apiable {
         jsonDecoder: JSONDecoder,
         completion: @escaping (Result<Success<E>, ApiError>) -> Void
     ) {
-        if let error = error as NSError?,
-            error.code == NSURLErrorCancelled {
-            completion(.failure(.cancelled))
-            return
-        }
-
-        guard let httpResponse = response as? HTTPURLResponse else {
-            completion(.failure(.connectionFailure))
-            return
-        }
-
-        let status = HTTPStatusCode(rawValue: httpResponse.statusCode) ?? .processing
-        let result: Result<Success<E>, ApiError> = evaluateResult(status: status, jsonDecoder: jsonDecoder, responseBody: responseBody)
         dependencies.mainQueue.async {
+            if let error = error as NSError?,
+               error.code == NSURLErrorCancelled {
+                completion(.failure(.cancelled))
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                completion(.failure(.connectionFailure))
+                return
+            }
+            
+            let status = HTTPStatusCode(rawValue: httpResponse.statusCode) ?? .processing
+            let result: Result<Success<E>, ApiError> = self.evaluateResult(status: status, jsonDecoder: jsonDecoder, responseBody: responseBody)
             completion(result)
         }
     }
-
+    
     private func evaluateResult<E: Decodable>(
         status: HTTPStatusCode,
         jsonDecoder: JSONDecoder,
@@ -126,11 +126,11 @@ private extension Api {
         guard let response = responseBody as? E else {
             return .failure(.bodyNotFound)
         }
-
+        
         let success = Success(model: response, data: responseBody)
         return .success(success)
     }
-
+    
     func decodeContentData<E: Decodable>(_ responseBody: Data?, jsonDecoder: JSONDecoder) -> Result<Success<E>, ApiError> {
         do {
             let decoded = try jsonDecoder.decode(E.self, from: responseBody ?? Data())

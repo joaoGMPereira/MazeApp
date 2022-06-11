@@ -11,7 +11,9 @@ typealias AppDependencies =
     HasURLSessionable &
     HasApi &
     // MARK: Storage
-    HasStorageable
+    HasStorageable &
+    // MARK: Tab
+    HasTabControlling
 
 
 final class DependencyContainer: AppDependencies {
@@ -22,6 +24,7 @@ final class DependencyContainer: AppDependencies {
     lazy var session: URLSessionable = resolver.resolve()
     lazy var api: Apiable = resolver.resolve()
     lazy var storage: Storageable = resolver.resolve()
+    lazy var tabBarController: TabControlling = resolver.resolve()
     
     init(resolver: DependencyResolving = AppResolver.shared) {
         self.resolver = resolver

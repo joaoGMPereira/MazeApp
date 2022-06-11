@@ -1,7 +1,7 @@
 import UIKit
 
 protocol PagingShowsDisplaying: ShowsDisplaying {
-    func displayError()
+    func displayFilteredEmptyView()
     func displayShows(_ shows: [ShowItem])
     func clearShows()
     func displayNextPageLoad()
@@ -32,6 +32,7 @@ private extension PagingShowsViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Shows..."
         navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
         searchController.searchBar.delegate = self
     }
@@ -72,6 +73,7 @@ extension PagingShowsViewController: UISearchResultsUpdating, UISearchBarDelegat
 // MARK: - PagingShowsDisplaying
 extension PagingShowsViewController: PagingShowsDisplaying {
     func displayShows(_ shows: [ShowItem]) {
+        showItems(true)
         dataSource.add(items: shows, to: .zero)
     }
     
@@ -79,12 +81,20 @@ extension PagingShowsViewController: PagingShowsDisplaying {
         dataSource.clear(.zero)
     }
     
-    func displayError() {
-        
+    func displayFilteredEmptyView() {
+        showItems(false)
+        feedbackView.setupCommponents(title: "Didn`t find any show with you search",
+                                      subtitle: "Try again searching with other name")
     }
     
     override func displayEmptyView() {
-        
+        showItems(false)
+        feedbackView.setupCommponents(title: "Something didn`t work well",
+                                      subtitle: "System failure, please try again",
+                                      buttonName: "try again") {
+            self.feedbackView.alpha = .zero
+            self.pagingViewModel?.loadShows()
+        }
     }
     func displayNextPageLoad() {
         pagingLoadingView.startAnimating()

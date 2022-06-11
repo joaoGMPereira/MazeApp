@@ -1,15 +1,12 @@
 import UIKit
 
-enum ShowsAction {
-    // template
-}
-
 protocol ShowsCoordinating: AnyObject {
-    func goToShow(_ show: ShowItemResponse)
+    func goToSerie(_ show: ShowItemResponse)
+    func goToShows()
 }
 
 final class ShowsCoordinator {
-    typealias Dependencies = HasNoDependency
+    typealias Dependencies = HasTabControlling
     private let dependencies: Dependencies
     
     weak var viewController: UIViewController?
@@ -21,8 +18,12 @@ final class ShowsCoordinator {
 
 // MARK: - ShowsCoordinating
 extension ShowsCoordinator: ShowsCoordinating {
-    func goToShow(_ show: ShowItemResponse) {
-        viewController?.pushViewController(PagingShowsFactory.make(title: "Details"),
+    func goToSerie(_ show: ShowItemResponse) {
+        viewController?.pushViewController(SerieFactory.make(title: show.name),
                                            animated: true)
+    }
+    
+    func goToShows() {
+        dependencies.tabBarController.setSelected(.zero)
     }
 }

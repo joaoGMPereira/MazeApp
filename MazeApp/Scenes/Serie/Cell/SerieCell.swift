@@ -1,12 +1,12 @@
 import UIKit
 import SnapKit
 
-protocol ShowCelling: AnyObject {
+protocol SerieCelling: AnyObject {
     func displayFavorited()
     func displayNotFavorite()
 }
 
-final class ShowCell: UICollectionViewCell, ViewConfiguration {
+final class SerieCell: UICollectionViewCell, ViewConfiguration {
     typealias Dependencies = HasMainQueue & HasURLSessionable & HasStorageable
     
     // MARK: - UI Properties
@@ -64,7 +64,7 @@ final class ShowCell: UICollectionViewCell, ViewConfiguration {
 
     
     // MARK: - Initializers
-    var viewModel: ShowCellViewModel?
+    var viewModel: SerieCellViewModel?
     var task: URLSessionDataTask?
 
     override init(frame: CGRect) {
@@ -111,8 +111,8 @@ final class ShowCell: UICollectionViewCell, ViewConfiguration {
 
     
     // MARK: - Setup
-    func setup(with item: ShowItem, dependencies: Dependencies) {
-        let viewModel = ShowCellViewModel(dependencies: dependencies,
+    func setup(with item: SerieItem, dependencies: Dependencies) {
+        let viewModel = SerieCellViewModel(dependencies: dependencies,
                                           showItem: item)
         self.viewModel = viewModel
         viewModel.displayer = self
@@ -152,7 +152,7 @@ final class ShowCell: UICollectionViewCell, ViewConfiguration {
 }
 
 // MARK: - Displaying
-extension ShowCell: ShowCelling {
+extension SerieCell: SerieCelling {
     func displayFavorited() {
         updateFavoriteState(with: true)
     }
@@ -162,7 +162,7 @@ extension ShowCell: ShowCelling {
     }
 }
 
-private extension ShowCell {
+private extension SerieCell {
     func updateFavoriteState(with favorite: Bool) {
         if favorite {
             favoriteButton.setImage(.init(systemName: "heart.fill"), for: .normal)

@@ -1,9 +1,9 @@
 import UIKit
 import UIKit
 
-class StartTabController: UITabBarController, UITabBarControllerDelegate {
+class TabController: UITabBarController, UITabBarControllerDelegate, TabControlling {
     
-    static func start() -> StartTabController {
+    static func start() -> TabController {
         let showsViewController = PagingShowsFactory.make(title: "Shows")
         let showsItem = UITabBarItem()
         showsItem.title = "Shows"
@@ -19,7 +19,7 @@ class StartTabController: UITabBarController, UITabBarControllerDelegate {
         favorites.selectedImage =  UIImage(systemName: "heart.fill")
         favoriteShowsViewController.tabBarItem = favorites
         
-        let tabBarController = StartTabController()
+        let tabBarController = TabController()
         tabBarController.viewControllers = [UINavigationController(rootViewController: showsViewController), UINavigationController(rootViewController: favoriteShowsViewController)]
         setupNavigationAppearance()
         setupTabBarAppearance()
@@ -58,5 +58,13 @@ class StartTabController: UITabBarController, UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
+    }
+    
+    func getTabBarController() -> UITabBarController {
+        self
+    }
+    
+    func setSelected(_ index: Int) {
+        selectedIndex = index
     }
 }
