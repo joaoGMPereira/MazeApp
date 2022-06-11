@@ -1,5 +1,6 @@
 enum ShowsEndpoint {
     case list(page: Int, search: String)
+    case serieEpisodes(id: Int)
 }
 
 extension ShowsEndpoint: ApiEndpointExposable {
@@ -9,6 +10,9 @@ extension ShowsEndpoint: ApiEndpointExposable {
                 return "/search/shows?q=\(search)"
             }
             return "/shows?page=\(page)"
+        }
+        if case let .serieEpisodes(id) = self {
+            return "/shows/\(id)/episodes"
         }
         return String()
     }
