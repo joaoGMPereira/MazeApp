@@ -1,0 +1,597 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		724103334A4D079846E2781D /* Pods_MazeApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 716A1056ED11D33739B527FC /* Pods_MazeApp.framework */; };
+		76BF037D2854560D00A2DBDC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF037C2854560D00A2DBDC /* AppDelegate.swift */; };
+		76BF037F2854560D00A2DBDC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF037E2854560D00A2DBDC /* SceneDelegate.swift */; };
+		76BF03812854560D00A2DBDC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF03802854560D00A2DBDC /* ViewController.swift */; };
+		76BF03842854560D00A2DBDC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76BF03822854560D00A2DBDC /* Main.storyboard */; };
+		76BF03862854561200A2DBDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76BF03852854561200A2DBDC /* Assets.xcassets */; };
+		76BF03892854561200A2DBDC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76BF03872854561200A2DBDC /* LaunchScreen.storyboard */; };
+		76BF03942854561200A2DBDC /* MazeAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF03932854561200A2DBDC /* MazeAppTests.swift */; };
+		9C5D1783D16E51225A8D4EC6 /* Pods_MazeAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79DDEA4B20C92DDBA86C1C0A /* Pods_MazeAppTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		76BF03902854561200A2DBDC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 76BF03712854560D00A2DBDC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 76BF03782854560D00A2DBDC;
+			remoteInfo = MazeApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		18A96073BC8AA665B29916B2 /* Pods-MazeApp-MazeAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MazeApp-MazeAppUITests.release.xcconfig"; path = "Target Support Files/Pods-MazeApp-MazeAppUITests/Pods-MazeApp-MazeAppUITests.release.xcconfig"; sourceTree = "<group>"; };
+		1C0C74F0500525955A8B4EEE /* Pods-MazeAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MazeAppTests.release.xcconfig"; path = "Target Support Files/Pods-MazeAppTests/Pods-MazeAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		23DB994D9FBE6FF8317870E6 /* Pods-MazeApp-MazeAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MazeApp-MazeAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-MazeApp-MazeAppUITests/Pods-MazeApp-MazeAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		6648FB43DF9ABAEFCC4E7F7E /* Pods-MazeApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MazeApp.release.xcconfig"; path = "Target Support Files/Pods-MazeApp/Pods-MazeApp.release.xcconfig"; sourceTree = "<group>"; };
+		716A1056ED11D33739B527FC /* Pods_MazeApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MazeApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		76BF03792854560D00A2DBDC /* MazeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MazeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		76BF037C2854560D00A2DBDC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		76BF037E2854560D00A2DBDC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		76BF03802854560D00A2DBDC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		76BF03832854560D00A2DBDC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		76BF03852854561200A2DBDC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		76BF03882854561200A2DBDC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		76BF038A2854561200A2DBDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		76BF038F2854561200A2DBDC /* MazeAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MazeAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		76BF03932854561200A2DBDC /* MazeAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeAppTests.swift; sourceTree = "<group>"; };
+		79DDEA4B20C92DDBA86C1C0A /* Pods_MazeAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MazeAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E681C2BECECA71B55D1C3F4 /* Pods_MazeApp_MazeAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MazeApp_MazeAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0D1F17BCF0007F3863139EA /* Pods-MazeApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MazeApp.debug.xcconfig"; path = "Target Support Files/Pods-MazeApp/Pods-MazeApp.debug.xcconfig"; sourceTree = "<group>"; };
+		F2F55D3FE5D15DDE554532CD /* Pods-MazeAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MazeAppTests.debug.xcconfig"; path = "Target Support Files/Pods-MazeAppTests/Pods-MazeAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		76BF03762854560D00A2DBDC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				724103334A4D079846E2781D /* Pods_MazeApp.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		76BF038C2854561200A2DBDC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C5D1783D16E51225A8D4EC6 /* Pods_MazeAppTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		76BF03702854560D00A2DBDC = {
+			isa = PBXGroup;
+			children = (
+				76BF037B2854560D00A2DBDC /* MazeApp */,
+				76BF03922854561200A2DBDC /* MazeAppTests */,
+				76BF037A2854560D00A2DBDC /* Products */,
+				8C161477803E7D8FFA2B53D9 /* Pods */,
+				D9DE927C8B01BDDB45FDD356 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		76BF037A2854560D00A2DBDC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				76BF03792854560D00A2DBDC /* MazeApp.app */,
+				76BF038F2854561200A2DBDC /* MazeAppTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		76BF037B2854560D00A2DBDC /* MazeApp */ = {
+			isa = PBXGroup;
+			children = (
+				76BF037C2854560D00A2DBDC /* AppDelegate.swift */,
+				76BF037E2854560D00A2DBDC /* SceneDelegate.swift */,
+				76BF03802854560D00A2DBDC /* ViewController.swift */,
+				76BF03822854560D00A2DBDC /* Main.storyboard */,
+				76BF03852854561200A2DBDC /* Assets.xcassets */,
+				76BF03872854561200A2DBDC /* LaunchScreen.storyboard */,
+				76BF038A2854561200A2DBDC /* Info.plist */,
+			);
+			path = MazeApp;
+			sourceTree = "<group>";
+		};
+		76BF03922854561200A2DBDC /* MazeAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				76BF03932854561200A2DBDC /* MazeAppTests.swift */,
+			);
+			path = MazeAppTests;
+			sourceTree = "<group>";
+		};
+		8C161477803E7D8FFA2B53D9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D0D1F17BCF0007F3863139EA /* Pods-MazeApp.debug.xcconfig */,
+				6648FB43DF9ABAEFCC4E7F7E /* Pods-MazeApp.release.xcconfig */,
+				23DB994D9FBE6FF8317870E6 /* Pods-MazeApp-MazeAppUITests.debug.xcconfig */,
+				18A96073BC8AA665B29916B2 /* Pods-MazeApp-MazeAppUITests.release.xcconfig */,
+				F2F55D3FE5D15DDE554532CD /* Pods-MazeAppTests.debug.xcconfig */,
+				1C0C74F0500525955A8B4EEE /* Pods-MazeAppTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		D9DE927C8B01BDDB45FDD356 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				716A1056ED11D33739B527FC /* Pods_MazeApp.framework */,
+				8E681C2BECECA71B55D1C3F4 /* Pods_MazeApp_MazeAppUITests.framework */,
+				79DDEA4B20C92DDBA86C1C0A /* Pods_MazeAppTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		76BF03782854560D00A2DBDC /* MazeApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 76BF03A32854561200A2DBDC /* Build configuration list for PBXNativeTarget "MazeApp" */;
+			buildPhases = (
+				063EC173DE7086D63F709472 /* [CP] Check Pods Manifest.lock */,
+				76BF03752854560D00A2DBDC /* Sources */,
+				76BF03762854560D00A2DBDC /* Frameworks */,
+				76BF03772854560D00A2DBDC /* Resources */,
+				7B3699E5A19373CCBD7E4742 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MazeApp;
+			productName = MazeApp;
+			productReference = 76BF03792854560D00A2DBDC /* MazeApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		76BF038E2854561200A2DBDC /* MazeAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 76BF03A62854561200A2DBDC /* Build configuration list for PBXNativeTarget "MazeAppTests" */;
+			buildPhases = (
+				C0E6858F6509D2CB1A578F8B /* [CP] Check Pods Manifest.lock */,
+				76BF038B2854561200A2DBDC /* Sources */,
+				76BF038C2854561200A2DBDC /* Frameworks */,
+				76BF038D2854561200A2DBDC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				76BF03912854561200A2DBDC /* PBXTargetDependency */,
+			);
+			name = MazeAppTests;
+			productName = MazeAppTests;
+			productReference = 76BF038F2854561200A2DBDC /* MazeAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		76BF03712854560D00A2DBDC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					76BF03782854560D00A2DBDC = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					76BF038E2854561200A2DBDC = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 76BF03782854560D00A2DBDC;
+					};
+				};
+			};
+			buildConfigurationList = 76BF03742854560D00A2DBDC /* Build configuration list for PBXProject "MazeApp" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 76BF03702854560D00A2DBDC;
+			productRefGroup = 76BF037A2854560D00A2DBDC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				76BF03782854560D00A2DBDC /* MazeApp */,
+				76BF038E2854561200A2DBDC /* MazeAppTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		76BF03772854560D00A2DBDC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76BF03892854561200A2DBDC /* LaunchScreen.storyboard in Resources */,
+				76BF03862854561200A2DBDC /* Assets.xcassets in Resources */,
+				76BF03842854560D00A2DBDC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		76BF038D2854561200A2DBDC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		063EC173DE7086D63F709472 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MazeApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7B3699E5A19373CCBD7E4742 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MazeApp/Pods-MazeApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MazeApp/Pods-MazeApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MazeApp/Pods-MazeApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C0E6858F6509D2CB1A578F8B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MazeAppTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		76BF03752854560D00A2DBDC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76BF03812854560D00A2DBDC /* ViewController.swift in Sources */,
+				76BF037D2854560D00A2DBDC /* AppDelegate.swift in Sources */,
+				76BF037F2854560D00A2DBDC /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		76BF038B2854561200A2DBDC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76BF03942854561200A2DBDC /* MazeAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		76BF03912854561200A2DBDC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 76BF03782854560D00A2DBDC /* MazeApp */;
+			targetProxy = 76BF03902854561200A2DBDC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		76BF03822854560D00A2DBDC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				76BF03832854560D00A2DBDC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		76BF03872854561200A2DBDC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				76BF03882854561200A2DBDC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		76BF03A12854561200A2DBDC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		76BF03A22854561200A2DBDC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		76BF03A42854561200A2DBDC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D0D1F17BCF0007F3863139EA /* Pods-MazeApp.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G77MYT7HW8;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MazeApp/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = joao.gabriel.medeiros.pereira.MazeApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		76BF03A52854561200A2DBDC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6648FB43DF9ABAEFCC4E7F7E /* Pods-MazeApp.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G77MYT7HW8;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MazeApp/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = joao.gabriel.medeiros.pereira.MazeApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		76BF03A72854561200A2DBDC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F2F55D3FE5D15DDE554532CD /* Pods-MazeAppTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G77MYT7HW8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = joao.gabriel.medeiros.pereira.MazeAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MazeApp.app/MazeApp";
+			};
+			name = Debug;
+		};
+		76BF03A82854561200A2DBDC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C0C74F0500525955A8B4EEE /* Pods-MazeAppTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G77MYT7HW8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = joao.gabriel.medeiros.pereira.MazeAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MazeApp.app/MazeApp";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		76BF03742854560D00A2DBDC /* Build configuration list for PBXProject "MazeApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				76BF03A12854561200A2DBDC /* Debug */,
+				76BF03A22854561200A2DBDC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		76BF03A32854561200A2DBDC /* Build configuration list for PBXNativeTarget "MazeApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				76BF03A42854561200A2DBDC /* Debug */,
+				76BF03A52854561200A2DBDC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		76BF03A62854561200A2DBDC /* Build configuration list for PBXNativeTarget "MazeAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				76BF03A72854561200A2DBDC /* Debug */,
+				76BF03A82854561200A2DBDC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 76BF03712854560D00A2DBDC /* Project object */;
+}
