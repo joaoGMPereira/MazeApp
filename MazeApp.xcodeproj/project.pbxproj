@@ -15,6 +15,33 @@
 		76BF03862854561200A2DBDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76BF03852854561200A2DBDC /* Assets.xcassets */; };
 		76BF03892854561200A2DBDC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76BF03872854561200A2DBDC /* LaunchScreen.storyboard */; };
 		76BF03942854561200A2DBDC /* MazeAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF03932854561200A2DBDC /* MazeAppTests.swift */; };
+		76BF03D7285457A200A2DBDC /* Storageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF03B3285457A200A2DBDC /* Storageable.swift */; };
+		76BF03D8285457A200A2DBDC /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF03B5285457A200A2DBDC /* Storage.swift */; };
+		76BF03D9285457A200A2DBDC /* DependencyOrchestrating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF03B8285457A200A2DBDC /* DependencyOrchestrating.swift */; };
+		76BF03DA285457A200A2DBDC /* DependencyInjecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF03B9285457A200A2DBDC /* DependencyInjecting.swift */; };
+		76BF03DB285457A200A2DBDC /* Injected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF03BA285457A200A2DBDC /* Injected.swift */; };
+		76BF03DC285457A200A2DBDC /* DependencyStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF03BB285457A200A2DBDC /* DependencyStoring.swift */; };
+		76BF03DD285457A200A2DBDC /* String+Failure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF03BC285457A200A2DBDC /* String+Failure.swift */; };
+		76BF03DE285457A200A2DBDC /* FeatureResolving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF03BD285457A200A2DBDC /* FeatureResolving.swift */; };
+		76BF03DF285457A200A2DBDC /* DependencyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF03BF285457A200A2DBDC /* DependencyStore.swift */; };
+		76BF03E0285457A200A2DBDC /* DependencyInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF03C0285457A200A2DBDC /* DependencyInjector.swift */; };
+		76BF03E1285457A200A2DBDC /* InjectorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF03C1285457A200A2DBDC /* InjectorFactory.swift */; };
+		76BF03E2285457A200A2DBDC /* ThreadRecursiveLocking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF03C2285457A200A2DBDC /* ThreadRecursiveLocking.swift */; };
+		76BF03E3285457A200A2DBDC /* URLSessionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF03C5285457A200A2DBDC /* URLSessionable.swift */; };
+		76BF03E4285457A200A2DBDC /* ApiEndpointExposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF03C6285457A200A2DBDC /* ApiEndpointExposable.swift */; };
+		76BF03E5285457A200A2DBDC /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF03C8285457A200A2DBDC /* ApiError.swift */; };
+		76BF03E6285457A200A2DBDC /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF03C9285457A200A2DBDC /* HTTPMethod.swift */; };
+		76BF03E7285457A200A2DBDC /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF03CA285457A200A2DBDC /* ContentType.swift */; };
+		76BF03E8285457A200A2DBDC /* HTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF03CB285457A200A2DBDC /* HTTPStatusCode.swift */; };
+		76BF03E9285457A200A2DBDC /* Apiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF03CC285457A200A2DBDC /* Apiable.swift */; };
+		76BF03EA285457A200A2DBDC /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF03CE285457A200A2DBDC /* Api.swift */; };
+		76BF03EB285457A200A2DBDC /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF03D1285457A200A2DBDC /* DependencyContainer.swift */; };
+		76BF03EC285457A200A2DBDC /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF03D2285457A200A2DBDC /* Resolver.swift */; };
+		76BF03ED285457A200A2DBDC /* DispatchDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF03D4285457A200A2DBDC /* DispatchDependencies.swift */; };
+		76BF03EE285457A200A2DBDC /* ApiDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF03D5285457A200A2DBDC /* ApiDependencies.swift */; };
+		76BF03EF285457A200A2DBDC /* DependencyOrchestrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF03D6285457A200A2DBDC /* DependencyOrchestrator.swift */; };
+		76BF03F2285457D500A2DBDC /* UserDefault+Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF03F1285457D500A2DBDC /* UserDefault+Parser.swift */; };
+		76BF03F4285457F100A2DBDC /* Collection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF03F3285457F100A2DBDC /* Collection+Extensions.swift */; };
 		9C5D1783D16E51225A8D4EC6 /* Pods_MazeAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79DDEA4B20C92DDBA86C1C0A /* Pods_MazeAppTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +71,33 @@
 		76BF038A2854561200A2DBDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76BF038F2854561200A2DBDC /* MazeAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MazeAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		76BF03932854561200A2DBDC /* MazeAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeAppTests.swift; sourceTree = "<group>"; };
+		76BF03B3285457A200A2DBDC /* Storageable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storageable.swift; sourceTree = "<group>"; };
+		76BF03B5285457A200A2DBDC /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		76BF03B8285457A200A2DBDC /* DependencyOrchestrating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependencyOrchestrating.swift; sourceTree = "<group>"; };
+		76BF03B9285457A200A2DBDC /* DependencyInjecting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependencyInjecting.swift; sourceTree = "<group>"; };
+		76BF03BA285457A200A2DBDC /* Injected.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Injected.swift; sourceTree = "<group>"; };
+		76BF03BB285457A200A2DBDC /* DependencyStoring.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependencyStoring.swift; sourceTree = "<group>"; };
+		76BF03BC285457A200A2DBDC /* String+Failure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Failure.swift"; sourceTree = "<group>"; };
+		76BF03BD285457A200A2DBDC /* FeatureResolving.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureResolving.swift; sourceTree = "<group>"; };
+		76BF03BF285457A200A2DBDC /* DependencyStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependencyStore.swift; sourceTree = "<group>"; };
+		76BF03C0285457A200A2DBDC /* DependencyInjector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependencyInjector.swift; sourceTree = "<group>"; };
+		76BF03C1285457A200A2DBDC /* InjectorFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InjectorFactory.swift; sourceTree = "<group>"; };
+		76BF03C2285457A200A2DBDC /* ThreadRecursiveLocking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadRecursiveLocking.swift; sourceTree = "<group>"; };
+		76BF03C5285457A200A2DBDC /* URLSessionable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionable.swift; sourceTree = "<group>"; };
+		76BF03C6285457A200A2DBDC /* ApiEndpointExposable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiEndpointExposable.swift; sourceTree = "<group>"; };
+		76BF03C8285457A200A2DBDC /* ApiError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
+		76BF03C9285457A200A2DBDC /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		76BF03CA285457A200A2DBDC /* ContentType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentType.swift; sourceTree = "<group>"; };
+		76BF03CB285457A200A2DBDC /* HTTPStatusCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
+		76BF03CC285457A200A2DBDC /* Apiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Apiable.swift; sourceTree = "<group>"; };
+		76BF03CE285457A200A2DBDC /* Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		76BF03D1285457A200A2DBDC /* DependencyContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
+		76BF03D2285457A200A2DBDC /* Resolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
+		76BF03D4285457A200A2DBDC /* DispatchDependencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchDependencies.swift; sourceTree = "<group>"; };
+		76BF03D5285457A200A2DBDC /* ApiDependencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiDependencies.swift; sourceTree = "<group>"; };
+		76BF03D6285457A200A2DBDC /* DependencyOrchestrator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependencyOrchestrator.swift; sourceTree = "<group>"; };
+		76BF03F1285457D500A2DBDC /* UserDefault+Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefault+Parser.swift"; sourceTree = "<group>"; };
+		76BF03F3285457F100A2DBDC /* Collection+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+Extensions.swift"; sourceTree = "<group>"; };
 		79DDEA4B20C92DDBA86C1C0A /* Pods_MazeAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MazeAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E681C2BECECA71B55D1C3F4 /* Pods_MazeApp_MazeAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MazeApp_MazeAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0D1F17BCF0007F3863139EA /* Pods-MazeApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MazeApp.debug.xcconfig"; path = "Target Support Files/Pods-MazeApp/Pods-MazeApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -93,6 +147,9 @@
 		76BF037B2854560D00A2DBDC /* MazeApp */ = {
 			isa = PBXGroup;
 			children = (
+				76BF03F0285457D500A2DBDC /* Extensions */,
+				76BF03B0285457A200A2DBDC /* Kits */,
+				76BF03CF285457A200A2DBDC /* Start */,
 				76BF037C2854560D00A2DBDC /* AppDelegate.swift */,
 				76BF037E2854560D00A2DBDC /* SceneDelegate.swift */,
 				76BF03802854560D00A2DBDC /* ViewController.swift */,
@@ -110,6 +167,150 @@
 				76BF03932854561200A2DBDC /* MazeAppTests.swift */,
 			);
 			path = MazeAppTests;
+			sourceTree = "<group>";
+		};
+		76BF03B0285457A200A2DBDC /* Kits */ = {
+			isa = PBXGroup;
+			children = (
+				76BF03B1285457A200A2DBDC /* Storage */,
+				76BF03B6285457A200A2DBDC /* DependencyInjector */,
+				76BF03C3285457A200A2DBDC /* Api */,
+			);
+			path = Kits;
+			sourceTree = "<group>";
+		};
+		76BF03B1285457A200A2DBDC /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				76BF03B2285457A200A2DBDC /* Interface */,
+				76BF03B4285457A200A2DBDC /* Concrete */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		76BF03B2285457A200A2DBDC /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				76BF03B3285457A200A2DBDC /* Storageable.swift */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		76BF03B4285457A200A2DBDC /* Concrete */ = {
+			isa = PBXGroup;
+			children = (
+				76BF03B5285457A200A2DBDC /* Storage.swift */,
+			);
+			path = Concrete;
+			sourceTree = "<group>";
+		};
+		76BF03B6285457A200A2DBDC /* DependencyInjector */ = {
+			isa = PBXGroup;
+			children = (
+				76BF03B7285457A200A2DBDC /* Interface */,
+				76BF03BE285457A200A2DBDC /* Concrete */,
+			);
+			path = DependencyInjector;
+			sourceTree = "<group>";
+		};
+		76BF03B7285457A200A2DBDC /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				76BF03B8285457A200A2DBDC /* DependencyOrchestrating.swift */,
+				76BF03B9285457A200A2DBDC /* DependencyInjecting.swift */,
+				76BF03BA285457A200A2DBDC /* Injected.swift */,
+				76BF03BB285457A200A2DBDC /* DependencyStoring.swift */,
+				76BF03BC285457A200A2DBDC /* String+Failure.swift */,
+				76BF03BD285457A200A2DBDC /* FeatureResolving.swift */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		76BF03BE285457A200A2DBDC /* Concrete */ = {
+			isa = PBXGroup;
+			children = (
+				76BF03BF285457A200A2DBDC /* DependencyStore.swift */,
+				76BF03C0285457A200A2DBDC /* DependencyInjector.swift */,
+				76BF03C1285457A200A2DBDC /* InjectorFactory.swift */,
+				76BF03C2285457A200A2DBDC /* ThreadRecursiveLocking.swift */,
+			);
+			path = Concrete;
+			sourceTree = "<group>";
+		};
+		76BF03C3285457A200A2DBDC /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				76BF03C4285457A200A2DBDC /* Interface */,
+				76BF03CD285457A200A2DBDC /* Concrete */,
+			);
+			path = Api;
+			sourceTree = "<group>";
+		};
+		76BF03C4285457A200A2DBDC /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				76BF03C5285457A200A2DBDC /* URLSessionable.swift */,
+				76BF03C6285457A200A2DBDC /* ApiEndpointExposable.swift */,
+				76BF03C7285457A200A2DBDC /* Models */,
+				76BF03CC285457A200A2DBDC /* Apiable.swift */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		76BF03C7285457A200A2DBDC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				76BF03C8285457A200A2DBDC /* ApiError.swift */,
+				76BF03C9285457A200A2DBDC /* HTTPMethod.swift */,
+				76BF03CA285457A200A2DBDC /* ContentType.swift */,
+				76BF03CB285457A200A2DBDC /* HTTPStatusCode.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		76BF03CD285457A200A2DBDC /* Concrete */ = {
+			isa = PBXGroup;
+			children = (
+				76BF03CE285457A200A2DBDC /* Api.swift */,
+			);
+			path = Concrete;
+			sourceTree = "<group>";
+		};
+		76BF03CF285457A200A2DBDC /* Start */ = {
+			isa = PBXGroup;
+			children = (
+				76BF03D0285457A200A2DBDC /* Injection */,
+			);
+			path = Start;
+			sourceTree = "<group>";
+		};
+		76BF03D0285457A200A2DBDC /* Injection */ = {
+			isa = PBXGroup;
+			children = (
+				76BF03D1285457A200A2DBDC /* DependencyContainer.swift */,
+				76BF03D2285457A200A2DBDC /* Resolver.swift */,
+				76BF03D3285457A200A2DBDC /* Dependencies */,
+				76BF03D6285457A200A2DBDC /* DependencyOrchestrator.swift */,
+			);
+			path = Injection;
+			sourceTree = "<group>";
+		};
+		76BF03D3285457A200A2DBDC /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				76BF03D4285457A200A2DBDC /* DispatchDependencies.swift */,
+				76BF03D5285457A200A2DBDC /* ApiDependencies.swift */,
+			);
+			path = Dependencies;
+			sourceTree = "<group>";
+		};
+		76BF03F0285457D500A2DBDC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				76BF03F3285457F100A2DBDC /* Collection+Extensions.swift */,
+				76BF03F1285457D500A2DBDC /* UserDefault+Parser.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		8C161477803E7D8FFA2B53D9 /* Pods */ = {
@@ -303,9 +504,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76BF03E6285457A200A2DBDC /* HTTPMethod.swift in Sources */,
 				76BF03812854560D00A2DBDC /* ViewController.swift in Sources */,
+				76BF03D7285457A200A2DBDC /* Storageable.swift in Sources */,
 				76BF037D2854560D00A2DBDC /* AppDelegate.swift in Sources */,
 				76BF037F2854560D00A2DBDC /* SceneDelegate.swift in Sources */,
+				76BF03EC285457A200A2DBDC /* Resolver.swift in Sources */,
+				76BF03EE285457A200A2DBDC /* ApiDependencies.swift in Sources */,
+				76BF03EA285457A200A2DBDC /* Api.swift in Sources */,
+				76BF03E7285457A200A2DBDC /* ContentType.swift in Sources */,
+				76BF03E8285457A200A2DBDC /* HTTPStatusCode.swift in Sources */,
+				76BF03DF285457A200A2DBDC /* DependencyStore.swift in Sources */,
+				76BF03E5285457A200A2DBDC /* ApiError.swift in Sources */,
+				76BF03DA285457A200A2DBDC /* DependencyInjecting.swift in Sources */,
+				76BF03ED285457A200A2DBDC /* DispatchDependencies.swift in Sources */,
+				76BF03F2285457D500A2DBDC /* UserDefault+Parser.swift in Sources */,
+				76BF03E9285457A200A2DBDC /* Apiable.swift in Sources */,
+				76BF03E2285457A200A2DBDC /* ThreadRecursiveLocking.swift in Sources */,
+				76BF03DE285457A200A2DBDC /* FeatureResolving.swift in Sources */,
+				76BF03DD285457A200A2DBDC /* String+Failure.swift in Sources */,
+				76BF03DC285457A200A2DBDC /* DependencyStoring.swift in Sources */,
+				76BF03E3285457A200A2DBDC /* URLSessionable.swift in Sources */,
+				76BF03E4285457A200A2DBDC /* ApiEndpointExposable.swift in Sources */,
+				76BF03E0285457A200A2DBDC /* DependencyInjector.swift in Sources */,
+				76BF03EF285457A200A2DBDC /* DependencyOrchestrator.swift in Sources */,
+				76BF03E1285457A200A2DBDC /* InjectorFactory.swift in Sources */,
+				76BF03D9285457A200A2DBDC /* DependencyOrchestrating.swift in Sources */,
+				76BF03D8285457A200A2DBDC /* Storage.swift in Sources */,
+				76BF03EB285457A200A2DBDC /* DependencyContainer.swift in Sources */,
+				76BF03DB285457A200A2DBDC /* Injected.swift in Sources */,
+				76BF03F4285457F100A2DBDC /* Collection+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

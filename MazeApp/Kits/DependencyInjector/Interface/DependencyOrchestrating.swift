@@ -1,0 +1,3 @@
+protocol DependencyOrchestrating {
+    func start()
+}
