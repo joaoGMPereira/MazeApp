@@ -10,8 +10,17 @@ class StartTabController: UITabBarController, UITabBarControllerDelegate {
         showsItem.image = UIImage(systemName: "list.bullet")
         showsViewController.tabBarItem = showsItem
         
+        
+        
+        let favoriteShowsViewController = FavoritesShowsFactory.make(title: "Favorites")
+        let favorites = UITabBarItem()
+        favorites.title = "Favorites"
+        favorites.image = UIImage(systemName: "heart")
+        favorites.selectedImage =  UIImage(systemName: "heart.fill")
+        favoriteShowsViewController.tabBarItem = favorites
+        
         let tabBarController = StartTabController()
-        tabBarController.viewControllers = [UINavigationController(rootViewController: showsViewController)]
+        tabBarController.viewControllers = [UINavigationController(rootViewController: showsViewController), UINavigationController(rootViewController: favoriteShowsViewController)]
         setupNavigationAppearance()
         setupTabBarAppearance()
         return tabBarController

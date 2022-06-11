@@ -1,6 +1,12 @@
 import Foundation
 
 class Api: Apiable {
+    typealias Dependencies = HasMainQueue
+    let dependencies: Dependencies
+    
+    init(dependencies: Dependencies = DependencyContainer()) {
+        self.dependencies = dependencies
+    }
     func execute<E: Decodable>(
         endpoint: ApiEndpointExposable,
         session: URLSessionable,
@@ -69,7 +75,9 @@ class Api: Apiable {
 
         let status = HTTPStatusCode(rawValue: httpResponse.statusCode) ?? .processing
         let result: Result<Success<E>, ApiError> = evaluateResult(status: status, jsonDecoder: jsonDecoder, responseBody: responseBody)
-        completion(result)
+        dependencies.mainQueue.async {
+            completion(result)
+        }
     }
 
     private func evaluateResult<E: Decodable>(
