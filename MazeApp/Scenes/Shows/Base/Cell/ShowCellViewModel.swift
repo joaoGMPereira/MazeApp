@@ -10,9 +10,9 @@ final class ShowCellViewModel {
     private let dependencies: Dependencies
     weak var displayer: ShowCelling?
     
-    private let showItem: ShowItem
+    private let showItem: Show
     
-    init(dependencies: Dependencies, showItem: ShowItem) {
+    init(dependencies: Dependencies, showItem: Show) {
         self.dependencies = dependencies
         self.showItem = showItem
     }
@@ -21,7 +21,7 @@ final class ShowCellViewModel {
 // MARK: - ShowsViewModeling
 extension ShowCellViewModel: ShowCellViewModeling {
     func getFavoriteState() -> Bool {
-        let favorite: ShowItem? = dependencies.storage.get(key: StorageKey.favorite(showItem.id))
+        let favorite: Show? = dependencies.storage.get(key: StorageKey.favorite(showItem.id))
         return favorite != nil
     }
     

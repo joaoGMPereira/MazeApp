@@ -2,6 +2,7 @@ import UIKit
 import SnapKit
 
 protocol SerieDisplaying: AnyObject {
+    func displayShow(_ show: Show)
     func displayEmptyView()
     func displayLoad()
     func hideLoad()
@@ -15,7 +16,7 @@ open class SerieViewController: ViewController<SerieViewModeling, UIView> {
                                                right: 16)
         static let spacing: CGFloat = 8
         static let paginationOffset: CGFloat = 100
-        static let numberOfColumns = CGFloat(2)
+        static let numberOfColumns = CGFloat(1)
     }
     
     typealias Dependencies = HasMainQueue & HasURLSessionable & HasStorageable
@@ -23,12 +24,12 @@ open class SerieViewController: ViewController<SerieViewModeling, UIView> {
     let dependencies: Dependencies
     
     // MARK: - Collection
-    private(set) lazy var dataSource: CollectionViewDataSource<Int, SerieResponse> = {
-        let dataSource = CollectionViewDataSource<Int, SerieResponse>(view: collectionView)
+    private(set) lazy var dataSource: CollectionViewDataSource<Int, SerieModelling> = {
+        let dataSource = CollectionViewDataSource<Int, SerieModelling>(view: collectionView)
         dataSource.itemProvider = { [weak self] view, indexPath, item in
-            guard let self = self else { return UICollectionViewCell() }
+            guard let self = self, let show = item as? Show else { return UICollectionViewCell() }
             let cell = view.dequeueReusableCell(for: indexPath, cellType: SerieCell.self)
-            cell.setup(with: .init(id: "", imageUrl: "", name: "label", average: 10), dependencies: self.dependencies)
+            cell.setup(with: show, dependencies: self.dependencies)
             return cell
         }
         return dataSource
@@ -38,7 +39,6 @@ open class SerieViewController: ViewController<SerieViewModeling, UIView> {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = Layout.sectionInset
         layout.minimumInteritemSpacing = Layout.spacing
-        
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.delegate = self
         collectionView.register(cellType: SerieCell.self)
@@ -79,7 +79,7 @@ open class SerieViewController: ViewController<SerieViewModeling, UIView> {
         buildLayout()
         viewModel.loadSerie()
     }
-    
+
     open override func buildViewHierarchy() {
         view.addSubviews(collectionView, loadingView)
     }
@@ -103,21 +103,22 @@ open class SerieViewController: ViewController<SerieViewModeling, UIView> {
 // MARK: - UICollectionViewDelegate
 extension SerieViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let leftRightMargin = Layout.sectionInset.left + Layout.sectionInset.right + Layout.sectionInset.top + Layout.sectionInset.bottom
-        
-        let numberOfColumns = Layout.numberOfColumns
-        let totalCellSpace = Layout.spacing * (numberOfColumns - 1)
+        let leftRightMargin = Layout.sectionInset.left + Layout.sectionInset.right
+
         let screenWidth = view.bounds.width
-        let width = (screenWidth - leftRightMargin - totalCellSpace) / numberOfColumns
+        let width = screenWidth - leftRightMargin
         let height = view.bounds.height * 0.3
-        
+
         return .init(width: width, height: height)
     }
 }
 
 // MARK: - SerieDisplaying
 extension SerieViewController: SerieDisplaying {
-    @objc
+    func displayShow(_ show: Show) {
+        dataSource.add(items: [show], to: .zero)
+    }
+    
     func displayEmptyView() {}
     
     func displayLoad() {

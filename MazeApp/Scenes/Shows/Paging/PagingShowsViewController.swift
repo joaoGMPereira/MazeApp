@@ -2,7 +2,7 @@ import UIKit
 
 protocol PagingShowsDisplaying: ShowsDisplaying {
     func displayFilteredEmptyView()
-    func displayShows(_ shows: [ShowItem])
+    func displayShows(_ shows: [Show])
     func clearShows()
     func displayNextPageLoad()
     func hideNextPageLoad()
@@ -72,7 +72,7 @@ extension PagingShowsViewController: UISearchResultsUpdating, UISearchBarDelegat
 
 // MARK: - PagingShowsDisplaying
 extension PagingShowsViewController: PagingShowsDisplaying {
-    func displayShows(_ shows: [ShowItem]) {
+    func displayShows(_ shows: [Show]) {
         showItems(true)
         dataSource.add(items: shows, to: .zero)
     }

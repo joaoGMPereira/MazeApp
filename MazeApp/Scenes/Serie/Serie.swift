@@ -4,13 +4,10 @@ typealias Series = [Serie]
 // MARK: - WelcomeElement
 struct Serie: Codable {
     let id: Int
-    let url: String
     let name: String
     let season, number: Int
-    let type: String
     let airdate: String
     let airtime: String
-    let airstamp: Date
     let runtime: Int
     let rating: Rating
     let image: Image

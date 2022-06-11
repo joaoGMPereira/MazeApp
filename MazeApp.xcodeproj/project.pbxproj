@@ -46,11 +46,10 @@
 		76BF04172854D64100A2DBDC /* PagingShowsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF04072854D64100A2DBDC /* PagingShowsViewModel.swift */; };
 		76BF04192854D64100A2DBDC /* PagingShowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF04092854D64100A2DBDC /* PagingShowsViewController.swift */; };
 		76BF041A2854D64100A2DBDC /* ShowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF040B2854D64100A2DBDC /* ShowsViewController.swift */; };
-		76BF041B2854D64100A2DBDC /* ShowItemResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF040C2854D64100A2DBDC /* ShowItemResponse.swift */; };
-		76BF041C2854D64100A2DBDC /* ShowItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF040E2854D64100A2DBDC /* ShowItem.swift */; };
+		76BF041B2854D64100A2DBDC /* Show.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF040C2854D64100A2DBDC /* Show.swift */; };
 		76BF041D2854D64100A2DBDC /* ShowCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF040F2854D64100A2DBDC /* ShowCellViewModel.swift */; };
 		76BF041E2854D64100A2DBDC /* ShowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF04102854D64100A2DBDC /* ShowCell.swift */; };
-		76BF041F2854D64100A2DBDC /* ShowsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF04112854D64100A2DBDC /* ShowsViewModel.swift */; };
+		76BF041F2854D64100A2DBDC /* ShowsViewModelling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF04112854D64100A2DBDC /* ShowsViewModelling.swift */; };
 		76BF04202854D64100A2DBDC /* ShowsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF04122854D64100A2DBDC /* ShowsCoordinator.swift */; };
 		76BF04292854D68B00A2DBDC /* ReloadableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF04232854D68B00A2DBDC /* ReloadableDataSource.swift */; };
 		76BF042A2854D68B00A2DBDC /* CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF04242854D68B00A2DBDC /* CollectionViewDataSource.swift */; };
@@ -73,12 +72,13 @@
 		76BF0452285506D600A2DBDC /* SerieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF044E285506D600A2DBDC /* SerieViewController.swift */; };
 		76BF0453285506D600A2DBDC /* SerieCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF044F285506D600A2DBDC /* SerieCoordinator.swift */; };
 		76BF0454285506D600A2DBDC /* SerieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF0450285506D600A2DBDC /* SerieViewModel.swift */; };
-		76BF0456285507F000A2DBDC /* SerieResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF0455285507F000A2DBDC /* SerieResponse.swift */; };
+		76BF0456285507F000A2DBDC /* Serie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF0455285507F000A2DBDC /* Serie.swift */; };
 		76BF045B2855095200A2DBDC /* SerieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF04582855095200A2DBDC /* SerieCell.swift */; };
-		76BF045C2855095200A2DBDC /* SerieItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF04592855095200A2DBDC /* SerieItem.swift */; };
 		76BF045D2855095200A2DBDC /* SerieCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF045A2855095200A2DBDC /* SerieCellViewModel.swift */; };
 		76BF045F28550B6800A2DBDC /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF045E28550B6800A2DBDC /* FeedbackView.swift */; };
 		76BF046628551C4400A2DBDC /* TabControlling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF046528551C4400A2DBDC /* TabControlling.swift */; };
+		76BF04682855336000A2DBDC /* SeriesEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF04672855336000A2DBDC /* SeriesEndpoint.swift */; };
+		76BF046A28553A4400A2DBDC /* SerieModelling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF046928553A4400A2DBDC /* SerieModelling.swift */; };
 		9C5D1783D16E51225A8D4EC6 /* Pods_MazeAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79DDEA4B20C92DDBA86C1C0A /* Pods_MazeAppTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -139,11 +139,10 @@
 		76BF04072854D64100A2DBDC /* PagingShowsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingShowsViewModel.swift; sourceTree = "<group>"; };
 		76BF04092854D64100A2DBDC /* PagingShowsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingShowsViewController.swift; sourceTree = "<group>"; };
 		76BF040B2854D64100A2DBDC /* ShowsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowsViewController.swift; sourceTree = "<group>"; };
-		76BF040C2854D64100A2DBDC /* ShowItemResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowItemResponse.swift; sourceTree = "<group>"; };
-		76BF040E2854D64100A2DBDC /* ShowItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowItem.swift; sourceTree = "<group>"; };
+		76BF040C2854D64100A2DBDC /* Show.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Show.swift; sourceTree = "<group>"; };
 		76BF040F2854D64100A2DBDC /* ShowCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowCellViewModel.swift; sourceTree = "<group>"; };
 		76BF04102854D64100A2DBDC /* ShowCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowCell.swift; sourceTree = "<group>"; };
-		76BF04112854D64100A2DBDC /* ShowsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowsViewModel.swift; sourceTree = "<group>"; };
+		76BF04112854D64100A2DBDC /* ShowsViewModelling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowsViewModelling.swift; sourceTree = "<group>"; };
 		76BF04122854D64100A2DBDC /* ShowsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowsCoordinator.swift; sourceTree = "<group>"; };
 		76BF04232854D68B00A2DBDC /* ReloadableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReloadableDataSource.swift; sourceTree = "<group>"; };
 		76BF04242854D68B00A2DBDC /* CollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSource.swift; sourceTree = "<group>"; };
@@ -166,12 +165,13 @@
 		76BF044E285506D600A2DBDC /* SerieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerieViewController.swift; sourceTree = "<group>"; };
 		76BF044F285506D600A2DBDC /* SerieCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerieCoordinator.swift; sourceTree = "<group>"; };
 		76BF0450285506D600A2DBDC /* SerieViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerieViewModel.swift; sourceTree = "<group>"; };
-		76BF0455285507F000A2DBDC /* SerieResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerieResponse.swift; sourceTree = "<group>"; };
+		76BF0455285507F000A2DBDC /* Serie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serie.swift; sourceTree = "<group>"; };
 		76BF04582855095200A2DBDC /* SerieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerieCell.swift; sourceTree = "<group>"; };
-		76BF04592855095200A2DBDC /* SerieItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerieItem.swift; sourceTree = "<group>"; };
 		76BF045A2855095200A2DBDC /* SerieCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerieCellViewModel.swift; sourceTree = "<group>"; };
 		76BF045E28550B6800A2DBDC /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
 		76BF046528551C4400A2DBDC /* TabControlling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabControlling.swift; sourceTree = "<group>"; };
+		76BF04672855336000A2DBDC /* SeriesEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesEndpoint.swift; sourceTree = "<group>"; };
+		76BF046928553A4400A2DBDC /* SerieModelling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerieModelling.swift; sourceTree = "<group>"; };
 		79DDEA4B20C92DDBA86C1C0A /* Pods_MazeAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MazeAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E681C2BECECA71B55D1C3F4 /* Pods_MazeApp_MazeAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MazeApp_MazeAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0D1F17BCF0007F3863139EA /* Pods-MazeApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MazeApp.debug.xcconfig"; path = "Target Support Files/Pods-MazeApp/Pods-MazeApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -400,7 +400,6 @@
 			isa = PBXGroup;
 			children = (
 				76BF044C285506D600A2DBDC /* Serie */,
-				76BF03FE2854D64100A2DBDC /* ShowsEndpoint.swift */,
 				76BF04002854D64100A2DBDC /* Episodes */,
 				76BF04012854D64100A2DBDC /* Shows */,
 			);
@@ -417,6 +416,8 @@
 		76BF04012854D64100A2DBDC /* Shows */ = {
 			isa = PBXGroup;
 			children = (
+				76BF03FE2854D64100A2DBDC /* ShowsEndpoint.swift */,
+				76BF040C2854D64100A2DBDC /* Show.swift */,
 				76BF043D2854F6CA00A2DBDC /* Favorites */,
 				76BF04062854D64100A2DBDC /* Paging */,
 				76BF040A2854D64100A2DBDC /* Base */,
@@ -438,9 +439,8 @@
 			isa = PBXGroup;
 			children = (
 				76BF040B2854D64100A2DBDC /* ShowsViewController.swift */,
-				76BF040C2854D64100A2DBDC /* ShowItemResponse.swift */,
 				76BF040D2854D64100A2DBDC /* Cell */,
-				76BF04112854D64100A2DBDC /* ShowsViewModel.swift */,
+				76BF04112854D64100A2DBDC /* ShowsViewModelling.swift */,
 				76BF04122854D64100A2DBDC /* ShowsCoordinator.swift */,
 			);
 			path = Base;
@@ -449,7 +449,6 @@
 		76BF040D2854D64100A2DBDC /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				76BF040E2854D64100A2DBDC /* ShowItem.swift */,
 				76BF040F2854D64100A2DBDC /* ShowCellViewModel.swift */,
 				76BF04102854D64100A2DBDC /* ShowCell.swift */,
 			);
@@ -496,7 +495,8 @@
 				76BF044E285506D600A2DBDC /* SerieViewController.swift */,
 				76BF044F285506D600A2DBDC /* SerieCoordinator.swift */,
 				76BF0450285506D600A2DBDC /* SerieViewModel.swift */,
-				76BF0455285507F000A2DBDC /* SerieResponse.swift */,
+				76BF0455285507F000A2DBDC /* Serie.swift */,
+				76BF04672855336000A2DBDC /* SeriesEndpoint.swift */,
 			);
 			path = Serie;
 			sourceTree = "<group>";
@@ -505,8 +505,8 @@
 			isa = PBXGroup;
 			children = (
 				76BF04582855095200A2DBDC /* SerieCell.swift */,
-				76BF04592855095200A2DBDC /* SerieItem.swift */,
 				76BF045A2855095200A2DBDC /* SerieCellViewModel.swift */,
+				76BF046928553A4400A2DBDC /* SerieModelling.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -730,7 +730,7 @@
 				76BF04412854F6CA00A2DBDC /* FavoritesShowsFactory.swift in Sources */,
 				76BF03E6285457A200A2DBDC /* HTTPMethod.swift in Sources */,
 				76BF044B2855016500A2DBDC /* PagingShowsFactory.swift in Sources */,
-				76BF041B2854D64100A2DBDC /* ShowItemResponse.swift in Sources */,
+				76BF041B2854D64100A2DBDC /* Show.swift in Sources */,
 				76BF03D7285457A200A2DBDC /* Storageable.swift in Sources */,
 				76BF03EC285457A200A2DBDC /* Resolver.swift in Sources */,
 				76BF03EE285457A200A2DBDC /* ApiDependencies.swift in Sources */,
@@ -742,9 +742,9 @@
 				76BF042B2854D68B00A2DBDC /* ReloadableView.swift in Sources */,
 				76BF03E5285457A200A2DBDC /* ApiError.swift in Sources */,
 				76BF04372854D6A200A2DBDC /* UIView+Border.swift in Sources */,
-				76BF0456285507F000A2DBDC /* SerieResponse.swift in Sources */,
+				76BF0456285507F000A2DBDC /* Serie.swift in Sources */,
 				76BF03DA285457A200A2DBDC /* DependencyInjecting.swift in Sources */,
-				76BF041F2854D64100A2DBDC /* ShowsViewModel.swift in Sources */,
+				76BF041F2854D64100A2DBDC /* ShowsViewModelling.swift in Sources */,
 				76BF03ED285457A200A2DBDC /* DispatchDependencies.swift in Sources */,
 				76BF042D2854D68B00A2DBDC /* Reusable.swift in Sources */,
 				76BF03F2285457D500A2DBDC /* UserDefault+Parser.swift in Sources */,
@@ -763,6 +763,7 @@
 				76BF04292854D68B00A2DBDC /* ReloadableDataSource.swift in Sources */,
 				76BF03E3285457A200A2DBDC /* URLSessionable.swift in Sources */,
 				76BF041E2854D64100A2DBDC /* ShowCell.swift in Sources */,
+				76BF04682855336000A2DBDC /* SeriesEndpoint.swift in Sources */,
 				76BF043C2854D6A200A2DBDC /* UIViewController+Navigation.swift in Sources */,
 				76BF04172854D64100A2DBDC /* PagingShowsViewModel.swift in Sources */,
 				76BF043A2854D6A200A2DBDC /* UIFont+PrefferedFont.swift in Sources */,
@@ -776,18 +777,17 @@
 				76BF03E0285457A200A2DBDC /* DependencyInjector.swift in Sources */,
 				76BF0453285506D600A2DBDC /* SerieCoordinator.swift in Sources */,
 				76BF03EF285457A200A2DBDC /* DependencyOrchestrator.swift in Sources */,
-				76BF045C2855095200A2DBDC /* SerieItem.swift in Sources */,
 				76BF03E1285457A200A2DBDC /* InjectorFactory.swift in Sources */,
 				76BF03D9285457A200A2DBDC /* DependencyOrchestrating.swift in Sources */,
 				76BF04392854D6A200A2DBDC /* CALayer+Shadow.swift in Sources */,
 				76BF045F28550B6800A2DBDC /* FeedbackView.swift in Sources */,
-				76BF041C2854D64100A2DBDC /* ShowItem.swift in Sources */,
 				76BF04132854D64100A2DBDC /* ShowsEndpoint.swift in Sources */,
 				76BF04432854F6CA00A2DBDC /* FavoritesShowsViewController.swift in Sources */,
 				76BF03D8285457A200A2DBDC /* Storage.swift in Sources */,
 				76BF042E2854D68B00A2DBDC /* ViewConfiguration.swift in Sources */,
 				76BF03EB285457A200A2DBDC /* DependencyContainer.swift in Sources */,
 				76BF03DB285457A200A2DBDC /* Injected.swift in Sources */,
+				76BF046A28553A4400A2DBDC /* SerieModelling.swift in Sources */,
 				76BF045D2855095200A2DBDC /* SerieCellViewModel.swift in Sources */,
 				76BF03F4285457F100A2DBDC /* Collection+Extensions.swift in Sources */,
 				76BF042A2854D68B00A2DBDC /* CollectionViewDataSource.swift in Sources */,

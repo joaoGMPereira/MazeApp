@@ -1,12 +1,12 @@
 import Foundation
 
 enum StorageKey: StorageKeyable {
-    case favorite(_ key: String)
+    case favorite(_ id: Int)
     
     var rawValue: String {
         switch self {
-        case let .favorite(key):
-            return "\(identifiable)\(key)"
+        case let .favorite(id):
+            return "\(identifiable)\(id)"
         }
     }
     
@@ -35,7 +35,6 @@ final class Storage: Storageable {
     func getAll<T>(identifiable: String, completion: (([T]) -> Void)?) where T : Decodable {
         dependencies.globalQueue.async { [weak self] in
             guard let self = self else { return }
-            print(self.userDefaults.dictionaryRepresentation().keys)
             let keys = self.userDefaults.dictionaryRepresentation().keys.filter { $0.contains(identifiable) }
             let objects = keys.compactMap { name -> T? in
                 if let object: T = self.userDefaults.getObject(key: name)  {

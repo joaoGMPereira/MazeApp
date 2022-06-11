@@ -1,6 +1,6 @@
 import UIKit
 protocol FavoritesShowsDisplaying: ShowsDisplaying {
-    func displayShows(_ shows: [ShowItem])
+    func displayShows(_ shows: [Show])
     func showReset()
     func hideReset()
 }
@@ -37,7 +37,7 @@ final class FavoritesShowsViewController: ShowsViewController {
 
 // MARK: - PagingShowsDisplaying
 extension FavoritesShowsViewController: FavoritesShowsDisplaying {
-    func displayShows(_ shows: [ShowItem]) {
+    func displayShows(_ shows: [Show]) {
         showItems(true)
         dataSource.set(items: shows, to: .zero)
         collectionView.invalidateIntrinsicContentSize()

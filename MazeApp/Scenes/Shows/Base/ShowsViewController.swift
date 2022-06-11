@@ -23,8 +23,8 @@ open class ShowsViewController: ViewController<ShowsViewModeling, UIView> {
     let dependencies: Dependencies
     
     // MARK: - Collection
-    private(set) lazy var dataSource: CollectionViewDataSource<Int, ShowItem> = {
-        let dataSource = CollectionViewDataSource<Int, ShowItem>(view: collectionView)
+    private(set) lazy var dataSource: CollectionViewDataSource<Int, Show> = {
+        let dataSource = CollectionViewDataSource<Int, Show>(view: collectionView)
         dataSource.itemProvider = { [weak self] view, indexPath, item in
             guard let self = self else { return UICollectionViewCell() }
             let cell = view.dequeueReusableCell(for: indexPath, cellType: ShowCell.self)
@@ -119,7 +119,7 @@ open class ShowsViewController: ViewController<ShowsViewModeling, UIView> {
 // MARK: - UICollectionViewDelegate
 extension ShowsViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let leftRightMargin = Layout.sectionInset.left + Layout.sectionInset.right + Layout.sectionInset.top + Layout.sectionInset.bottom
+        let leftRightMargin = Layout.sectionInset.left + Layout.sectionInset.right
         
         let numberOfColumns = Layout.numberOfColumns
         let totalCellSpace = Layout.spacing * (numberOfColumns - 1)

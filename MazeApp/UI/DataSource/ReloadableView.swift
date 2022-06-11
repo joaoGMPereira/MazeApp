@@ -1,10 +1,10 @@
 import UIKit
 
-public protocol Reloadable {
+protocol Reloadable {
     var automaticReloadData: Bool { get set }
 }
 
-public protocol ReloadableView {
+protocol ReloadableView {
     func reloadData()
 }
 

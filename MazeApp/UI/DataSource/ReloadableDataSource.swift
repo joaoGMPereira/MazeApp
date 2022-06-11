@@ -1,17 +1,17 @@
 import Foundation
 
-public class ReloadableDataSource<View: AnyObject & ReloadableView, Cell, Section: Hashable, Item>: NSObject, Reloadable {
-    public weak var reloadableView: View?
-    public var automaticReloadData = true
+class ReloadableDataSource<View: AnyObject & ReloadableView, Cell, Section: Hashable, Item>: NSObject, Reloadable {
+    weak var reloadableView: View?
+    var automaticReloadData = true
 
     // MARK: Aliases
 
-    public typealias ItemProvider = (_ view: View, _ indexPath: IndexPath, _ item: Item) -> Cell?
+    typealias ItemProvider = (_ view: View, _ indexPath: IndexPath, _ item: Item) -> Cell?
 
     // MARK: - Data
 
-    public private(set) var sections: [Section] = []
-    public private(set) var data: [Section: [Item]] = [:] {
+    private(set) var sections: [Section] = []
+    private(set) var data: [Section: [Item]] = [:] {
         didSet {
             guard automaticReloadData else { return }
             reloadableView?.reloadData()
@@ -20,11 +20,11 @@ public class ReloadableDataSource<View: AnyObject & ReloadableView, Cell, Sectio
 
     // MARK: - Providers
 
-    public var itemProvider: ItemProvider?
+    var itemProvider: ItemProvider?
 
     // MARK: - Initializer
 
-    public init(view: View, itemProvider: ItemProvider? = nil) {
+    init(view: View, itemProvider: ItemProvider? = nil) {
         super.init()
         self.reloadableView = view
         self.itemProvider = itemProvider
@@ -35,7 +35,7 @@ public class ReloadableDataSource<View: AnyObject & ReloadableView, Cell, Sectio
     /// Adds a section to the data source
     /// - Parameter section: The section to be added to the data source
     /// - Note: If the section is already present, the data source does not change
-    public func add(section: Section) {
+    func add(section: Section) {
         if !sections.contains(section) {
             sections.append(section)
             data[section] = []
@@ -47,7 +47,7 @@ public class ReloadableDataSource<View: AnyObject & ReloadableView, Cell, Sectio
     ///   - items: The items to be added to the section
     ///   - section: A type that conforms to `Hashable` to represents a section
     /// - Note: If the section is not part of the data source, it will also add the section
-    public func add(items: [Item], to section: Section) {
+    func add(items: [Item], to section: Section) {
         add(section: section)
         var currentItems = data[section, default: []]
         currentItems.append(contentsOf: items)
@@ -59,7 +59,7 @@ public class ReloadableDataSource<View: AnyObject & ReloadableView, Cell, Sectio
     ///   - items: The items to be added to the section
     ///   - section: A type that conforms to `Hashable` to represents a section
     /// - Note: If the section is not part of the data source, it will also add the section
-    public func set(items: [Item], to section: Section) {
+    func set(items: [Item], to section: Section) {
         add(section: section)
         data[section] = items
     }
@@ -68,14 +68,14 @@ public class ReloadableDataSource<View: AnyObject & ReloadableView, Cell, Sectio
     /// - Parameters:
     ///   - section: A type that conforms to `Hashable` to represents a section
     /// - Note: If the section is not part of the data source, it will also add the section
-    public func clear(_ section: Section) {
+    func clear(_ section: Section) {
         add(section: section)
         data[section] = []
     }
 
     /// - Parameter indexPath: The item `IndexPath`
     /// - Returns: Returns the item at the given `IndexPath` if the item exists, otherwise returns `nil`
-    public func item(at indexPath: IndexPath) -> Item? {
+    func item(at indexPath: IndexPath) -> Item? {
         guard let section = sections[safe: indexPath.section],
               data.contains(where: { $0.key == section }),
               let itens = data[section],

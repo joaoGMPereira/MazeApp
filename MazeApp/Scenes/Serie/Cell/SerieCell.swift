@@ -1,10 +1,7 @@
 import UIKit
 import SnapKit
 
-protocol SerieCelling: AnyObject {
-    func displayFavorited()
-    func displayNotFavorite()
-}
+protocol SerieCelling: AnyObject {}
 
 final class SerieCell: UICollectionViewCell, ViewConfiguration {
     typealias Dependencies = HasMainQueue & HasURLSessionable & HasStorageable
@@ -39,21 +36,13 @@ final class SerieCell: UICollectionViewCell, ViewConfiguration {
     }()
     
     private lazy var stackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [favoriteButton, average])
-        stack.distribution = .fillEqually
+        let stack = UIStackView(arrangedSubviews: [label, average])
+        stack.axis = .vertical
+        stack.distribution = .fillProportionally
         stack.spacing = 8
         return stack
     }()
-    
-    private lazy var favoriteButton: UIButton = {
-        let button = UIButton(primaryAction: .init(handler: { action in
-            self.viewModel?.tapFavorite()
-        }))
-        button.setImage(.init(systemName: "heart"), for: .normal)
-        button.tintColor = .systemTeal
-        return button
-    }()
-    
+  
     private lazy var average: UIButton = {
         let button = UIButton()
         button.isUserInteractionEnabled = false
@@ -77,7 +66,7 @@ final class SerieCell: UICollectionViewCell, ViewConfiguration {
     // MARK: - View Configuration
     func buildViewHierarchy() {
         contentView.addSubviews(containerView)
-        containerView.addSubviews(imageView,label, stackView, loadingView)
+        containerView.addSubviews(imageView, stackView, loadingView)
 
     }
     
@@ -87,18 +76,10 @@ final class SerieCell: UICollectionViewCell, ViewConfiguration {
         }
         imageView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview().inset(4)
-            $0.bottom.equalTo(label.snp.top).inset(-4)
-        }
-        label.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(16)
             $0.bottom.equalTo(stackView.snp.top).inset(-4)
-            $0.height.greaterThanOrEqualTo(20)
         }
         stackView.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(4)
-            $0.leading.greaterThanOrEqualToSuperview().inset(4)
-            $0.trailing.lessThanOrEqualToSuperview().inset(-4)
-            $0.centerX.equalToSuperview()
+            $0.bottom.leading.trailing.equalToSuperview().inset(4)
         }
         loadingView.snp.makeConstraints {
             $0.center.equalToSuperview()
@@ -111,15 +92,14 @@ final class SerieCell: UICollectionViewCell, ViewConfiguration {
 
     
     // MARK: - Setup
-    func setup(with item: SerieItem, dependencies: Dependencies) {
+    func setup(with show: Show, dependencies: Dependencies) {
         let viewModel = SerieCellViewModel(dependencies: dependencies,
-                                          showItem: item)
+                                           show: show)
         self.viewModel = viewModel
         viewModel.displayer = self
-        updateFavoriteState(with: viewModel.getFavoriteState())
-        setupImage(item.imageUrl, dependencies: dependencies)
-        setupAverage(item.average)
-        label.text = item.name
+        setupImage(show.image?.original, dependencies: dependencies)
+        setupAverage(show.rating.average)
+        label.text = show.name
     }
     
     func setupImage(_ imageUrl: String?, dependencies: Dependencies) {
@@ -153,21 +133,4 @@ final class SerieCell: UICollectionViewCell, ViewConfiguration {
 
 // MARK: - Displaying
 extension SerieCell: SerieCelling {
-    func displayFavorited() {
-        updateFavoriteState(with: true)
-    }
-    
-    func displayNotFavorite() {
-        updateFavoriteState(with: false)
-    }
-}
-
-private extension SerieCell {
-    func updateFavoriteState(with favorite: Bool) {
-        if favorite {
-            favoriteButton.setImage(.init(systemName: "heart.fill"), for: .normal)
-            return
-        }
-        favoriteButton.setImage(.init(systemName: "heart"), for: .normal)
-    }
 }

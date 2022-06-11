@@ -111,14 +111,14 @@ final class ShowCell: UICollectionViewCell, ViewConfiguration {
 
     
     // MARK: - Setup
-    func setup(with item: ShowItem, dependencies: Dependencies) {
+    func setup(with item: Show, dependencies: Dependencies) {
         let viewModel = ShowCellViewModel(dependencies: dependencies,
                                           showItem: item)
         self.viewModel = viewModel
         viewModel.displayer = self
         updateFavoriteState(with: viewModel.getFavoriteState())
-        setupImage(item.imageUrl, dependencies: dependencies)
-        setupAverage(item.average)
+        setupImage(item.image?.medium, dependencies: dependencies)
+        setupAverage(item.rating.average)
         label.text = item.name
     }
     

@@ -21,10 +21,10 @@ final class FavoritesShowsViewModel {
     weak var displayer: FavoritesShowsDisplaying?
     
     private var isLoading = false
-    private var shows = [ShowItem]()
+    private var shows = [Show]()
     private var sort = FavoritesSort.none
     
-    private var filteredShow: [ShowItem] {
+    private var filteredShow: [Show] {
         switch sort {
         case .ascending:
             return shows.sorted {
@@ -72,7 +72,7 @@ extension FavoritesShowsViewModel: FavoritesShowsViewModeling {
     }
     
     func getShows(completion: @escaping () -> Void) {
-        dependencies.storage.getAll(identifiable: "favorite_") { [weak self] (showItems: [ShowItem]) in
+        dependencies.storage.getAll(identifiable: "favorite_") { [weak self] (showItems: [Show]) in
             guard let self = self else { return }
             self.shows = showItems
             self.displayShows()

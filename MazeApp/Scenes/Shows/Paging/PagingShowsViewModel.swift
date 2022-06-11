@@ -15,8 +15,8 @@ final class PagingShowsViewModel {
     private var nextPage: Int = .zero
     private var currentPage: Int = .zero
     private var isLoading = false
-    private var shows = [ShowItemResponse]()
-    private var filteredShows = [ShowItemResponse]()
+    private var shows = [Show]()
+    private var filteredShows = [Show]()
     private var search = String()
     
     var isSearching: Bool {
@@ -85,7 +85,7 @@ private extension PagingShowsViewModel {
             .api
             .execute(
                 endpoint: ShowsEndpoint.list(page: nextPage, search: search)
-            ) { [weak self] (result: Result<Success<SearchShowItemResponses>, ApiError>) in
+            ) { [weak self] (result: Result<Success<SearchShows>, ApiError>) in
                 guard let self = self else { return }
                 switch result {
                 case .success(let success):
@@ -103,30 +103,21 @@ private extension PagingShowsViewModel {
             .api
             .execute(
                 endpoint: ShowsEndpoint.list(page: nextPage, search: search)
-            ) { [weak self] (result: Result<Success<ShowItemResponses>, ApiError>) in
+            ) { [weak self] (result: Result<Success<Shows>, ApiError>) in
                 guard let self = self else { return }
                 self.handleResponse(result, completion: completion)
             }
     }
     
-    func handleResponse(_ result: Result<Success<ShowItemResponses>, ApiError>, completion: @escaping () -> Void) {
+    func handleResponse(_ result: Result<Success<Shows>, ApiError>, completion: @escaping () -> Void) {
         switch result {
         case .success(let success):
             self.shows.append(contentsOf: success.model)
-            self.displayer?.displayShows(self.items(from: self.shows))
+            self.displayer?.displayShows(self.shows)
         case .failure:
             self.backToPreviousPage()
         }
         completion()
-    }
-    
-    func items(from shows: ShowItemResponses) -> [ShowItem] {
-        shows.map {
-            .init(id: "\($0.id)",
-                  imageUrl: $0.image?.medium,
-                  name: $0.name,
-                  average: $0.rating.average)
-        }
     }
     
     func showFilteredShows() {
@@ -137,9 +128,9 @@ private extension PagingShowsViewModel {
         }
     }
     
-    func changeShows(_ shows: ShowItemResponses) {
+    func changeShows(_ shows: Shows) {
             displayer?.clearShows()
-            displayer?.displayShows(self.items(from: shows))
+            displayer?.displayShows(shows)
     }
     
     func reset() {

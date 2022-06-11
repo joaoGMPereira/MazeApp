@@ -1,17 +1,17 @@
 import UIKit
 
-public protocol Reusable {
+protocol Reusable {
     static var identifier: String { get }
 }
 
-public extension Reusable {
+extension Reusable {
     /// Returns the identifier based on the name of the class.
     static var identifier: String { String(describing: Self.self) }
 }
 
 extension UICollectionReusableView: Reusable { }
 
-public extension UICollectionView {
+extension UICollectionView {
     final func register<T: UICollectionViewCell>(cellType: T.Type) {
         self.register(cellType.self, forCellWithReuseIdentifier: cellType.identifier)
     }

@@ -1,7 +1,7 @@
 import UIKit
 
 protocol ShowsCoordinating: AnyObject {
-    func goToSerie(_ show: ShowItemResponse)
+    func goToSerie(_ show: Show)
     func goToShows()
 }
 
@@ -18,8 +18,8 @@ final class ShowsCoordinator {
 
 // MARK: - ShowsCoordinating
 extension ShowsCoordinator: ShowsCoordinating {
-    func goToSerie(_ show: ShowItemResponse) {
-        viewController?.pushViewController(SerieFactory.make(title: show.name),
+    func goToSerie(_ show: Show) {
+        viewController?.pushViewController(SerieFactory.make(show: show),
                                            animated: true)
     }
     

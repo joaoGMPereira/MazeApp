@@ -1,8 +1,16 @@
-//
-//  SeriesEndpoint.swift
-//  MazeApp
-//
-//  Created by Joao Gabriel Pereira on 11/06/22.
-//
+enum SeriesEndpoint {
+    case episodes(id: Int)
+}
 
-import Foundation
+extension SeriesEndpoint: ApiEndpointExposable {
+    var path: String {
+        if case let .episodes(id) = self {
+            return "/shows/\(id)/episodes"
+        }
+        return String()
+    }
+    
+    var method: HTTPMethod {
+        .get
+    }
+}
