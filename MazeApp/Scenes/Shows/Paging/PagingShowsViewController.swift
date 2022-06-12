@@ -40,10 +40,6 @@ private extension PagingShowsViewController {
 
 // MARK: - UICollectionViewDelegate
 extension PagingShowsViewController {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        pagingViewModel?.didTap(at: indexPath)
-    }
-    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height

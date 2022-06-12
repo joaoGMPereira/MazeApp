@@ -3,7 +3,6 @@ import Foundation
 protocol PagingShowsViewModeling: ShowsViewModeling {
     func getFilteredShows(title: String)
     func getNextShows()
-    func didTap(at index: IndexPath)
 }
 
 final class PagingShowsViewModel {

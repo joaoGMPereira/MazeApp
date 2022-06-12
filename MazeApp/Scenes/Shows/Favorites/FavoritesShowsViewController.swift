@@ -5,7 +5,7 @@ protocol FavoritesShowsDisplaying: ShowsDisplaying {
     func hideReset()
 }
 
-final class FavoritesShowsViewController: ShowsViewController {
+final class FavoritesShowsViewController: ShowsViewController, ViewControllerReloadable {
     var favoriteViewModel: FavoritesShowsViewModeling? {
         viewModel as? FavoritesShowsViewModeling
     }
@@ -31,6 +31,9 @@ final class FavoritesShowsViewController: ShowsViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+    }
+    
+    func reload() {
         viewModel.loadShows()
     }
 }

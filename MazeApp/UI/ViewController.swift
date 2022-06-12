@@ -1,5 +1,13 @@
 import UIKit
 
+protocol ViewControllerReloadable {
+    func reload()
+}
+
+extension ViewControllerReloadable {
+    func reload() {}
+}
+
 open class ViewController<ViewModel, V: UIView>: UIViewController, ViewConfiguration {
     let viewModel: ViewModel
     var rootView = V()

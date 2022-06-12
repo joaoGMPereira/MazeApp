@@ -41,6 +41,9 @@ open class SerieViewController: ViewController<SerieViewModeling, UIView> {
         layout.minimumInteritemSpacing = Layout.spacing
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.delegate = self
+        var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+        collectionView.collectionViewLayout =
+        UICollectionViewCompositionalLayout.list(using: configuration)
         collectionView.register(cellType: SerieCell.self)
         return collectionView
     }()
@@ -79,7 +82,7 @@ open class SerieViewController: ViewController<SerieViewModeling, UIView> {
         buildLayout()
         viewModel.loadSerie()
     }
-
+    
     open override func buildViewHierarchy() {
         view.addSubviews(collectionView, loadingView)
     }
@@ -102,15 +105,15 @@ open class SerieViewController: ViewController<SerieViewModeling, UIView> {
 
 // MARK: - UICollectionViewDelegate
 extension SerieViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let leftRightMargin = Layout.sectionInset.left + Layout.sectionInset.right
-
-        let screenWidth = view.bounds.width
-        let width = screenWidth - leftRightMargin
-        let height = view.bounds.height * 0.3
-
-        return .init(width: width, height: height)
-    }
+//    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        let leftRightMargin = Layout.sectionInset.left + Layout.sectionInset.right
+//
+//        let screenWidth = view.bounds.width
+//        let width = screenWidth - leftRightMargin
+//        let height = view.bounds.height * 0.6
+//
+//        return .init(width: width, height: height)
+//    }
 }
 
 // MARK: - SerieDisplaying

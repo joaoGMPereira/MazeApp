@@ -7,4 +7,12 @@ extension UIViewController {
         viewController.hidesBottomBarWhenPushed = hidesBottomBar
         navigationController?.pushViewController(viewController, animated: true)
     }
+    
+    var viewInTabViewController: UIViewController? {
+        guard let navigationController = self as? UINavigationController,
+              let viewInTabViewController = navigationController.viewControllers.first else {
+                  return nil
+              }
+        return viewInTabViewController
+    }
 }

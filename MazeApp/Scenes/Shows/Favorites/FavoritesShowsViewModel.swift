@@ -1,3 +1,5 @@
+import Foundation
+
 protocol FavoritesShowsViewModeling: ShowsViewModeling {
     func changeSort()
     func reset()
@@ -48,6 +50,15 @@ final class FavoritesShowsViewModel {
 
 // MARK: - ShowsViewModeling
 extension FavoritesShowsViewModel: FavoritesShowsViewModeling {
+    func didTap(at indexPath: IndexPath) {
+        guard let show = filteredShow[safe: indexPath.row] else {
+            //error feedback
+            return
+        }
+        print(show)
+        coordinator.goToSerie(show)
+    }
+    
     func goToShows() {
         coordinator.goToShows()
     }

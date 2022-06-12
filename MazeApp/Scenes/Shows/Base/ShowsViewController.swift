@@ -38,7 +38,6 @@ open class ShowsViewController: ViewController<ShowsViewModeling, UIView> {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = Layout.sectionInset
         layout.minimumInteritemSpacing = Layout.spacing
-        
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.delegate = self
         collectionView.register(cellType: ShowCell.self)
@@ -118,6 +117,10 @@ open class ShowsViewController: ViewController<ShowsViewModeling, UIView> {
 
 // MARK: - UICollectionViewDelegate
 extension ShowsViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewModel.didTap(at: indexPath)
+    }
+    
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let leftRightMargin = Layout.sectionInset.left + Layout.sectionInset.right
         

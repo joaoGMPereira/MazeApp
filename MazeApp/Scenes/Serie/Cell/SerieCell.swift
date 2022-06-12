@@ -77,6 +77,7 @@ final class SerieCell: UICollectionViewCell, ViewConfiguration {
         imageView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview().inset(4)
             $0.bottom.equalTo(stackView.snp.top).inset(-4)
+            $0.height.equalTo(350)
         }
         stackView.snp.makeConstraints {
             $0.bottom.leading.trailing.equalToSuperview().inset(4)
@@ -87,7 +88,7 @@ final class SerieCell: UICollectionViewCell, ViewConfiguration {
     }
     
     func configureViews() {
-        containerView.backgroundColor = .secondarySystemBackground
+        containerView.backgroundColor = .secondarySystemGroupedBackground
     }
 
     

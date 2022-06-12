@@ -67,4 +67,10 @@ class TabController: UITabBarController, UITabBarControllerDelegate, TabControll
     func setSelected(_ index: Int) {
         selectedIndex = index
     }
+    
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        if let reloadableViewController = viewController.viewInTabViewController as? ViewControllerReloadable {
+            reloadableViewController.reload()
+        }
+    }
 }
