@@ -1,6 +1,6 @@
 import UIKit
 
-class FlexibleLabel: UIView, ViewConfiguration {
+class Label: UIView, ViewConfiguration {
     // MARK: - UI Properties
     var text = String() {
         didSet {
@@ -16,7 +16,7 @@ class FlexibleLabel: UIView, ViewConfiguration {
     
     private lazy var containerView = UIView()
     
-    private lazy var label: UILabel = {
+    lazy var label: UILabel = {
         let label = UILabel()
         label.numberOfLines = .zero
         label.textAlignment = .center
@@ -49,17 +49,15 @@ class FlexibleLabel: UIView, ViewConfiguration {
             $0.leading.greaterThanOrEqualToSuperview()
         }
         imageView.snp.makeConstraints {
-            $0.top.leading.equalToSuperview()
-            $0.bottom.lessThanOrEqualToSuperview()
+            $0.centerY.leading.equalToSuperview()
         }
         label.snp.makeConstraints {
             $0.leading.equalTo(imageView.snp.trailing).inset(-4)
-            $0.top.trailing.equalToSuperview()
-            $0.bottom.lessThanOrEqualToSuperview()
+            $0.top.bottom.trailing.equalToSuperview()
         }
     }
     
-    func setup(isFlexible: Bool, imageName: String? = nil) {
+    func setup(imageName: String? = nil) {
         label.snp.remakeConstraints {
             if let imageName = imageName {
                 imageView.image = .init(systemName: imageName)
@@ -68,12 +66,7 @@ class FlexibleLabel: UIView, ViewConfiguration {
                 imageView.image = nil
                 $0.leading.equalToSuperview()
             }
-            $0.top.trailing.equalToSuperview()
-            if isFlexible {
-                $0.bottom.lessThanOrEqualToSuperview()
-            } else {
-                $0.bottom.equalToSuperview()
-            }
+            $0.bottom.top.trailing.equalToSuperview()
         }
     }
 }

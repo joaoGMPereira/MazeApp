@@ -87,9 +87,10 @@
 		76BF047E2857CF0D00A2DBDC /* NSAttributedString+Html.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF047D2857CF0D00A2DBDC /* NSAttributedString+Html.swift */; };
 		76BF04802857D1BC00A2DBDC /* ItemsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF047F2857D1BC00A2DBDC /* ItemsCell.swift */; };
 		76BF04822857D24F00A2DBDC /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF04812857D24F00A2DBDC /* InfoView.swift */; };
-		76BF04842857DF3E00A2DBDC /* FlexibleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF04832857DF3E00A2DBDC /* FlexibleLabel.swift */; };
+		76BF04842857DF3E00A2DBDC /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF04832857DF3E00A2DBDC /* Label.swift */; };
 		76BF04862857E22900A2DBDC /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF04852857E22900A2DBDC /* DateFormatter.swift */; };
 		76BF04882857E7FC00A2DBDC /* AverageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF04872857E7FC00A2DBDC /* AverageView.swift */; };
+		76BF048B2857F07500A2DBDC /* ItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF048A2857F07500A2DBDC /* ItemsViewModel.swift */; };
 		9C5D1783D16E51225A8D4EC6 /* Pods_MazeAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79DDEA4B20C92DDBA86C1C0A /* Pods_MazeAppTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -191,9 +192,10 @@
 		76BF047D2857CF0D00A2DBDC /* NSAttributedString+Html.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Html.swift"; sourceTree = "<group>"; };
 		76BF047F2857D1BC00A2DBDC /* ItemsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsCell.swift; sourceTree = "<group>"; };
 		76BF04812857D24F00A2DBDC /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
-		76BF04832857DF3E00A2DBDC /* FlexibleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleLabel.swift; sourceTree = "<group>"; };
+		76BF04832857DF3E00A2DBDC /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		76BF04852857E22900A2DBDC /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		76BF04872857E7FC00A2DBDC /* AverageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageView.swift; sourceTree = "<group>"; };
+		76BF048A2857F07500A2DBDC /* ItemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewModel.swift; sourceTree = "<group>"; };
 		79DDEA4B20C92DDBA86C1C0A /* Pods_MazeAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MazeAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E681C2BECECA71B55D1C3F4 /* Pods_MazeApp_MazeAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MazeApp_MazeAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0D1F17BCF0007F3863139EA /* Pods-MazeApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MazeApp.debug.xcconfig"; path = "Target Support Files/Pods-MazeApp/Pods-MazeApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -560,6 +562,7 @@
 				76BF04582855095200A2DBDC /* SerieSummaryCell.swift */,
 				76BF046928553A4400A2DBDC /* SerieModelling.swift */,
 				76BF046F2856AD4200A2DBDC /* SerieEpisodesCell.swift */,
+				76BF048A2857F07500A2DBDC /* ItemsViewModel.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -578,7 +581,7 @@
 				76BF045E28550B6800A2DBDC /* FeedbackView.swift */,
 				76BF047B2857B0E000A2DBDC /* ScrollableStack.swift */,
 				76BF04812857D24F00A2DBDC /* InfoView.swift */,
-				76BF04832857DF3E00A2DBDC /* FlexibleLabel.swift */,
+				76BF04832857DF3E00A2DBDC /* Label.swift */,
 				76BF04872857E7FC00A2DBDC /* AverageView.swift */,
 			);
 			path = Views;
@@ -839,13 +842,14 @@
 				76BF03E0285457A200A2DBDC /* DependencyInjector.swift in Sources */,
 				76BF0453285506D600A2DBDC /* SerieCoordinator.swift in Sources */,
 				76BF03EF285457A200A2DBDC /* DependencyOrchestrator.swift in Sources */,
-				76BF04842857DF3E00A2DBDC /* FlexibleLabel.swift in Sources */,
+				76BF04842857DF3E00A2DBDC /* Label.swift in Sources */,
 				76BF03E1285457A200A2DBDC /* InjectorFactory.swift in Sources */,
 				76BF03D9285457A200A2DBDC /* DependencyOrchestrating.swift in Sources */,
 				76BF04392854D6A200A2DBDC /* CALayer+Shadow.swift in Sources */,
 				76BF045F28550B6800A2DBDC /* FeedbackView.swift in Sources */,
 				76BF04132854D64100A2DBDC /* ShowsEndpoint.swift in Sources */,
 				76BF04432854F6CA00A2DBDC /* FavoritesShowsViewController.swift in Sources */,
+				76BF048B2857F07500A2DBDC /* ItemsViewModel.swift in Sources */,
 				76BF04802857D1BC00A2DBDC /* ItemsCell.swift in Sources */,
 				76BF03D8285457A200A2DBDC /* Storage.swift in Sources */,
 				76BF042E2854D68B00A2DBDC /* ViewConfiguration.swift in Sources */,

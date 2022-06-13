@@ -8,7 +8,6 @@ final class SerieEpisodeCell: UICollectionViewCell, ViewConfiguration {
         collectionView.register(
             cellType: ItemsCell.self
         )
-        collectionView.backgroundColor = .systemBackground
         return collectionView
     }()
     
@@ -17,6 +16,7 @@ final class SerieEpisodeCell: UICollectionViewCell, ViewConfiguration {
         configuration.showsSeparators = false
         configuration.footerMode = .none
         configuration.headerMode = .none
+        configuration.backgroundColor = .clear
         let layout = UICollectionViewCompositionalLayout.list(using: configuration)
         return layout
     }()

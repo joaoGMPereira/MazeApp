@@ -40,7 +40,6 @@ open class SerieViewController: ViewController<SerieViewModeling, UIView> {
     
     private(set) lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
-        collectionView.delegate = self
         collectionView.register(
             cellType: SerieSummaryCell.self
         )
@@ -58,6 +57,7 @@ open class SerieViewController: ViewController<SerieViewModeling, UIView> {
             ofKind: UICollectionView.elementKindSectionHeader
         )
         collectionView.backgroundColor = .systemBackground
+        collectionView.allowsSelection = false
         return collectionView
     }()
     
@@ -67,6 +67,12 @@ open class SerieViewController: ViewController<SerieViewModeling, UIView> {
         let layout = UICollectionViewCompositionalLayout.list(using: configuration)
         return layout
     }()
+    
+    var backgroundConfiguration: UIBackgroundConfiguration {
+        var backgroundConfiguration = UIBackgroundConfiguration.listGroupedCell()
+        backgroundConfiguration.cornerRadius = 8
+        return backgroundConfiguration
+    }
     
     // MARK: Loading
     private(set) lazy var loadingView: UIActivityIndicatorView = {
@@ -137,8 +143,6 @@ extension SerieViewController {
         if item is LoadingModel {
             let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: LoadingCell.self)
             cell.load()
-            var backgroundConfiguration = UIBackgroundConfiguration.listGroupedCell()
-            backgroundConfiguration.cornerRadius = 8
             cell.backgroundConfiguration = backgroundConfiguration
             return cell
         }
@@ -146,8 +150,6 @@ extension SerieViewController {
         if let feedbackModel = item as? FeedbackModel {
             let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: FeedbackCell.self)
             cell.setupCommponents(model: feedbackModel)
-            var backgroundConfiguration = UIBackgroundConfiguration.listGroupedCell()
-            backgroundConfiguration.cornerRadius = 8
             cell.backgroundConfiguration = backgroundConfiguration
             return cell
         }
@@ -155,8 +157,6 @@ extension SerieViewController {
         if let show = item as? Show {
             let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: SerieSummaryCell.self)
             cell.setup(with: show, dependencies: self.dependencies)
-            var backgroundConfiguration = UIBackgroundConfiguration.listGroupedCell()
-            backgroundConfiguration.cornerRadius = 8
             cell.backgroundConfiguration = backgroundConfiguration
             return cell
         }
@@ -164,19 +164,12 @@ extension SerieViewController {
         if let itemsViewModels = item as? ItemsViewModel {
             let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: SerieEpisodeCell.self)
             cell.setup(with: itemsViewModels.items)
-            var backgroundConfiguration = UIBackgroundConfiguration.listGroupedCell()
-            backgroundConfiguration.cornerRadius = 8
             cell.backgroundConfiguration = backgroundConfiguration
             return cell
         }
         
         return UICollectionViewCell()
     }
-}
-
-// MARK: - UICollectionViewDelegate
-extension SerieViewController: UICollectionViewDelegate {
-    
 }
 
 // MARK: - SerieDisplaying
