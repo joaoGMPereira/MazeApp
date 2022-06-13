@@ -1,9 +1,7 @@
 import UIKit
 import SnapKit
 
-protocol SerieCelling: AnyObject {}
-
-final class SerieCell: UICollectionViewCell, ViewConfiguration {
+final class SerieSummaryCell: UICollectionViewCell, ViewConfiguration {
     typealias Dependencies = HasMainQueue & HasURLSessionable & HasStorageable
     
     // MARK: - UI Properties
@@ -26,34 +24,20 @@ final class SerieCell: UICollectionViewCell, ViewConfiguration {
         return activityIndicatorView
     }()
     
-    private lazy var label: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = .zero
-        label.font = .preferredFont(for: .callout, weight: .medium)
-        label.textAlignment = .center
-        label.setContentHuggingPriority(.defaultLow, for: .vertical)
-        return label
-    }()
+    private lazy var summaryInfo: InfoView = InfoView()
+    private lazy var scheduleInfo: InfoView = InfoView()
+    private lazy var genresInfo: InfoView = InfoView()
     
     private lazy var stackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [label, average])
+        let stack = UIStackView(arrangedSubviews: [summaryInfo, scheduleInfo, genresInfo])
         stack.axis = .vertical
-        stack.distribution = .fillProportionally
+        stack.distribution = .fill
         stack.spacing = 8
+        stack.setContentHuggingPriority(.defaultLow, for: .vertical)
         return stack
     }()
-  
-    private lazy var average: UIButton = {
-        let button = UIButton()
-        button.isUserInteractionEnabled = false
-        button.setImage(.init(systemName: "star.fill"), for: .normal)
-        button.tintColor = .systemTeal
-        return button
-    }()
-
     
     // MARK: - Initializers
-    var viewModel: SerieCellViewModel?
     var task: URLSessionDataTask?
 
     override init(frame: CGRect) {
@@ -72,7 +56,7 @@ final class SerieCell: UICollectionViewCell, ViewConfiguration {
     
     func setupConstraints() {
         containerView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.edges.equalToSuperview().inset(8)
         }
         imageView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview().inset(4)
@@ -88,19 +72,18 @@ final class SerieCell: UICollectionViewCell, ViewConfiguration {
     }
     
     func configureViews() {
-        containerView.backgroundColor = .secondarySystemGroupedBackground
+        containerView.backgroundColor = .secondarySystemBackground
     }
 
     
     // MARK: - Setup
     func setup(with show: Show, dependencies: Dependencies) {
-        let viewModel = SerieCellViewModel(dependencies: dependencies,
-                                           show: show)
-        self.viewModel = viewModel
-        viewModel.displayer = self
         setupImage(show.image?.original, dependencies: dependencies)
-        setupAverage(show.rating.average)
-        label.text = show.name
+        summaryInfo.setup(title: "Summary:", subtitle: show.summary?.htmlToAttributedString)
+        scheduleInfo.setup(title: "Schedule:", subtitle: .init(string: "(\(show.schedule.days.joined(separator: " | "))) at \(show.schedule.time) (\(show.averageRuntime) min)"))
+        genresInfo.setup(title: "Genres:", subtitle: .init(string: show.genres.joined(separator: " | ")))
+        summaryInfo.isHidden = show.summary == nil
+        genresInfo.isHidden = show.genres.isEmpty
     }
     
     func setupImage(_ imageUrl: String?, dependencies: Dependencies) {
@@ -117,21 +100,8 @@ final class SerieCell: UICollectionViewCell, ViewConfiguration {
         }
     }
     
-    func setupAverage(_ average: Double?) {
-        var averageText = "-"
-        if let average = average {
-            averageText = "\(average)"
-        }
-        self.average.setTitle(averageText, for: .normal)
-        self.average.setTitleColor(.label, for: .normal)
-    }
-    
     override func prepareForReuse() {
         imageView.image = nil
         task?.cancel()
     }
-}
-
-// MARK: - Displaying
-extension SerieCell: SerieCelling {
 }

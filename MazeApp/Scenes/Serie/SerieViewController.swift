@@ -3,6 +3,8 @@ import SnapKit
 
 protocol SerieDisplaying: AnyObject {
     func displayShow(_ show: Show)
+    func displayEpisodes(_ episodes: SerieEpisodes, in section: Int)
+    func reloadCells()
     func displayEmptyView()
     func displayLoad()
     func hideLoad()
@@ -17,6 +19,7 @@ open class SerieViewController: ViewController<SerieViewModeling, UIView> {
         static let spacing: CGFloat = 8
         static let paginationOffset: CGFloat = 100
         static let numberOfColumns = CGFloat(1)
+        static let estimatedHeight = CGFloat(1000)
     }
     
     typealias Dependencies = HasMainQueue & HasURLSessionable & HasStorageable
@@ -26,11 +29,15 @@ open class SerieViewController: ViewController<SerieViewModeling, UIView> {
     // MARK: - Collection
     private(set) lazy var dataSource: CollectionViewDataSource<Int, SerieModelling> = {
         let dataSource = CollectionViewDataSource<Int, SerieModelling>(view: collectionView)
+        dataSource.automaticReloadData = false
         dataSource.itemProvider = { [weak self] view, indexPath, item in
-            guard let self = self, let show = item as? Show else { return UICollectionViewCell() }
-            let cell = view.dequeueReusableCell(for: indexPath, cellType: SerieCell.self)
-            cell.setup(with: show, dependencies: self.dependencies)
-            return cell
+            self?.setupCell(in: view, item: item, at: indexPath)
+        }
+        dataSource.supplementaryViewProvider = { [weak self] view, kind, index in
+            guard let self = self else { return  UICollectionReusableView() }
+            let header = view.dequeueReusableSupplementaryView(ofKind: kind, for: index, viewType: CollectionViewHeader.self)
+            header.setup(title: self.title(for: index.section))
+            return header
         }
         return dataSource
     }()
@@ -41,11 +48,51 @@ open class SerieViewController: ViewController<SerieViewModeling, UIView> {
         layout.minimumInteritemSpacing = Layout.spacing
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.delegate = self
-        var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
-        collectionView.collectionViewLayout =
-        UICollectionViewCompositionalLayout.list(using: configuration)
-        collectionView.register(cellType: SerieCell.self)
+        collectionView.collectionViewLayout = collectionViewLayout
+        collectionView.register(
+            cellType: SerieSummaryCell.self
+        )
+        collectionView.register(
+            cellType: SerieEpisodeCell.self
+        )
+        collectionView.register(
+            supplementaryViewType: CollectionViewHeader.self,
+            ofKind: UICollectionView.elementKindSectionHeader
+        )
         return collectionView
+    }()
+    
+    private lazy var collectionViewLayout: UICollectionViewLayout = {
+        
+        let layout = UICollectionViewCompositionalLayout() { sectionIndex, layoutEnvironment in
+            
+            var config = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+            
+            config.headerMode = .supplementary
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(Layout.estimatedHeight))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(Layout.estimatedHeight))
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+            let section = NSCollectionLayoutSection(group: group)
+            
+            let headerSize = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: .estimated(44)
+            )
+            
+            let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: headerSize,
+                elementKind: UICollectionView.elementKindSectionHeader, alignment: .top
+            )
+            
+            section.boundarySupplementaryItems = [sectionHeader]
+            
+            
+            return section
+        }
+        
+        
+        return layout
     }()
     
     // MARK: Loading
@@ -101,25 +148,49 @@ open class SerieViewController: ViewController<SerieViewModeling, UIView> {
         collectionView.dataSource = dataSource
         view.backgroundColor = .systemBackground
     }
+    
+    func setupCell(in collectionView: UICollectionView,
+                   item: SerieModelling,
+                   at indexPath: IndexPath) -> UICollectionViewCell {
+        if let show = item as? Show {
+            let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: SerieSummaryCell.self)
+            cell.setup(with: show, dependencies: self.dependencies)
+            return cell
+        }
+        
+        if let serieEpisodes = item as? SerieEpisodes {
+            let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: SerieEpisodeCell.self)
+            cell.setup(with: serieEpisodes.series, dependencies: self.dependencies)
+            return cell
+        }
+        return UICollectionViewCell()
+    }
+    
+    func title(for section: Int) -> String {
+        if let seasonSection = viewModel.sections[safe: section] {
+            return seasonSection
+        }
+        return String()
+    }
 }
 
 // MARK: - UICollectionViewDelegate
-extension SerieViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-//    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let leftRightMargin = Layout.sectionInset.left + Layout.sectionInset.right
-//
-//        let screenWidth = view.bounds.width
-//        let width = screenWidth - leftRightMargin
-//        let height = view.bounds.height * 0.6
-//
-//        return .init(width: width, height: height)
-//    }
+extension SerieViewController: UICollectionViewDelegate {
+
 }
 
 // MARK: - SerieDisplaying
 extension SerieViewController: SerieDisplaying {
+    func displayEpisodes(_ episodes: SerieEpisodes, in section: Int) {
+        dataSource.add(items: [episodes], to: section)
+    }
+    
     func displayShow(_ show: Show) {
         dataSource.add(items: [show], to: .zero)
+    }
+    
+    func reloadCells() {
+        collectionView.reloadData()
     }
     
     func displayEmptyView() {}

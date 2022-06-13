@@ -11,6 +11,7 @@ class ReloadableDataSource<View: AnyObject & ReloadableView, Cell, Section: Hash
     // MARK: - Data
 
     private(set) var sections: [Section] = []
+    
     private(set) var data: [Section: [Item]] = [:] {
         didSet {
             guard automaticReloadData else { return }
@@ -72,6 +73,17 @@ class ReloadableDataSource<View: AnyObject & ReloadableView, Cell, Section: Hash
         add(section: section)
         data[section] = []
     }
+    
+    /// Updates the given section with the contents of the `items` parameter
+        /// - Parameters:
+        ///   - items: Items to replace the contents of the section
+        ///   - section: The section to be updated
+        /// - Note: If the section doesn't exists the data source does not change
+        public func update(items: [Item], from section: Section) {
+            if sections.contains(section) {
+                data[section] = items
+            }
+        }
 
     /// - Parameter indexPath: The item `IndexPath`
     /// - Returns: Returns the item at the given `IndexPath` if the item exists, otherwise returns `nil`
