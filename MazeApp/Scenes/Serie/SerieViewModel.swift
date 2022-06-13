@@ -1,7 +1,8 @@
 import Foundation
 
 public protocol SerieViewModeling: AnyObject {
-    func loadSerie()
+    func loadScreen()
+    func getSeries()
     var sections: [String] { get }
 }
 
@@ -12,7 +13,7 @@ final class SerieViewModel {
     weak var displayer: SerieDisplaying?
     
     private var series: [Series] = []
-    private(set) var sections: [String] = [String()]
+    private(set) var sections: [String] = [String(), "Episodes"]
     private let show: Show
     
     init(coordinator: SerieCoordinating,
@@ -26,22 +27,20 @@ final class SerieViewModel {
 
 // MARK: - SeriesViewModeling
 extension SerieViewModel: SerieViewModeling {
-    func loadSerie() {
-        displayer?.displayLoad()
+    func loadScreen() {
         displayer?.displayShow(show)
-        getSeries { [weak self] in
-            self?.displayer?.hideLoad()
-        }
+        getSeries()
     }
     
-    func getSeries(completion: @escaping () -> Void) {
+    func getSeries() {
+        displayer?.displayLoad()
         dependencies.api.execute(endpoint: SeriesEndpoint.episodes(id: show.id)) { [weak self] (result: Result<Success<Series>, ApiError>) in
             guard let self = self else { return }
-            self.handleResponse(result, completion: completion)
+            self.handleResponse(result)
         }
     }
     
-    func handleResponse(_ result: Result<Success<Series>, ApiError>, completion: @escaping () -> Void) {
+    func handleResponse(_ result: Result<Success<Series>, ApiError>) {
         switch result {
         case .success(let response):
             let episodesForSeason = Array(Dictionary(grouping:response.model){$0.season}.values).sorted{
@@ -53,20 +52,74 @@ extension SerieViewModel: SerieViewModeling {
             series = episodesForSeason
             createTitles()
             episodesForSeason.enumerated().forEach {
-                displayer?.displayEpisodes(.init(series: $0.element), in: $0.offset + 1)
+                displayer?.displayEpisodes(items(with: $0.element), in: $0.offset + 1)
             }
-        case .failure: break
-            //   self.backToPreviousPage()
+        case .failure:
+            displayer?.displayEpisodesFailure()
         }
-        displayer?.reloadCells()
-        completion()
+    }
+    func items(with series: [Serie]) -> ItemsViewModel {
+        var items: [ItemViewModel] = [
+                .header(firstTitle: "Number",
+                        secondTitle: "Date",
+                        thirdTitle: "Name",
+                        fourthTitle: "Score")
+            ]
+        series.forEach {
+            items.append(
+                .body(
+                    firstTitle: "\($0.number)",
+                    secondTitle: AppDateFormatter.format($0.airdate),
+                    thirdTitle: $0.name,
+                    fourthTitle: average($0.rating.average))
+            )
+        }
+        return ItemsViewModel(
+            items: items
+        )
     }
     
     func createTitles() {
+        sections = [String()]
         self.series.forEach { series in
             if let firstEpisode = series.first {
-                sections.append("\(firstEpisode.season) Season")
+                sections.append("Season \(firstEpisode.season)")
             }
         }
     }
+    
+    func average(_ average: Double?) -> String {
+        var averageText = "-"
+        if let average = average {
+            averageText = "\(average)"
+        }
+        return averageText
+    }
 }
+
+
+//
+//// MARK: - Setup
+//func setup(with episodes: [Serie], dependencies: Dependencies) {
+//    numberStackView.addArrangedSubview(title("Number"))
+//    dateStackView.addArrangedSubview(title("Date"))
+//    nameStackView.addArrangedSubview(title("Name"))
+//    scoreStackView.addArrangedSubview(title("Score"))
+//    setupEpisodes(episodes)
+//}
+//
+//func setupEpisodes(_ episodes: [Serie]) {
+//    episodes.forEach {
+
+//    }
+//}
+//
+//func title(_ title: String) -> UILabel {
+//    let label = UILabel()
+//    label.numberOfLines = .zero
+//    label.font = .preferredFont(for: .callout, weight: .bold)
+//    label.text = title
+//    return label
+//}
+//
+//}

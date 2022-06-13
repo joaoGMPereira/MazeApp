@@ -2,91 +2,76 @@ import UIKit
 import SnapKit
 
 final class SerieEpisodeCell: UICollectionViewCell, ViewConfiguration {
-    typealias Dependencies = HasMainQueue & HasURLSessionable & HasStorageable
-    
     // MARK: - UI Properties
-    private lazy var containerView: UIView = {
-        let view = UIView()
-        view.corner(8)
-        view.layer.setShadow()
-        return view
+    private(set) lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
+        collectionView.register(
+            cellType: ItemsCell.self
+        )
+        collectionView.backgroundColor = .systemBackground
+        return collectionView
     }()
     
-    private lazy var label: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = .zero
-        label.font = .preferredFont(for: .callout, weight: .medium)
-        label.textAlignment = .center
-        label.setContentHuggingPriority(.defaultLow, for: .vertical)
-        return label
+    private lazy var collectionViewLayout: UICollectionViewLayout = {
+        var configuration = UICollectionLayoutListConfiguration(appearance: .plain)
+        configuration.showsSeparators = false
+        configuration.footerMode = .none
+        configuration.headerMode = .none
+        let layout = UICollectionViewCompositionalLayout.list(using: configuration)
+        return layout
     }()
     
-    private lazy var headerStackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [label, average])
-        stack.distribution = .fillProportionally
-        stack.spacing = 8
-        return stack
+    // MARK: - Collection
+    private(set) lazy var dataSource: CollectionViewDataSource<Int, ItemViewModel> = {
+        let dataSource = CollectionViewDataSource<Int, ItemViewModel>(view: collectionView)
+        dataSource.itemProvider = { [weak self] view, indexPath, item in
+            self?.setupCell(in: view, item: item, at: indexPath)
+        }
+        return dataSource
     }()
-    
-//    private lazy var stackView: UIStackView = {
-//        let stack = UIStackView(arrangedSubviews: [label, average])
-//        stack.distribution = .fillProportionally
-//        stack.spacing = 8
-//        return stack
-//    }()
-  
-    private lazy var average: UIButton = {
-        let button = UIButton()
-        button.isUserInteractionEnabled = false
-        button.setImage(.init(systemName: "star.fill"), for: .normal)
-        button.tintColor = .systemTeal
-        return button
-    }()
-
+    func setupCell(in collectionView: UICollectionView,
+                   item: ItemViewModel,
+                   at indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: ItemsCell.self)
+        cell.setup(model: item)
+        return cell
+    }
     
     // MARK: - Initializers
-    var task: URLSessionDataTask?
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         buildLayout()
     }
-
+    
     required init?(coder: NSCoder) { nil }
     
     // MARK: - View Configuration
     func buildViewHierarchy() {
-        contentView.addSubviews(containerView)
-        containerView.addSubviews(headerStackView)
-
+        contentView.addSubviews(collectionView)
     }
     
     func setupConstraints() {
-        containerView.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(8)
-        }
-        headerStackView.snp.makeConstraints {
+        collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview().inset(4)
+            $0.height.greaterThanOrEqualTo(150)
         }
     }
     
     func configureViews() {
-        containerView.backgroundColor = .secondarySystemBackground
+        collectionView.dataSource = dataSource
     }
-
     
     // MARK: - Setup
-    func setup(with episodes: [Serie], dependencies: Dependencies) {
-        setupAverage(episodes.first?.rating.average)
-        label.text = episodes.first?.name
+    func setup(with items: [ItemViewModel]) {
+        dataSource.set(items: items, to: .zero)
     }
     
-    func setupAverage(_ average: Double?) {
+    func average(_ average: Double?) -> String {
         var averageText = "-"
         if let average = average {
             averageText = "\(average)"
         }
-        self.average.setTitle(averageText, for: .normal)
-        self.average.setTitleColor(.label, for: .normal)
+        return averageText
     }
 }

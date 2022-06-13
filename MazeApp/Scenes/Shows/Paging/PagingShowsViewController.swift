@@ -79,18 +79,18 @@ extension PagingShowsViewController: PagingShowsDisplaying {
     
     func displayFilteredEmptyView() {
         showItems(false)
-        feedbackView.setupCommponents(title: "Didn`t find any show with you search",
-                                      subtitle: "Try again searching with other name")
+        feedbackView.setupComponents(model: .init(title: "Didn`t find any show with you search",
+                                      subtitle: "Try again searching with other name"))
     }
     
     override func displayEmptyView() {
         showItems(false)
-        feedbackView.setupCommponents(title: "Something didn`t work well",
-                                      subtitle: "System failure, please try again",
-                                      buttonName: "try again") {
+        feedbackView.setupComponents(model: .init(title: "Something didn't go right while we searched for the Shows",
+                                                  subtitle: "Verify you connection and please try again",
+                                                  buttonName: "Try again") {
             self.feedbackView.alpha = .zero
             self.pagingViewModel?.loadShows()
-        }
+        })
     }
     func displayNextPageLoad() {
         pagingLoadingView.startAnimating()

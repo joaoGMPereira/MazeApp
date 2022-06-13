@@ -1,5 +1,22 @@
 import UIKit
 
+struct FeedbackModel {
+    let title: String?
+    let subtitle: String?
+    let buttonName: String?
+    let completion: (() -> Void)?
+    
+    init(title: String? = nil,
+         subtitle: String? = nil,
+         buttonName: String? = nil,
+         completion: (() -> Void)? = nil) {
+        self.title = title
+        self.subtitle = subtitle
+        self.buttonName = buttonName
+        self.completion = completion
+    }
+}
+
 final class FeedbackView: UIView, ViewConfiguration {
     enum Layout {
         static let spacing = CGFloat(8)
@@ -8,7 +25,7 @@ final class FeedbackView: UIView, ViewConfiguration {
     lazy var component: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
-        stack.distribution = .fillProportionally
+        stack.distribution = .fill
         stack.spacing = Layout.spacing
         return stack
     }()
@@ -21,7 +38,7 @@ final class FeedbackView: UIView, ViewConfiguration {
     }()
     
     lazy var title: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.numberOfLines = .zero
         label.textAlignment = .center
         label.font = .preferredFont(for: .body, weight: .bold)
@@ -29,7 +46,7 @@ final class FeedbackView: UIView, ViewConfiguration {
     }()
     
     lazy var subtitle: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.numberOfLines = .zero
         label.textAlignment = .center
         label.font = .preferredFont(for: .body, weight: .medium)
@@ -74,24 +91,22 @@ final class FeedbackView: UIView, ViewConfiguration {
         }
         button.snp.makeConstraints {
             $0.top.equalTo(component.snp.bottom).inset(-Layout.spacing)
-            $0.bottom.centerX.equalToSuperview()
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(Layout.spacing)
             $0.leading.greaterThanOrEqualToSuperview()
             $0.trailing.lessThanOrEqualToSuperview()
             $0.width.equalToSuperview().multipliedBy(0.8)
-            $0.height.greaterThanOrEqualTo(Layout.buttonHeight)
+            $0.height.equalTo(Layout.buttonHeight)
         }
     }
     
-    func setupCommponents(title: String? = nil,
-                          subtitle: String? = nil,
-                          buttonName: String? = nil,
-                          completion: (() -> Void)? = nil) {
-        self.completion = completion
-        self.title.text = title
-        self.subtitle.text = subtitle
-        self.button.setTitle(buttonName, for: .normal)
-        self.title.isHidden = title == nil
-        self.subtitle.isHidden = subtitle == nil
-        self.button.isHidden = buttonName == nil
+    func setupComponents(model: FeedbackModel) {
+        completion = model.completion
+        title.text = model.title
+        subtitle.text = model.subtitle
+        button.setTitle(model.buttonName, for: .normal)
+        title.isHidden = model.title == nil
+        subtitle.isHidden = model.subtitle == nil
+        button.isHidden = model.buttonName == nil
     }
 }

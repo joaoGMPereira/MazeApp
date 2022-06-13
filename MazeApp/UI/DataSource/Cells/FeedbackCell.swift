@@ -1,8 +1,33 @@
-//
-//  FeedbackCell.swift
-//  MazeApp
-//
-//  Created by Joao Gabriel Pereira on 13/06/22.
-//
+import UIKit
+import SnapKit
 
-import Foundation
+extension FeedbackModel: CellViewModelling {}
+
+final class FeedbackCell: UICollectionViewCell, ViewConfiguration {
+    // MARK: - UI Properties
+    
+    private lazy var feedback = FeedbackView()
+    
+    // MARK: - Initializers
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        buildLayout()
+    }
+
+    required init?(coder: NSCoder) { nil }
+    
+    // MARK: - View Configuration
+    func buildViewHierarchy() {
+        contentView.addSubviews(feedback)
+    }
+    
+    func setupConstraints() {
+        feedback.snp.makeConstraints {
+            $0.edges.equalToSuperview().inset(8)
+        }
+    }
+    
+    func setupCommponents(model: FeedbackModel) {
+        feedback.setupComponents(model: model)
+    }
+}

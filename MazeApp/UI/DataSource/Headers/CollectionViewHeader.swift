@@ -29,7 +29,8 @@ class CollectionViewHeader: UICollectionReusableView, ViewConfiguration {
     
     func setupConstraints() {
         titleLabel.snp.makeConstraints {
-            $0.edges.equalTo(layoutMarginsGuide)
+            $0.top.leading.trailing.equalTo(layoutMarginsGuide)
+            $0.bottom.equalToSuperview().inset(8)
         }
     }
     

@@ -47,6 +47,7 @@ class Api: Apiable {
         }
         
         var request = URLRequest(url: url)
+        request.timeoutInterval = 15
         request.addValue(endpoint.contentType.rawValue, forHTTPHeaderField: "Content-Type")
         
         request.httpMethod = endpoint.method.rawValue
@@ -62,6 +63,7 @@ class Api: Apiable {
         jsonDecoder: JSONDecoder,
         completion: @escaping (Result<Success<E>, ApiError>) -> Void
     ) {
+        print("\(response?.debugDescription ?? "")\n\(self.prettyPrint(responseBody))")
         dependencies.mainQueue.async {
             if let error = error as NSError?,
                error.code == NSURLErrorCancelled {
@@ -138,6 +140,27 @@ private extension Api {
             return .success(result)
         } catch {
             return .failure(.decodeError(error))
+        }
+    }
+}
+
+extension Api {
+    private func prettyPrint(_ jsonData: Data?) -> String {
+        guard let data = jsonData else {
+            return ""
+        }
+
+        do {
+            let jsonObj = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+            guard JSONSerialization.isValidJSONObject(jsonObj) else {
+                return String(data: data, encoding: .utf8) ?? ""
+            }
+
+            let data = try JSONSerialization.data(withJSONObject: jsonObj, options: .prettyPrinted)
+
+            return String(data: data, encoding: .utf8) ?? ""
+        } catch {
+            return ""
         }
     }
 }

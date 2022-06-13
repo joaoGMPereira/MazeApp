@@ -5,13 +5,6 @@ final class SerieSummaryCell: UICollectionViewCell, ViewConfiguration {
     typealias Dependencies = HasMainQueue & HasURLSessionable & HasStorageable
     
     // MARK: - UI Properties
-    private lazy var containerView: UIView = {
-        let view = UIView()
-        view.corner(8)
-        view.layer.setShadow()
-        return view
-    }()
-    
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.corner(8)
@@ -49,15 +42,10 @@ final class SerieSummaryCell: UICollectionViewCell, ViewConfiguration {
     
     // MARK: - View Configuration
     func buildViewHierarchy() {
-        contentView.addSubviews(containerView)
-        containerView.addSubviews(imageView, stackView, loadingView)
-
+        contentView.addSubviews(imageView, stackView, loadingView)
     }
     
     func setupConstraints() {
-        containerView.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(8)
-        }
         imageView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview().inset(4)
             $0.bottom.equalTo(stackView.snp.top).inset(-4)
@@ -71,16 +59,11 @@ final class SerieSummaryCell: UICollectionViewCell, ViewConfiguration {
         }
     }
     
-    func configureViews() {
-        containerView.backgroundColor = .secondarySystemBackground
-    }
-
-    
     // MARK: - Setup
     func setup(with show: Show, dependencies: Dependencies) {
         setupImage(show.image?.original, dependencies: dependencies)
         summaryInfo.setup(title: "Summary:", subtitle: show.summary?.htmlToAttributedString)
-        scheduleInfo.setup(title: "Schedule:", subtitle: .init(string: "(\(show.schedule.days.joined(separator: " | "))) at \(show.schedule.time) (\(show.averageRuntime) min)"))
+        scheduleInfo.setup(title: "Schedule:", subtitle: .init(string: "(\(show.schedule.days.joined(separator: " | "))) at \(show.schedule.time) (\(show.averageRuntime ?? 0) min)"))
         genresInfo.setup(title: "Genres:", subtitle: .init(string: show.genres.joined(separator: " | ")))
         summaryInfo.isHidden = show.summary == nil
         genresInfo.isHidden = show.genres.isEmpty

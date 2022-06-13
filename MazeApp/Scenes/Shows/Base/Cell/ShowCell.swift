@@ -54,13 +54,7 @@ final class ShowCell: UICollectionViewCell, ViewConfiguration {
         return button
     }()
     
-    private lazy var average: UIButton = {
-        let button = UIButton()
-        button.isUserInteractionEnabled = false
-        button.setImage(.init(systemName: "star.fill"), for: .normal)
-        button.tintColor = .systemTeal
-        return button
-    }()
+    private lazy var average = AverageView.create()
 
     
     // MARK: - Initializers

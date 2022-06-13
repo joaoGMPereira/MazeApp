@@ -10,7 +10,7 @@ struct Serie: Codable {
     let airtime: String
     let runtime: Int
     let rating: Rating
-    let image: Image
+    let image: Image?
     let summary: String
 }
 
@@ -22,6 +22,6 @@ extension Serie {
     
     // MARK: - Rating
     struct Rating: Codable {
-        let average: Double
+        let average: Double?
     }
 }

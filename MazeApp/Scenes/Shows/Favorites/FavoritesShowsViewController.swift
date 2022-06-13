@@ -48,11 +48,11 @@ extension FavoritesShowsViewController: FavoritesShowsDisplaying {
     
     override func displayEmptyView() {
         showItems(false)
-        feedbackView.setupCommponents(title: "Empty Favorites",
+        feedbackView.setupComponents(model: .init(title: "Empty Favorites",
                                       subtitle: "Go to Shows list and select your favorites shows",
                                       buttonName: "OK") { [weak self] in
             self?.favoriteViewModel?.goToShows()
-        }
+        })
     }
     
     func showReset() {

@@ -15,8 +15,10 @@ struct Show: Codable {
     let schedule: Schedule
     let rating: Rating
     let image: Image?
-    let averageRuntime: Int
+    let runtime: Int?
+    let averageRuntime: Int?
     let summary: String?
+    
 }
 
 extension Show {

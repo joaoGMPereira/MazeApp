@@ -1,5 +1,7 @@
 import UIKit
 
+protocol CellViewModelling {}
+
 final class CollectionViewDataSource<Section: Hashable, Item>: ReloadableDataSource<UICollectionView, UICollectionViewCell, Section, Item>, UICollectionViewDataSource {
     // MARK: Aliases
 

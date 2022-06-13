@@ -1,5 +1,4 @@
-protocol SerieModelling {}
-extension Show: SerieModelling {}
-struct SerieEpisodes: SerieModelling {
+extension Show: CellViewModelling {}
+struct SerieEpisodes: CellViewModelling {
     var series: Series
 }

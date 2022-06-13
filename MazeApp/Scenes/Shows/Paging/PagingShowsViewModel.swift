@@ -70,11 +70,15 @@ extension PagingShowsViewModel: PagingShowsViewModeling {
     }
     
     func didTap(at indexPath: IndexPath) {
-        guard let show = shows[safe: indexPath.row] else {
-            //error feedback
+        if isSearching,
+           let filteredShow = filteredShows[safe: indexPath.row] {
+            coordinator.goToSerie(filteredShow)
             return
         }
-        coordinator.goToSerie(show)
+        if let show = shows[safe: indexPath.row] {
+            coordinator.goToSerie(show)
+            return
+        }
     }
 }
 
@@ -128,8 +132,8 @@ private extension PagingShowsViewModel {
     }
     
     func changeShows(_ shows: Shows) {
-            displayer?.clearShows()
-            displayer?.displayShows(shows)
+        displayer?.clearShows()
+        displayer?.displayShows(shows)
     }
     
     func reset() {

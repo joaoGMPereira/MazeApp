@@ -7,6 +7,7 @@ struct ItemsViewModel: CellViewModelling {
 
 struct ItemViewModel {
     let firstTitle: String, secondTitle: String, thirdTitle: String, fourthTitle: String
+    let firstImage: String?, secondImage: String?, thirdImage: String?, fourthImage: String?
     let firstFont: UIFont, secondFont: UIFont, thirdFont: UIFont, fourthFont: UIFont
     let isFlexibles: Bool
     
@@ -24,6 +25,10 @@ struct ItemViewModel {
               secondTitle: secondTitle,
               thirdTitle: thirdTitle,
               fourthTitle: fourthTitle,
+              firstImage: nil,
+              secondImage: nil,
+              thirdImage: nil,
+              fourthImage: nil,
               firstFont: firstFont,
               secondFont: secondFont,
               thirdFont: thirdFont,
@@ -45,6 +50,10 @@ struct ItemViewModel {
               secondTitle: secondTitle,
               thirdTitle: thirdTitle,
               fourthTitle: fourthTitle,
+              firstImage: nil,
+              secondImage: nil,
+              thirdImage: nil,
+              fourthImage: "star.fill",
               firstFont: firstFont,
               secondFont: secondFont,
               thirdFont: thirdFont,
@@ -57,7 +66,6 @@ final class ItemsCell: UICollectionViewCell, ViewConfiguration {
     // MARK: - UI Properties
     private lazy var stackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [firstLabel, secondLabel, thirdLabel, fourthLabel])
-        stack.spacing = 4
         stack.distribution = .fillEqually
         return stack
     }()
@@ -74,7 +82,7 @@ final class ItemsCell: UICollectionViewCell, ViewConfiguration {
         super.init(frame: frame)
         buildLayout()
     }
-
+    
     required init?(coder: NSCoder) { nil }
     
     // MARK: - View Configuration
@@ -99,10 +107,10 @@ final class ItemsCell: UICollectionViewCell, ViewConfiguration {
         thirdLabel.font = model.secondFont
         fourthLabel.font = model.secondFont
         
-        firstLabel.setup(isFlexible: model.isFlexibles)
-        secondLabel.setup(isFlexible: model.isFlexibles)
-        thirdLabel.setup(isFlexible: model.isFlexibles)
-        fourthLabel.setup(isFlexible: model.isFlexibles)
+        firstLabel.setup(isFlexible: model.isFlexibles, imageName: model.firstImage)
+        secondLabel.setup(isFlexible: model.isFlexibles, imageName: model.secondImage)
+        thirdLabel.setup(isFlexible: model.isFlexibles, imageName: model.thirdImage)
+        fourthLabel.setup(isFlexible: model.isFlexibles, imageName: model.fourthImage)
     }
 }
 

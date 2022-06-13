@@ -1,8 +1,11 @@
-//
-//  AverageView.swift
-//  MazeApp
-//
-//  Created by Joao Gabriel Pereira on 13/06/22.
-//
+import UIKit
 
-import Foundation
+enum AverageView {
+    static func create() -> UIButton {
+        let button = UIButton()
+        button.isUserInteractionEnabled = false
+        button.setImage(.init(systemName: "star.fill"), for: .normal)
+        button.tintColor = .systemTeal
+        return button
+    }
+}
