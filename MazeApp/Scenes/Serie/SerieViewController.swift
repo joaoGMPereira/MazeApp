@@ -3,7 +3,7 @@ import SnapKit
 
 protocol SerieDisplaying: AnyObject {
     func displayShow(_ show: Show)
-    func displayEpisodes(_ items: ItemsViewModel, in section: Int)
+    func displayEpisodes(_ items: EpisodesViewModel, in section: Int)
     func displayEpisodesFailure()
     func displayLoad()
 }
@@ -161,10 +161,11 @@ extension SerieViewController {
             return cell
         }
         
-        if let itemsViewModels = item as? ItemsViewModel {
+        if let itemsViewModels = item as? EpisodesViewModel {
             let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: SerieEpisodeCell.self)
             cell.setup(with: itemsViewModels.items)
             cell.backgroundConfiguration = backgroundConfiguration
+            cell.delegate = self
             return cell
         }
         
@@ -172,9 +173,14 @@ extension SerieViewController {
     }
 }
 
+extension SerieViewController: SerieEpisodeCellDelegate {
+    func didTap(season: String, number: String) {
+        viewModel.goToEpisode(season: season, episode: number)
+    }
+}
 // MARK: - SerieDisplaying
 extension SerieViewController: SerieDisplaying {
-    func displayEpisodes(_ items: ItemsViewModel, in section: Int) {
+    func displayEpisodes(_ items: EpisodesViewModel, in section: Int) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.dataSource.update(items: [items], from: section)
         }

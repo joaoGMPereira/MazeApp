@@ -3,6 +3,7 @@ import Foundation
 public protocol SerieViewModeling: AnyObject {
     func loadScreen()
     func getSeries()
+    func goToEpisode(season: String, episode: String)
     var sections: [String] { get }
 }
 
@@ -34,7 +35,7 @@ extension SerieViewModel: SerieViewModeling {
     
     func getSeries() {
         displayer?.displayLoad()
-        dependencies.api.execute(endpoint: SeriesEndpoint.episodes(id: show.id)) { [weak self] (result: Result<Success<Series>, ApiError>) in
+        dependencies.api.execute(endpoint: SerieEndpoint.episodes(id: show.id)) { [weak self] (result: Result<Success<Series>, ApiError>) in
             guard let self = self else { return }
             self.handleResponse(result)
         }
@@ -58,23 +59,24 @@ extension SerieViewModel: SerieViewModeling {
             displayer?.displayEpisodesFailure()
         }
     }
-    func items(with series: [Serie]) -> ItemsViewModel {
-        var items: [ItemViewModel] = [
-                .header(firstTitle: "Number",
-                        secondTitle: "Date",
-                        thirdTitle: "Name",
-                        fourthTitle: "Score")
+    func items(with series: [Serie]) -> EpisodesViewModel {
+        var items: [EpisodeViewModel] = [
+            .header(number: "Number",
+                    date: "Date",
+                    name: "Name",
+                    score: "Score")
             ]
         series.forEach {
             items.append(
                 .body(
-                    firstTitle: "\($0.number)",
-                    secondTitle: AppDateFormatter.format($0.airdate),
-                    thirdTitle: $0.name,
-                    fourthTitle: average($0.rating.average))
+                    number: "\($0.number)",
+                    date: AppDateFormatter.format($0.airdate),
+                    name: $0.name,
+                    score: average($0.rating.average),
+                    season: $0.season)
             )
         }
-        return ItemsViewModel(
+        return EpisodesViewModel(
             items: items
         )
     }
@@ -95,31 +97,10 @@ extension SerieViewModel: SerieViewModeling {
         }
         return averageText
     }
+    
+    func goToEpisode(season: String, episode: String) {
+        coordinator.goToEpisode(show: "\(show.id)",
+                                season: season,
+                                episode: episode)
+    }
 }
-
-
-//
-//// MARK: - Setup
-//func setup(with episodes: [Serie], dependencies: Dependencies) {
-//    numberStackView.addArrangedSubview(title("Number"))
-//    dateStackView.addArrangedSubview(title("Date"))
-//    nameStackView.addArrangedSubview(title("Name"))
-//    scoreStackView.addArrangedSubview(title("Score"))
-//    setupEpisodes(episodes)
-//}
-//
-//func setupEpisodes(_ episodes: [Serie]) {
-//    episodes.forEach {
-
-//    }
-//}
-//
-//func title(_ title: String) -> UILabel {
-//    let label = UILabel()
-//    label.numberOfLines = .zero
-//    label.font = .preferredFont(for: .callout, weight: .bold)
-//    label.text = title
-//    return label
-//}
-//
-//}

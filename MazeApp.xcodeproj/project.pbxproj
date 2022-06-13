@@ -76,7 +76,7 @@
 		76BF045B2855095200A2DBDC /* SerieSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF04582855095200A2DBDC /* SerieSummaryCell.swift */; };
 		76BF045F28550B6800A2DBDC /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF045E28550B6800A2DBDC /* FeedbackView.swift */; };
 		76BF046628551C4400A2DBDC /* TabControlling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF046528551C4400A2DBDC /* TabControlling.swift */; };
-		76BF04682855336000A2DBDC /* SeriesEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF04672855336000A2DBDC /* SeriesEndpoint.swift */; };
+		76BF04682855336000A2DBDC /* SerieEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF04672855336000A2DBDC /* SerieEndpoint.swift */; };
 		76BF046A28553A4400A2DBDC /* SerieModelling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF046928553A4400A2DBDC /* SerieModelling.swift */; };
 		76BF046E2856277800A2DBDC /* CollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF046D2856277800A2DBDC /* CollectionViewHeader.swift */; };
 		76BF04702856AD4200A2DBDC /* SerieEpisodesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF046F2856AD4200A2DBDC /* SerieEpisodesCell.swift */; };
@@ -91,6 +91,12 @@
 		76BF04862857E22900A2DBDC /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF04852857E22900A2DBDC /* DateFormatter.swift */; };
 		76BF04882857E7FC00A2DBDC /* AverageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF04872857E7FC00A2DBDC /* AverageView.swift */; };
 		76BF048B2857F07500A2DBDC /* ItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF048A2857F07500A2DBDC /* ItemsViewModel.swift */; };
+		76BF048D2858053600A2DBDC /* EpisodeEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF048C2858053600A2DBDC /* EpisodeEndpoint.swift */; };
+		76BF0493285805E000A2DBDC /* EpisodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF048E285805E000A2DBDC /* EpisodeViewModel.swift */; };
+		76BF0494285805E000A2DBDC /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF048F285805E000A2DBDC /* Episode.swift */; };
+		76BF0495285805E100A2DBDC /* EpisodeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF0490285805E000A2DBDC /* EpisodeFactory.swift */; };
+		76BF0496285805E100A2DBDC /* EpisodeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF0491285805E000A2DBDC /* EpisodeCoordinator.swift */; };
+		76BF0497285805E100A2DBDC /* EpisodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF0492285805E000A2DBDC /* EpisodeViewController.swift */; };
 		9C5D1783D16E51225A8D4EC6 /* Pods_MazeAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79DDEA4B20C92DDBA86C1C0A /* Pods_MazeAppTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -181,7 +187,7 @@
 		76BF04582855095200A2DBDC /* SerieSummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerieSummaryCell.swift; sourceTree = "<group>"; };
 		76BF045E28550B6800A2DBDC /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
 		76BF046528551C4400A2DBDC /* TabControlling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabControlling.swift; sourceTree = "<group>"; };
-		76BF04672855336000A2DBDC /* SeriesEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesEndpoint.swift; sourceTree = "<group>"; };
+		76BF04672855336000A2DBDC /* SerieEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerieEndpoint.swift; sourceTree = "<group>"; };
 		76BF046928553A4400A2DBDC /* SerieModelling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerieModelling.swift; sourceTree = "<group>"; };
 		76BF046D2856277800A2DBDC /* CollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewHeader.swift; sourceTree = "<group>"; };
 		76BF046F2856AD4200A2DBDC /* SerieEpisodesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerieEpisodesCell.swift; sourceTree = "<group>"; };
@@ -196,6 +202,12 @@
 		76BF04852857E22900A2DBDC /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		76BF04872857E7FC00A2DBDC /* AverageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageView.swift; sourceTree = "<group>"; };
 		76BF048A2857F07500A2DBDC /* ItemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewModel.swift; sourceTree = "<group>"; };
+		76BF048C2858053600A2DBDC /* EpisodeEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeEndpoint.swift; sourceTree = "<group>"; };
+		76BF048E285805E000A2DBDC /* EpisodeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeViewModel.swift; sourceTree = "<group>"; };
+		76BF048F285805E000A2DBDC /* Episode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
+		76BF0490285805E000A2DBDC /* EpisodeFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeFactory.swift; sourceTree = "<group>"; };
+		76BF0491285805E000A2DBDC /* EpisodeCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeCoordinator.swift; sourceTree = "<group>"; };
+		76BF0492285805E000A2DBDC /* EpisodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeViewController.swift; sourceTree = "<group>"; };
 		79DDEA4B20C92DDBA86C1C0A /* Pods_MazeAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MazeAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E681C2BECECA71B55D1C3F4 /* Pods_MazeApp_MazeAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MazeApp_MazeAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0D1F17BCF0007F3863139EA /* Pods-MazeApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MazeApp.debug.xcconfig"; path = "Target Support Files/Pods-MazeApp/Pods-MazeApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -427,17 +439,23 @@
 			isa = PBXGroup;
 			children = (
 				76BF044C285506D600A2DBDC /* Serie */,
-				76BF04002854D64100A2DBDC /* Episodes */,
+				76BF04002854D64100A2DBDC /* Episode */,
 				76BF04012854D64100A2DBDC /* Shows */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
 		};
-		76BF04002854D64100A2DBDC /* Episodes */ = {
+		76BF04002854D64100A2DBDC /* Episode */ = {
 			isa = PBXGroup;
 			children = (
+				76BF048F285805E000A2DBDC /* Episode.swift */,
+				76BF0491285805E000A2DBDC /* EpisodeCoordinator.swift */,
+				76BF0490285805E000A2DBDC /* EpisodeFactory.swift */,
+				76BF0492285805E000A2DBDC /* EpisodeViewController.swift */,
+				76BF048E285805E000A2DBDC /* EpisodeViewModel.swift */,
+				76BF048C2858053600A2DBDC /* EpisodeEndpoint.swift */,
 			);
-			path = Episodes;
+			path = Episode;
 			sourceTree = "<group>";
 		};
 		76BF04012854D64100A2DBDC /* Shows */ = {
@@ -525,7 +543,7 @@
 				76BF044F285506D600A2DBDC /* SerieCoordinator.swift */,
 				76BF0450285506D600A2DBDC /* SerieViewModel.swift */,
 				76BF0455285507F000A2DBDC /* Serie.swift */,
-				76BF04672855336000A2DBDC /* SeriesEndpoint.swift */,
+				76BF04672855336000A2DBDC /* SerieEndpoint.swift */,
 			);
 			path = Serie;
 			sourceTree = "<group>";
@@ -791,6 +809,7 @@
 				76BF03E6285457A200A2DBDC /* HTTPMethod.swift in Sources */,
 				76BF044B2855016500A2DBDC /* PagingShowsFactory.swift in Sources */,
 				76BF041B2854D64100A2DBDC /* Show.swift in Sources */,
+				76BF0497285805E100A2DBDC /* EpisodeViewController.swift in Sources */,
 				76BF03D7285457A200A2DBDC /* Storageable.swift in Sources */,
 				76BF03EC285457A200A2DBDC /* Resolver.swift in Sources */,
 				76BF03EE285457A200A2DBDC /* ApiDependencies.swift in Sources */,
@@ -803,9 +822,11 @@
 				76BF03DF285457A200A2DBDC /* DependencyStore.swift in Sources */,
 				76BF042B2854D68B00A2DBDC /* ReloadableView.swift in Sources */,
 				76BF03E5285457A200A2DBDC /* ApiError.swift in Sources */,
+				76BF0493285805E000A2DBDC /* EpisodeViewModel.swift in Sources */,
 				76BF04372854D6A200A2DBDC /* UIView+Border.swift in Sources */,
 				76BF0456285507F000A2DBDC /* Serie.swift in Sources */,
 				76BF03DA285457A200A2DBDC /* DependencyInjecting.swift in Sources */,
+				76BF0496285805E100A2DBDC /* EpisodeCoordinator.swift in Sources */,
 				76BF041F2854D64100A2DBDC /* ShowsViewModelling.swift in Sources */,
 				76BF03ED285457A200A2DBDC /* DispatchDependencies.swift in Sources */,
 				76BF042D2854D68B00A2DBDC /* Reusable.swift in Sources */,
@@ -813,6 +834,7 @@
 				76BF03FB2854D5FE00A2DBDC /* SceneDelegate.swift in Sources */,
 				76BF04422854F6CA00A2DBDC /* FavoritesShowsViewModel.swift in Sources */,
 				76BF03E9285457A200A2DBDC /* Apiable.swift in Sources */,
+				76BF0494285805E000A2DBDC /* Episode.swift in Sources */,
 				76BF03E2285457A200A2DBDC /* ThreadRecursiveLocking.swift in Sources */,
 				76BF03DE285457A200A2DBDC /* FeatureResolving.swift in Sources */,
 				76BF04192854D64100A2DBDC /* PagingShowsViewController.swift in Sources */,
@@ -828,7 +850,7 @@
 				76BF03E3285457A200A2DBDC /* URLSessionable.swift in Sources */,
 				76BF04862857E22900A2DBDC /* DateFormatter.swift in Sources */,
 				76BF041E2854D64100A2DBDC /* ShowCell.swift in Sources */,
-				76BF04682855336000A2DBDC /* SeriesEndpoint.swift in Sources */,
+				76BF04682855336000A2DBDC /* SerieEndpoint.swift in Sources */,
 				76BF043C2854D6A200A2DBDC /* UIViewController+Navigation.swift in Sources */,
 				76BF04172854D64100A2DBDC /* PagingShowsViewModel.swift in Sources */,
 				76BF043A2854D6A200A2DBDC /* UIFont+PrefferedFont.swift in Sources */,
@@ -856,11 +878,13 @@
 				76BF04702856AD4200A2DBDC /* SerieEpisodesCell.swift in Sources */,
 				76BF03EB285457A200A2DBDC /* DependencyContainer.swift in Sources */,
 				76BF03DB285457A200A2DBDC /* Injected.swift in Sources */,
+				76BF0495285805E100A2DBDC /* EpisodeFactory.swift in Sources */,
 				76BF046A28553A4400A2DBDC /* SerieModelling.swift in Sources */,
 				76BF046E2856277800A2DBDC /* CollectionViewHeader.swift in Sources */,
 				76BF03F4285457F100A2DBDC /* Collection+Extensions.swift in Sources */,
 				76BF042A2854D68B00A2DBDC /* CollectionViewDataSource.swift in Sources */,
 				76BF046628551C4400A2DBDC /* TabControlling.swift in Sources */,
+				76BF048D2858053600A2DBDC /* EpisodeEndpoint.swift in Sources */,
 				76BF04752856C6B500A2DBDC /* String+Html.swift in Sources */,
 				76BF0454285506D600A2DBDC /* SerieViewModel.swift in Sources */,
 				76BF041A2854D64100A2DBDC /* ShowsViewController.swift in Sources */,

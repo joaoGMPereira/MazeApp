@@ -1,62 +1,66 @@
 import UIKit
 
-struct ItemsViewModel: CellViewModelling {
-    let items: [ItemViewModel]
+struct EpisodesViewModel: CellViewModelling {
+    let items: [EpisodeViewModel]
 }
 
-struct ItemViewModel {
-    let firstTitle: String, secondTitle: String, thirdTitle: String, fourthTitle: String
-    let firstImage: String?, secondImage: String?, thirdImage: String?, fourthImage: String?
-    let firstFont: UIFont, secondFont: UIFont, thirdFont: UIFont, fourthFont: UIFont
-    let nameIsHighlited: Bool
+struct EpisodeViewModel {
+    struct Content {
+        let title: String
+        let font: UIFont
+        let image: String?
+        init(title: String, font: UIFont, image: String? = nil) {
+            self.title = title
+            self.font = font
+            self.image = image
+        }
+        
+        static func header(title: String,
+                           image: String? = nil,
+                           season: Int? = nil,
+                           font: UIFont = .preferredFont(for: .callout, weight: .bold)) -> Content {
+            .init(title: title, font: font, image: image)
+        }
+        
+        static func body(title: String,
+                         image: String? = nil,
+                         font: UIFont = .preferredFont(for: .footnote, weight: .medium)) -> Content {
+            .init(title: title, font: font, image: image)
+        }
+    }
+    let number: Content
+    let date: Content
+    let name: Content
+    let score: Content
+    let season: Int?
+    let nameIsHighlighted: Bool
     
     static func header(
-        firstTitle: String,
-        secondTitle: String,
-        thirdTitle: String,
-        fourthTitle: String,
-        firstFont: UIFont = .preferredFont(for: .callout, weight: .bold),
-        secondFont: UIFont = .preferredFont(for: .callout, weight: .bold),
-        thirdFont: UIFont = .preferredFont(for: .callout, weight: .bold),
-        fourthFont: UIFont = .preferredFont(for: .callout, weight: .bold)
-    ) -> ItemViewModel {
-        .init(firstTitle: firstTitle,
-              secondTitle: secondTitle,
-              thirdTitle: thirdTitle,
-              fourthTitle: fourthTitle,
-              firstImage: nil,
-              secondImage: nil,
-              thirdImage: nil,
-              fourthImage: nil,
-              firstFont: firstFont,
-              secondFont: secondFont,
-              thirdFont: thirdFont,
-              fourthFont: fourthFont,
-              nameIsHighlited: false)
+        number: String,
+        date: String,
+        name: String,
+        score: String
+    ) -> EpisodeViewModel {
+        .init(number: .header(title: number),
+              date: .header(title: date),
+              name: .header(title: name),
+              score: .header(title: score),
+              season: nil,
+              nameIsHighlighted: false)
     }
     
     static func body(
-        firstTitle: String,
-        secondTitle: String,
-        thirdTitle: String,
-        fourthTitle: String,
-        firstFont: UIFont = .preferredFont(for: .footnote, weight: .medium),
-        secondFont: UIFont = .preferredFont(for: .footnote, weight: .medium),
-        thirdFont: UIFont = .preferredFont(for: .footnote, weight: .medium),
-        fourthFont: UIFont = .preferredFont(for: .footnote, weight: .medium)
-    ) -> ItemViewModel {
-        .init(firstTitle: firstTitle,
-              secondTitle: secondTitle,
-              thirdTitle: thirdTitle,
-              fourthTitle: fourthTitle,
-              firstImage: nil,
-              secondImage: nil,
-              thirdImage: nil,
-              fourthImage: "star.fill",
-              firstFont: firstFont,
-              secondFont: secondFont,
-              thirdFont: thirdFont,
-              fourthFont: fourthFont,
-              nameIsHighlited: true)
+        number: String,
+        date: String,
+        name: String,
+        score: String,
+        season: Int
+    ) -> EpisodeViewModel {
+        .init(number: .body(title: number),
+              date: .body(title: date),
+              name: .body(title: name),
+              score: .body(title: score, image: "star.fill"),
+              season: season,
+              nameIsHighlighted: true);
     }
 }

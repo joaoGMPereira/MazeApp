@@ -1,7 +1,7 @@
 import UIKit
 
 protocol SerieCoordinating: AnyObject {
-    func goToSerie(_ show: Serie)
+    func goToEpisode(show: String, season: String, episode: String)
 }
 
 final class SerieCoordinator {
@@ -17,8 +17,7 @@ final class SerieCoordinator {
 
 // MARK: - SerieCoordinating
 extension SerieCoordinator: SerieCoordinating {
-    func goToSerie(_ show: Serie) {
-      //  viewController?.pushViewController(PagingSerieFactory.make(title: "Details"),
-      //                                     animated: true)
+    func goToEpisode(show: String, season: String, episode: String) {
+        
     }
 }

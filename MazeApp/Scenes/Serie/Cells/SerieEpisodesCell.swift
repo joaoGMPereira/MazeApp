@@ -1,6 +1,10 @@
 import UIKit
 import SnapKit
 
+protocol SerieEpisodeCellDelegate: AnyObject {
+    func didTap(season: String, number: String)
+}
+
 final class SerieEpisodeCell: UICollectionViewCell, ViewConfiguration {
     // MARK: - UI Properties
     private(set) lazy var collectionView: UICollectionView = {
@@ -8,6 +12,7 @@ final class SerieEpisodeCell: UICollectionViewCell, ViewConfiguration {
         collectionView.register(
             cellType: ItemsCell.self
         )
+        collectionView.delegate = self
         return collectionView
     }()
     
@@ -21,16 +26,18 @@ final class SerieEpisodeCell: UICollectionViewCell, ViewConfiguration {
         return layout
     }()
     
-    // MARK: - Collection
-    private(set) lazy var dataSource: CollectionViewDataSource<Int, ItemViewModel> = {
-        let dataSource = CollectionViewDataSource<Int, ItemViewModel>(view: collectionView)
+    private(set) lazy var dataSource: CollectionViewDataSource<Int, EpisodeViewModel> = {
+        let dataSource = CollectionViewDataSource<Int, EpisodeViewModel>(view: collectionView)
         dataSource.itemProvider = { [weak self] view, indexPath, item in
             self?.setupCell(in: view, item: item, at: indexPath)
         }
         return dataSource
     }()
+    
+    weak var delegate: SerieEpisodeCellDelegate?
+    
     func setupCell(in collectionView: UICollectionView,
-                   item: ItemViewModel,
+                   item: EpisodeViewModel,
                    at indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: ItemsCell.self)
@@ -63,7 +70,7 @@ final class SerieEpisodeCell: UICollectionViewCell, ViewConfiguration {
     }
     
     // MARK: - Setup
-    func setup(with items: [ItemViewModel]) {
+    func setup(with items: [EpisodeViewModel]) {
         dataSource.set(items: items, to: .zero)
     }
     
@@ -73,5 +80,13 @@ final class SerieEpisodeCell: UICollectionViewCell, ViewConfiguration {
             averageText = "\(average)"
         }
         return averageText
+    }
+}
+
+extension SerieEpisodeCell: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let item = dataSource.item(at: indexPath), let season = item.season {
+            delegate?.didTap(season: "\(season)", number: item.number.title)
+        }
     }
 }

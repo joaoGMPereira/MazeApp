@@ -2,18 +2,6 @@ import UIKit
 
 class Label: UIView, ViewConfiguration {
     // MARK: - UI Properties
-    var text = String() {
-        didSet {
-            label.text = text
-        }
-    }
-    
-    var font = UIFont() {
-        didSet {
-            label.font = font
-        }
-    }
-    
     private lazy var containerView = UIView()
     
     lazy var label: UILabel = {
@@ -57,7 +45,9 @@ class Label: UIView, ViewConfiguration {
         }
     }
     
-    func setup(imageName: String? = nil) {
+    func setup(text: String, font: UIFont, imageName: String? = nil, isHighlighted: Bool = false) {
+        setupText(isHighlighted, text: text)
+        label.font = font
         label.snp.remakeConstraints {
             if let imageName = imageName {
                 imageView.image = .init(systemName: imageName)
@@ -67,6 +57,16 @@ class Label: UIView, ViewConfiguration {
                 $0.leading.equalToSuperview()
             }
             $0.bottom.top.trailing.equalToSuperview()
+        }
+        
+        func setupText(_ isHighlighted: Bool, text: String) {
+            guard isHighlighted else {
+                label.text = text
+                return
+            }
+            let underlineAttribute = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.thick.rawValue]
+            let underlineAttributedString = NSAttributedString(string: text, attributes: underlineAttribute)
+            label.attributedText = underlineAttributedString
         }
     }
 }
