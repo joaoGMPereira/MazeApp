@@ -1,106 +1,48 @@
 import Foundation
 
-public protocol SerieViewModeling: AnyObject {
+public protocol EpisodeViewModeling: AnyObject {
     func loadScreen()
-    func getSeries()
-    func goToEpisode(season: String, episode: String)
-    var sections: [String] { get }
 }
 
-final class SerieViewModel {
+final class EpisodeViewModel {
     typealias Dependencies = HasApi
     private let dependencies: Dependencies
-    private let coordinator: SerieCoordinating
-    weak var displayer: SerieDisplaying?
+    private let coordinator: EpisodeCoordinating
+    weak var displayer: EpisodeDisplaying?
     
-    private var series: [Series] = []
+    private var episode: Episode?
     private(set) var sections: [String] = [String(), "Episodes"]
-    private let show: Show
+    private let show: String
+    private let season: String
+    private let episodeId: String
     
-    init(coordinator: SerieCoordinating,
+    init(coordinator: EpisodeCoordinating,
          dependencies: Dependencies,
-         show: Show) {
+         show: String,
+         season: String,
+         episodeId: String) {
         self.coordinator = coordinator
         self.dependencies = dependencies
         self.show = show
+        self.season = season
+        self.episodeId = episodeId
     }
 }
 
-// MARK: - SeriesViewModeling
-extension SerieViewModel: SerieViewModeling {
+// MARK: - EpisodesViewModeling
+extension EpisodeViewModel: EpisodeViewModeling {
     func loadScreen() {
-        displayer?.displayShow(show)
-        getSeries()
-    }
-    
-    func getSeries() {
         displayer?.displayLoad()
-        dependencies.api.execute(endpoint: SerieEndpoint.episodes(id: show.id)) { [weak self] (result: Result<Success<Series>, ApiError>) in
+        dependencies.api.execute(endpoint: EpisodeEndpoint.episode(show: show,
+                                                                   season: season,
+                                                                   episode: episodeId)) { [weak self] (result: Result<Success<Episode>, ApiError>) in
             guard let self = self else { return }
-            self.handleResponse(result)
-        }
-    }
-    
-    func handleResponse(_ result: Result<Success<Series>, ApiError>) {
-        switch result {
-        case .success(let response):
-            let episodesForSeason = Array(Dictionary(grouping:response.model){$0.season}.values).sorted{
-                guard let first = $0.first, let second = $1.first else {
-                    return false
-                }
-                return first.season < second.season
-            }
-            series = episodesForSeason
-            createTitles()
-            episodesForSeason.enumerated().forEach {
-                displayer?.displayEpisodes(items(with: $0.element), in: $0.offset + 1)
-            }
-        case .failure:
-            displayer?.displayEpisodesFailure()
-        }
-    }
-    func items(with series: [Serie]) -> EpisodesViewModel {
-        var items: [EpisodeViewModel] = [
-            .header(number: "Number",
-                    date: "Date",
-                    name: "Name",
-                    score: "Score")
-            ]
-        series.forEach {
-            items.append(
-                .body(
-                    number: "\($0.number)",
-                    date: AppDateFormatter.format($0.airdate),
-                    name: $0.name,
-                    score: average($0.rating.average),
-                    season: $0.season)
-            )
-        }
-        return EpisodesViewModel(
-            items: items
-        )
-    }
-    
-    func createTitles() {
-        sections = [String()]
-        self.series.forEach { series in
-            if let firstEpisode = series.first {
-                sections.append("Season \(firstEpisode.season)")
+            switch result {
+            case .success(let response):
+                self.episode = response.model
+            case .failure:
+                self.displayer?.displayEpisodesFailure()
             }
         }
-    }
-    
-    func average(_ average: Double?) -> String {
-        var averageText = "-"
-        if let average = average {
-            averageText = "\(average)"
-        }
-        return averageText
-    }
-    
-    func goToEpisode(season: String, episode: String) {
-        coordinator.goToEpisode(show: "\(show.id)",
-                                season: season,
-                                episode: episode)
     }
 }

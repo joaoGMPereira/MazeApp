@@ -26,8 +26,8 @@ final class SerieEpisodeCell: UICollectionViewCell, ViewConfiguration {
         return layout
     }()
     
-    private(set) lazy var dataSource: CollectionViewDataSource<Int, EpisodeViewModel> = {
-        let dataSource = CollectionViewDataSource<Int, EpisodeViewModel>(view: collectionView)
+    private(set) lazy var dataSource: CollectionViewDataSource<Int, EpisodeCellViewModel> = {
+        let dataSource = CollectionViewDataSource<Int, EpisodeCellViewModel>(view: collectionView)
         dataSource.itemProvider = { [weak self] view, indexPath, item in
             self?.setupCell(in: view, item: item, at: indexPath)
         }
@@ -37,7 +37,7 @@ final class SerieEpisodeCell: UICollectionViewCell, ViewConfiguration {
     weak var delegate: SerieEpisodeCellDelegate?
     
     func setupCell(in collectionView: UICollectionView,
-                   item: EpisodeViewModel,
+                   item: EpisodeCellViewModel,
                    at indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: ItemsCell.self)
@@ -61,7 +61,7 @@ final class SerieEpisodeCell: UICollectionViewCell, ViewConfiguration {
     func setupConstraints() {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview().inset(4)
-            $0.height.greaterThanOrEqualTo(150)
+            $0.height.equalTo(200)
         }
     }
     
@@ -70,16 +70,8 @@ final class SerieEpisodeCell: UICollectionViewCell, ViewConfiguration {
     }
     
     // MARK: - Setup
-    func setup(with items: [EpisodeViewModel]) {
+    func setup(with items: [EpisodeCellViewModel]) {
         dataSource.set(items: items, to: .zero)
-    }
-    
-    func average(_ average: Double?) -> String {
-        var averageText = "-"
-        if let average = average {
-            averageText = "\(average)"
-        }
-        return averageText
     }
 }
 

@@ -1,10 +1,10 @@
 import UIKit
 
-protocol SerieCoordinating: AnyObject {
+protocol EpisodeCoordinating: AnyObject {
     func goToEpisode(show: String, season: String, episode: String)
 }
 
-final class SerieCoordinator {
+final class EpisodeCoordinator {
     typealias Dependencies = HasNoDependency
     private let dependencies: Dependencies
     
@@ -15,8 +15,8 @@ final class SerieCoordinator {
     }
 }
 
-// MARK: - SerieCoordinating
-extension SerieCoordinator: SerieCoordinating {
+// MARK: - EpisodeCoordinating
+extension EpisodeCoordinator: EpisodeCoordinating {
     func goToEpisode(show: String, season: String, episode: String) {
         
     }

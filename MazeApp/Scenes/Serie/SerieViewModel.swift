@@ -29,12 +29,31 @@ final class SerieViewModel {
 // MARK: - SeriesViewModeling
 extension SerieViewModel: SerieViewModeling {
     func loadScreen() {
-        displayer?.displayShow(show)
-        getSeries()
+        let summarySubtitle = show.summary?.htmlToAttributedString
+        var scheduleSubtitle = String()
+        let days = show.schedule.days.joined(separator: " | ")
+        let time = show.schedule.time
+        if days.isNotEmpty {
+            scheduleSubtitle = "(\(days)) at \(time) "
+        }
+        if let runTime = show.averageRuntime {
+            scheduleSubtitle += "(\(runTime) min)"
+        }
+        displayer?.displaySummary(
+            .init(imageUrl: show.image?.original,
+                  summary: .init(title: "Summary",
+                                 subtitle: summarySubtitle,
+                                 isHidden: summarySubtitle == nil),
+                  schedule: .init(title: "Schedule:",
+                                  subtitle: .init(string: scheduleSubtitle),
+                                  isHidden: scheduleSubtitle.isEmpty),
+                  genres: .init(title: "Genres",
+                                subtitle: .init(string: show.genres.joined(separator: " | ")),
+                                isHidden: show.genres.isEmpty)))
+        displayer?.displayLoad()
     }
     
     func getSeries() {
-        displayer?.displayLoad()
         dependencies.api.execute(endpoint: SerieEndpoint.episodes(id: show.id)) { [weak self] (result: Result<Success<Series>, ApiError>) in
             guard let self = self else { return }
             self.handleResponse(result)
@@ -56,16 +75,22 @@ extension SerieViewModel: SerieViewModeling {
                 displayer?.displayEpisodes(items(with: $0.element), in: $0.offset + 1)
             }
         case .failure:
-            displayer?.displayEpisodesFailure()
+            displayer?.displayEpisodesFailure(
+                with: FeedbackModel(
+                    title: "Something didn't go right while we searched for the episodes",
+                    subtitle: "Verify you connection and please try again",
+                    buttonName: "Try again") { [weak self] in
+                        self?.getSeries()
+                    })
         }
     }
     func items(with series: [Serie]) -> EpisodesViewModel {
-        var items: [EpisodeViewModel] = [
+        var items: [EpisodeCellViewModel] = [
             .header(number: "Number",
                     date: "Date",
                     name: "Name",
                     score: "Score")
-            ]
+        ]
         series.forEach {
             items.append(
                 .body(

@@ -1,13 +1,13 @@
 import UIKit
 import SnapKit
 
-protocol SerieDisplaying: AnyObject {
+protocol EpisodeDisplaying: AnyObject {
     func displayShow(_ show: Show)
     func displayEpisodes(_ items: EpisodesViewModel, in section: Int)
     func displayEpisodesFailure()
     func displayLoad()
 }
-open class SerieViewController: ViewController<SerieViewModeling, UIView> {
+open class EpisodeViewController: ViewController<EpisodeViewModeling, UIView> {
     enum Layout {
         static let sectionInset = UIEdgeInsets(top: 8,
                                                left: 16,
@@ -29,32 +29,22 @@ open class SerieViewController: ViewController<SerieViewModeling, UIView> {
         dataSource.itemProvider = { [weak self] view, indexPath, item in
             self?.setupCell(in: view, item: item, at: indexPath)
         }
-        dataSource.supplementaryViewProvider = { [weak self] view, kind, index in
-            guard let self = self else { return  UICollectionReusableView() }
-            let header = view.dequeueReusableSupplementaryView(ofKind: kind, for: index, viewType: CollectionViewHeader.self)
-            header.setup(title: self.title(for: index.section))
-            return header
-        }
+        //        dataSource.supplementaryViewProvider = { [weak self] view, kind, index in
+        //            guard let self = self else { return  UICollectionReusableView() }
+        //            let header = view.dequeueReusableSupplementaryView(ofKind: kind, for: index, viewType: CollectionViewHeader.self)
+        //            header.setup(title: self.title(for: index.section))
+        //            return header
+        //        }
         return dataSource
     }()
     
     private(set) lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
         collectionView.register(
-            cellType: SerieSummaryCell.self
-        )
-        collectionView.register(
-            cellType: SerieEpisodeCell.self
-        )
-        collectionView.register(
             cellType: LoadingCell.self
         )
         collectionView.register(
             cellType: FeedbackCell.self
-        )
-        collectionView.register(
-            supplementaryViewType: CollectionViewHeader.self,
-            ofKind: UICollectionView.elementKindSectionHeader
         )
         collectionView.backgroundColor = .systemBackground
         collectionView.allowsSelection = false
@@ -63,7 +53,6 @@ open class SerieViewController: ViewController<SerieViewModeling, UIView> {
     
     private lazy var collectionViewLayout: UICollectionViewLayout = {
         var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
-        configuration.headerMode = .supplementary
         let layout = UICollectionViewCompositionalLayout.list(using: configuration)
         return layout
     }()
@@ -96,7 +85,7 @@ open class SerieViewController: ViewController<SerieViewModeling, UIView> {
     private(set) lazy var searchController = UISearchController(searchResultsController: nil)
     
     // MARK: Initializers
-    init(viewModel: SerieViewModeling, dependencies: Dependencies, title: String) {
+    init(viewModel: EpisodeViewModeling, dependencies: Dependencies, title: String) {
         self.dependencies = dependencies
         super.init(viewModel: viewModel)
         self.title = title
@@ -126,17 +115,10 @@ open class SerieViewController: ViewController<SerieViewModeling, UIView> {
     open override func configureViews() {
         collectionView.dataSource = dataSource
     }
-    
-    func title(for section: Int) -> String {
-        if let seasonSection = viewModel.sections[safe: section] {
-            return seasonSection
-        }
-        return String()
-    }
 }
 
 // MARK: - Setup Cells
-extension SerieViewController {
+extension EpisodeViewController {
     func setupCell(in collectionView: UICollectionView,
                    item: CellViewModelling,
                    at indexPath: IndexPath) -> UICollectionViewCell {
@@ -154,53 +136,29 @@ extension SerieViewController {
             return cell
         }
         
-        if let show = item as? Show {
-            let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: SerieSummaryCell.self)
-            cell.setup(with: show, dependencies: self.dependencies)
-            cell.backgroundConfiguration = backgroundConfiguration
-            return cell
-        }
-        
-        if let itemsViewModels = item as? EpisodesViewModel {
-            let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: SerieEpisodeCell.self)
-            cell.setup(with: itemsViewModels.items)
-            cell.backgroundConfiguration = backgroundConfiguration
-            cell.delegate = self
-            return cell
-        }
-        
         return UICollectionViewCell()
     }
 }
 
-extension SerieViewController: SerieEpisodeCellDelegate {
-    func didTap(season: String, number: String) {
-        viewModel.goToEpisode(season: season, episode: number)
-    }
-}
-// MARK: - SerieDisplaying
-extension SerieViewController: SerieDisplaying {
+// MARK: - EpisodeDisplaying
+extension EpisodeViewController: EpisodeDisplaying {
     func displayEpisodes(_ items: EpisodesViewModel, in section: Int) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.dataSource.update(items: [items], from: section)
-        }
+        dataSource.update(items: [items], from: section)
     }
     
     func displayShow(_ show: Show) {
-        dataSource.set(items: [show], to: .zero)
+       // dataSource.set(items: [show], to: .zero)
     }
     
     func displayEpisodesFailure() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.dataSource.update(items: [FeedbackModel(title: "Something didn't go right while we searched for the episodes",
-                                                 subtitle: "Verify you connection and please try again",
-                                                 buttonName: "Try again") {
-                self.viewModel.getSeries()
-            }], from: 1)
-        }
+        dataSource.update(items: [FeedbackModel(title: "Something didn't go right while we searched for the episode",
+                                                subtitle: "Verify you connection and please try again",
+                                                buttonName: "Try again") { [weak self] in
+            self?.viewModel.loadScreen()
+        }], from: .zero)
     }
     
     func displayLoad() {
-        dataSource.update(items: [LoadingModel()], from: 1)
+        dataSource.update(items: [LoadingModel()], from: .zero)
     }
 }

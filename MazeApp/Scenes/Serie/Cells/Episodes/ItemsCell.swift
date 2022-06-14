@@ -35,7 +35,7 @@ final class ItemsCell: UICollectionViewCell, ViewConfiguration {
         }
     }
     
-    func setup(model: EpisodeViewModel) {
+    func setup(model: EpisodeCellViewModel) {
         numberLabel.setup(text: model.number.title,
                           font: model.number.font,
                           imageName: model.number.image)

@@ -22,16 +22,6 @@ struct Show: Codable {
 }
 
 extension Show {
-    // MARK: - Image
-    struct Image: Codable {
-        let medium, original: String
-    }
-
-    // MARK: - Rating
-    struct Rating: Codable {
-        let average: Double?
-    }
-
     // MARK: - Schedule
     struct Schedule: Codable {
         let time: String

@@ -2,7 +2,7 @@ import Foundation
 typealias Series = [Serie]
 
 // MARK: - WelcomeElement
-struct Serie: Codable {
+struct Serie: Decodable {
     let id: Int
     let name: String
     let season, number: Int
@@ -11,17 +11,5 @@ struct Serie: Codable {
     let runtime: Int
     let rating: Rating
     let image: Image?
-    let summary: String
-}
-
-extension Serie {
-    // MARK: - Image
-    struct Image: Codable {
-        let medium, original: String
-    }
-    
-    // MARK: - Rating
-    struct Rating: Codable {
-        let average: Double?
-    }
+    let summary: String?
 }

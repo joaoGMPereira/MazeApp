@@ -80,6 +80,7 @@ class ReloadableDataSource<View: AnyObject & ReloadableView, Cell, Section: Hash
     ///   - section: The section to be updated
     /// - Note: If the section doesn't exists the data source does not change
     public func update(items: [Item], from section: Section) {
+        
         if sections.contains(section),
            let sectionInt = section as? Int {
             automaticReloadData = false

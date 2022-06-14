@@ -77,7 +77,6 @@
 		76BF045F28550B6800A2DBDC /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF045E28550B6800A2DBDC /* FeedbackView.swift */; };
 		76BF046628551C4400A2DBDC /* TabControlling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF046528551C4400A2DBDC /* TabControlling.swift */; };
 		76BF04682855336000A2DBDC /* SerieEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF04672855336000A2DBDC /* SerieEndpoint.swift */; };
-		76BF046A28553A4400A2DBDC /* SerieModelling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF046928553A4400A2DBDC /* SerieModelling.swift */; };
 		76BF046E2856277800A2DBDC /* CollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF046D2856277800A2DBDC /* CollectionViewHeader.swift */; };
 		76BF04702856AD4200A2DBDC /* SerieEpisodesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF046F2856AD4200A2DBDC /* SerieEpisodesCell.swift */; };
 		76BF04752856C6B500A2DBDC /* String+Html.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF04742856C6B500A2DBDC /* String+Html.swift */; };
@@ -90,13 +89,15 @@
 		76BF04842857DF3E00A2DBDC /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF04832857DF3E00A2DBDC /* Label.swift */; };
 		76BF04862857E22900A2DBDC /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF04852857E22900A2DBDC /* DateFormatter.swift */; };
 		76BF04882857E7FC00A2DBDC /* AverageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF04872857E7FC00A2DBDC /* AverageView.swift */; };
-		76BF048B2857F07500A2DBDC /* ItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF048A2857F07500A2DBDC /* ItemsViewModel.swift */; };
+		76BF048B2857F07500A2DBDC /* EpisodesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF048A2857F07500A2DBDC /* EpisodesViewModel.swift */; };
 		76BF048D2858053600A2DBDC /* EpisodeEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF048C2858053600A2DBDC /* EpisodeEndpoint.swift */; };
 		76BF0493285805E000A2DBDC /* EpisodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF048E285805E000A2DBDC /* EpisodeViewModel.swift */; };
 		76BF0494285805E000A2DBDC /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF048F285805E000A2DBDC /* Episode.swift */; };
 		76BF0495285805E100A2DBDC /* EpisodeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF0490285805E000A2DBDC /* EpisodeFactory.swift */; };
 		76BF0496285805E100A2DBDC /* EpisodeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF0491285805E000A2DBDC /* EpisodeCoordinator.swift */; };
 		76BF0497285805E100A2DBDC /* EpisodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF0492285805E000A2DBDC /* EpisodeViewController.swift */; };
+		76BF049A2858156100A2DBDC /* CommonModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF04992858156100A2DBDC /* CommonModels.swift */; };
+		76BF049E285817B500A2DBDC /* SerieSummaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF049D285817B500A2DBDC /* SerieSummaryViewModel.swift */; };
 		9C5D1783D16E51225A8D4EC6 /* Pods_MazeAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79DDEA4B20C92DDBA86C1C0A /* Pods_MazeAppTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -188,7 +189,6 @@
 		76BF045E28550B6800A2DBDC /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
 		76BF046528551C4400A2DBDC /* TabControlling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabControlling.swift; sourceTree = "<group>"; };
 		76BF04672855336000A2DBDC /* SerieEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerieEndpoint.swift; sourceTree = "<group>"; };
-		76BF046928553A4400A2DBDC /* SerieModelling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerieModelling.swift; sourceTree = "<group>"; };
 		76BF046D2856277800A2DBDC /* CollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewHeader.swift; sourceTree = "<group>"; };
 		76BF046F2856AD4200A2DBDC /* SerieEpisodesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerieEpisodesCell.swift; sourceTree = "<group>"; };
 		76BF04742856C6B500A2DBDC /* String+Html.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Html.swift"; sourceTree = "<group>"; };
@@ -201,13 +201,15 @@
 		76BF04832857DF3E00A2DBDC /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		76BF04852857E22900A2DBDC /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		76BF04872857E7FC00A2DBDC /* AverageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageView.swift; sourceTree = "<group>"; };
-		76BF048A2857F07500A2DBDC /* ItemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewModel.swift; sourceTree = "<group>"; };
+		76BF048A2857F07500A2DBDC /* EpisodesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesViewModel.swift; sourceTree = "<group>"; };
 		76BF048C2858053600A2DBDC /* EpisodeEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeEndpoint.swift; sourceTree = "<group>"; };
 		76BF048E285805E000A2DBDC /* EpisodeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeViewModel.swift; sourceTree = "<group>"; };
 		76BF048F285805E000A2DBDC /* Episode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 		76BF0490285805E000A2DBDC /* EpisodeFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeFactory.swift; sourceTree = "<group>"; };
 		76BF0491285805E000A2DBDC /* EpisodeCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeCoordinator.swift; sourceTree = "<group>"; };
 		76BF0492285805E000A2DBDC /* EpisodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeViewController.swift; sourceTree = "<group>"; };
+		76BF04992858156100A2DBDC /* CommonModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonModels.swift; sourceTree = "<group>"; };
+		76BF049D285817B500A2DBDC /* SerieSummaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerieSummaryViewModel.swift; sourceTree = "<group>"; };
 		79DDEA4B20C92DDBA86C1C0A /* Pods_MazeAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MazeAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E681C2BECECA71B55D1C3F4 /* Pods_MazeApp_MazeAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MazeApp_MazeAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0D1F17BCF0007F3863139EA /* Pods-MazeApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MazeApp.debug.xcconfig"; path = "Target Support Files/Pods-MazeApp/Pods-MazeApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -438,6 +440,7 @@
 		76BF03FD2854D64100A2DBDC /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				76BF04982858155200A2DBDC /* Models */,
 				76BF044C285506D600A2DBDC /* Serie */,
 				76BF04002854D64100A2DBDC /* Episode */,
 				76BF04012854D64100A2DBDC /* Shows */,
@@ -576,11 +579,8 @@
 		76BF046B2856272600A2DBDC /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				76BF047F2857D1BC00A2DBDC /* ItemsCell.swift */,
-				76BF04582855095200A2DBDC /* SerieSummaryCell.swift */,
-				76BF046928553A4400A2DBDC /* SerieModelling.swift */,
-				76BF046F2856AD4200A2DBDC /* SerieEpisodesCell.swift */,
-				76BF048A2857F07500A2DBDC /* ItemsViewModel.swift */,
+				76BF049C2858178700A2DBDC /* Episodes */,
+				76BF049B2858178200A2DBDC /* Summary */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -612,6 +612,33 @@
 				76BF04792857594300A2DBDC /* FeedbackCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		76BF04982858155200A2DBDC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				76BF04992858156100A2DBDC /* CommonModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		76BF049B2858178200A2DBDC /* Summary */ = {
+			isa = PBXGroup;
+			children = (
+				76BF04582855095200A2DBDC /* SerieSummaryCell.swift */,
+				76BF049D285817B500A2DBDC /* SerieSummaryViewModel.swift */,
+			);
+			path = Summary;
+			sourceTree = "<group>";
+		};
+		76BF049C2858178700A2DBDC /* Episodes */ = {
+			isa = PBXGroup;
+			children = (
+				76BF047F2857D1BC00A2DBDC /* ItemsCell.swift */,
+				76BF046F2856AD4200A2DBDC /* SerieEpisodesCell.swift */,
+				76BF048A2857F07500A2DBDC /* EpisodesViewModel.swift */,
+			);
+			path = Episodes;
 			sourceTree = "<group>";
 		};
 		8C161477803E7D8FFA2B53D9 /* Pods */ = {
@@ -816,6 +843,7 @@
 				76BF03EA285457A200A2DBDC /* Api.swift in Sources */,
 				76BF03E7285457A200A2DBDC /* ContentType.swift in Sources */,
 				76BF0452285506D600A2DBDC /* SerieViewController.swift in Sources */,
+				76BF049E285817B500A2DBDC /* SerieSummaryViewModel.swift in Sources */,
 				76BF047A2857594300A2DBDC /* FeedbackCell.swift in Sources */,
 				76BF03E8285457A200A2DBDC /* HTTPStatusCode.swift in Sources */,
 				76BF0478285753EF00A2DBDC /* LoadingCell.swift in Sources */,
@@ -843,6 +871,7 @@
 				76BF04362854D6A200A2DBDC /* UIStackView+AddViews.swift in Sources */,
 				76BF047E2857CF0D00A2DBDC /* NSAttributedString+Html.swift in Sources */,
 				76BF03FA2854D5FE00A2DBDC /* TabController.swift in Sources */,
+				76BF049A2858156100A2DBDC /* CommonModels.swift in Sources */,
 				76BF03FC2854D5FE00A2DBDC /* AppDelegate.swift in Sources */,
 				76BF03DC285457A200A2DBDC /* DependencyStoring.swift in Sources */,
 				76BF04882857E7FC00A2DBDC /* AverageView.swift in Sources */,
@@ -871,7 +900,7 @@
 				76BF045F28550B6800A2DBDC /* FeedbackView.swift in Sources */,
 				76BF04132854D64100A2DBDC /* ShowsEndpoint.swift in Sources */,
 				76BF04432854F6CA00A2DBDC /* FavoritesShowsViewController.swift in Sources */,
-				76BF048B2857F07500A2DBDC /* ItemsViewModel.swift in Sources */,
+				76BF048B2857F07500A2DBDC /* EpisodesViewModel.swift in Sources */,
 				76BF04802857D1BC00A2DBDC /* ItemsCell.swift in Sources */,
 				76BF03D8285457A200A2DBDC /* Storage.swift in Sources */,
 				76BF042E2854D68B00A2DBDC /* ViewConfiguration.swift in Sources */,
@@ -879,7 +908,6 @@
 				76BF03EB285457A200A2DBDC /* DependencyContainer.swift in Sources */,
 				76BF03DB285457A200A2DBDC /* Injected.swift in Sources */,
 				76BF0495285805E100A2DBDC /* EpisodeFactory.swift in Sources */,
-				76BF046A28553A4400A2DBDC /* SerieModelling.swift in Sources */,
 				76BF046E2856277800A2DBDC /* CollectionViewHeader.swift in Sources */,
 				76BF03F4285457F100A2DBDC /* Collection+Extensions.swift in Sources */,
 				76BF042A2854D68B00A2DBDC /* CollectionViewDataSource.swift in Sources */,

@@ -2,21 +2,14 @@ import UIKit
 import SnapKit
 
 protocol SerieDisplaying: AnyObject {
-    func displayShow(_ show: Show)
+    func displaySummary(_ summary: SerieSummaryViewModel)
     func displayEpisodes(_ items: EpisodesViewModel, in section: Int)
-    func displayEpisodesFailure()
+    func displayEpisodesFailure(with feedback: FeedbackModel)
     func displayLoad()
 }
 open class SerieViewController: ViewController<SerieViewModeling, UIView> {
     enum Layout {
-        static let sectionInset = UIEdgeInsets(top: 8,
-                                               left: 16,
-                                               bottom: 8,
-                                               right: 16)
         static let spacing: CGFloat = 8
-        static let paginationOffset: CGFloat = 100
-        static let numberOfColumns = CGFloat(1)
-        static let estimatedHeight = CGFloat(300)
     }
     
     typealias Dependencies = HasMainQueue & HasURLSessionable & HasStorageable
@@ -70,7 +63,7 @@ open class SerieViewController: ViewController<SerieViewModeling, UIView> {
     
     var backgroundConfiguration: UIBackgroundConfiguration {
         var backgroundConfiguration = UIBackgroundConfiguration.listGroupedCell()
-        backgroundConfiguration.cornerRadius = 8
+        backgroundConfiguration.cornerRadius = Layout.spacing
         return backgroundConfiguration
     }
     
@@ -107,6 +100,11 @@ open class SerieViewController: ViewController<SerieViewModeling, UIView> {
         super.viewDidLoad()
         buildLayout()
         viewModel.loadScreen()
+    }
+    
+    open override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewModel.getSeries()
     }
     
     open override func buildViewHierarchy() {
@@ -154,9 +152,9 @@ extension SerieViewController {
             return cell
         }
         
-        if let show = item as? Show {
+        if let summary = item as? SerieSummaryViewModel {
             let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: SerieSummaryCell.self)
-            cell.setup(with: show, dependencies: self.dependencies)
+            cell.setup(with: summary, dependencies: self.dependencies)
             cell.backgroundConfiguration = backgroundConfiguration
             return cell
         }
@@ -181,23 +179,15 @@ extension SerieViewController: SerieEpisodeCellDelegate {
 // MARK: - SerieDisplaying
 extension SerieViewController: SerieDisplaying {
     func displayEpisodes(_ items: EpisodesViewModel, in section: Int) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.dataSource.update(items: [items], from: section)
-        }
+        dataSource.update(items: [items], from: section)
     }
     
-    func displayShow(_ show: Show) {
-        dataSource.set(items: [show], to: .zero)
+    func displaySummary(_ summary: SerieSummaryViewModel) {
+        dataSource.set(items: [summary], to: .zero)
     }
     
-    func displayEpisodesFailure() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.dataSource.update(items: [FeedbackModel(title: "Something didn't go right while we searched for the episodes",
-                                                 subtitle: "Verify you connection and please try again",
-                                                 buttonName: "Try again") {
-                self.viewModel.getSeries()
-            }], from: 1)
-        }
+    func displayEpisodesFailure(with feedback: FeedbackModel) {
+        dataSource.update(items: [feedback], from: 1)
     }
     
     func displayLoad() {

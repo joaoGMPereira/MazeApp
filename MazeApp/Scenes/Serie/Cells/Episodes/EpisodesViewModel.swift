@@ -1,10 +1,10 @@
 import UIKit
 
 struct EpisodesViewModel: CellViewModelling {
-    let items: [EpisodeViewModel]
+    let items: [EpisodeCellViewModel]
 }
 
-struct EpisodeViewModel {
+struct EpisodeCellViewModel {
     struct Content {
         let title: String
         let font: UIFont
@@ -40,7 +40,7 @@ struct EpisodeViewModel {
         date: String,
         name: String,
         score: String
-    ) -> EpisodeViewModel {
+    ) -> EpisodeCellViewModel {
         .init(number: .header(title: number),
               date: .header(title: date),
               name: .header(title: name),
@@ -55,7 +55,7 @@ struct EpisodeViewModel {
         name: String,
         score: String,
         season: Int
-    ) -> EpisodeViewModel {
+    ) -> EpisodeCellViewModel {
         .init(number: .body(title: number),
               date: .body(title: date),
               name: .body(title: name),

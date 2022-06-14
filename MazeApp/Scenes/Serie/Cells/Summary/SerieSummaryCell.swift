@@ -24,7 +24,7 @@ final class SerieSummaryCell: UICollectionViewCell, ViewConfiguration {
     private lazy var stackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [summaryInfo, scheduleInfo, genresInfo])
         stack.axis = .vertical
-        stack.distribution = .fill
+        stack.distribution = .fillProportionally
         stack.spacing = 8
         stack.setContentHuggingPriority(.defaultLow, for: .vertical)
         return stack
@@ -55,18 +55,19 @@ final class SerieSummaryCell: UICollectionViewCell, ViewConfiguration {
             $0.bottom.leading.trailing.equalToSuperview().inset(4)
         }
         loadingView.snp.makeConstraints {
-            $0.center.equalToSuperview()
+            $0.center.equalTo(imageView.snp.center)
         }
     }
     
     // MARK: - Setup
-    func setup(with show: Show, dependencies: Dependencies) {
-        setupImage(show.image?.original, dependencies: dependencies)
-        summaryInfo.setup(title: "Summary:", subtitle: show.summary?.htmlToAttributedString)
-        scheduleInfo.setup(title: "Schedule:", subtitle: .init(string: "(\(show.schedule.days.joined(separator: " | "))) at \(show.schedule.time) (\(show.averageRuntime ?? 0) min)"))
-        genresInfo.setup(title: "Genres:", subtitle: .init(string: show.genres.joined(separator: " | ")))
-        summaryInfo.isHidden = show.summary == nil
-        genresInfo.isHidden = show.genres.isEmpty
+    func setup(with viewModel: SerieSummaryViewModel, dependencies: Dependencies) {
+        setupImage(viewModel.imageUrl, dependencies: dependencies)
+        summaryInfo.setup(title: viewModel.summary.title,
+                          subtitle: viewModel.summary.subtitle)
+        scheduleInfo.setup(title: viewModel.schedule.title, subtitle: viewModel.schedule.subtitle)
+        genresInfo.setup(title: viewModel.genres.title, subtitle: viewModel.genres.subtitle)
+        summaryInfo.isHidden = viewModel.summary.isHidden
+        genresInfo.isHidden = viewModel.genres.isHidden
     }
     
     func setupImage(_ imageUrl: String?, dependencies: Dependencies) {
