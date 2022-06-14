@@ -22,7 +22,7 @@ final class DependencyContainer: AppDependencies {
     lazy var mainQueue: DispatchQueue = DispatchQueue.main
     lazy var globalQueue: DispatchQueue = DispatchQueue.global(qos: .background)
     lazy var session: URLSessionable = resolver.resolve()
-    lazy var api: Apiable = resolver.resolve()
+    lazy var api: ApiProtocol = resolver.resolve()
     lazy var storage: Storageable = resolver.resolve()
     lazy var tabBarController: TabControlling = resolver.resolve()
     

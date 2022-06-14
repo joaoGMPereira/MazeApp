@@ -29,27 +29,9 @@ final class SerieViewModel {
 // MARK: - SeriesViewModeling
 extension SerieViewModel: SerieViewModeling {
     func loadScreen() {
-        let summarySubtitle = show.summary?.htmlToAttributedString
-        var scheduleSubtitle = String()
-        let days = show.schedule.days.joined(separator: " | ")
-        let time = show.schedule.time
-        if days.isNotEmpty {
-            scheduleSubtitle = "(\(days)) at \(time) "
-        }
-        if let runTime = show.averageRuntime {
-            scheduleSubtitle += "(\(runTime) min)"
-        }
         displayer?.displaySummary(
             .init(imageUrl: show.image?.original,
-                  infos: [.init(title: "Summary",
-                                subtitle: summarySubtitle,
-                                isHidden: summarySubtitle == nil),
-                          .init(title: "Schedule:",
-                                subtitle: .init(string: scheduleSubtitle),
-                                isHidden: scheduleSubtitle.isEmpty),
-                          .init(title: "Genres",
-                                subtitle: .init(string: show.genres.joined(separator: " | ")),
-                                isHidden: show.genres.isEmpty)]))
+                  infos: summaryInfos()))
         displayer?.displayLoad()
     }
     
@@ -127,5 +109,29 @@ extension SerieViewModel: SerieViewModeling {
         coordinator.goToEpisode(show: "\(show.id)",
                                 season: season,
                                 episode: episode)
+    }
+}
+
+extension SerieViewModel {
+    func summaryInfos() -> [SummaryViewModel.Content] {
+        let summarySubtitle = show.summary?.htmlToAttributedString
+        var scheduleSubtitle = String()
+        let days = show.schedule.days.joined(separator: " | ")
+        let time = show.schedule.time
+        if days.isNotEmpty {
+            scheduleSubtitle = "(\(days)) at \(time) "
+        }
+        if let runTime = show.averageRuntime {
+            scheduleSubtitle += "(\(runTime) min)"
+        }
+        return [.init(title: "Summary",
+                      subtitle: summarySubtitle,
+                      isHidden: summarySubtitle == nil),
+                .init(title: "Schedule:",
+                      subtitle: .init(string: scheduleSubtitle),
+                      isHidden: scheduleSubtitle.isEmpty),
+                .init(title: "Genres",
+                      subtitle: .init(string: show.genres.joined(separator: " | ")),
+                      isHidden: show.genres.isEmpty)]
     }
 }

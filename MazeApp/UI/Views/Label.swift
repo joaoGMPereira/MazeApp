@@ -61,6 +61,7 @@ class Label: UIView, ViewConfiguration {
         
         func setupText(_ isHighlighted: Bool, text: String) {
             guard isHighlighted else {
+                label.attributedText = nil
                 label.text = text
                 return
             }

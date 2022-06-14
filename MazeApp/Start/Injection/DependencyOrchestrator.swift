@@ -17,7 +17,7 @@ final class DependencyOrchestrator: DependencyOrchestrating {
         }, for: URLSessionable.self)
         injector.register({
             Api()
-        }, for: Apiable.self)
+        }, for: ApiProtocol.self)
         injector.register({
             Storage(dependencies: DependencyContainer())
         }, for: Storageable.self)

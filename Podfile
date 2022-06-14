@@ -12,9 +12,4 @@ target 'MazeApp' do
     inherit! :search_paths
     # Pods for testing
   end
-
-  target 'MazeAppUITests' do
-    # Pods for testing
-  end
-
 end

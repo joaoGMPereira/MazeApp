@@ -1,10 +1,3 @@
-//
-//  CollectionViewHeader.swift
-//  MazeApp
-//
-//  Created by Joao Gabriel Pereira on 12/06/22.
-//
-
 import UIKit
 
 class CollectionViewHeader: UICollectionReusableView, ViewConfiguration {

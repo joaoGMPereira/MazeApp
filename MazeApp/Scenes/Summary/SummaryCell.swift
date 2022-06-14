@@ -17,10 +17,6 @@ final class SummaryCell: UICollectionViewCell, ViewConfiguration {
         return activityIndicatorView
     }()
     
-//    private lazy var summaryInfo: InfoView = InfoView()
-//    private lazy var scheduleInfo: InfoView = InfoView()
-//    private lazy var genresInfo: InfoView = InfoView()
-    
     private lazy var stackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical

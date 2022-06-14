@@ -1,10 +1,3 @@
-//
-//  MazeAppTests.swift
-//  MazeAppTests
-//
-//  Created by Joao Gabriel Pereira on 11/06/22.
-//
-
 import XCTest
 @testable import MazeApp
 

@@ -1,6 +1,6 @@
 import Foundation
 
-class Api: Apiable {
+class Api: ApiProtocol {
     typealias Dependencies = HasMainQueue
     let dependencies: Dependencies
     
@@ -76,7 +76,10 @@ class Api: Apiable {
                 return
             }
             
-            let status = HTTPStatusCode(rawValue: httpResponse.statusCode) ?? .processing
+            guard let status = HTTPStatusCode(rawValue: httpResponse.statusCode) else {
+                completion(.failure(.unknown))
+                return
+            }
             let result: Result<Success<E>, ApiError> = self.evaluateResult(status: status, jsonDecoder: jsonDecoder, responseBody: responseBody)
             completion(result)
         }
@@ -89,24 +92,14 @@ class Api: Apiable {
     ) -> Result<Success<E>, ApiError> {
         let result: Result<Success<E>, ApiError>
         switch status {
-        case .ok, .created, .accepted, .noContent:
+        case .ok..<HTTPStatusCode.redirection:
             result = handleSuccess(responseBody: responseBody, jsonDecoder: jsonDecoder)
-        case .badRequest, .unprocessableEntity, .preconditionFailed, .preconditionRequired:
+        case .redirection..<HTTPStatusCode.badRequest:
+            result = .failure(.redirectionNotAllowed)
+        case .badRequest..<HTTPStatusCode.internalServerError:
             result = .failure(.badRequest)
-        case .unauthorized:
-            result = .failure(.unauthorized)
-        case .notFound:
-            result = .failure(.notFound)
-        case .tooManyRequests:
-            result = .failure(.tooManyRequests)
-        case .requestTimeout:
-            result = .failure(.timeout)
-        case .internalServerError, .badGateway, .serviceUnavailable:
+        case .internalServerError..<HTTPStatusCode.notValidStatus:
             result = .failure(.serverError)
-        case .upgradeRequired:
-            result = .failure(.upgradeRequired)
-        case .failedDependency:
-            result = .failure(.failedDependency)
         default:
             result = .failure(.otherErrors)
         }

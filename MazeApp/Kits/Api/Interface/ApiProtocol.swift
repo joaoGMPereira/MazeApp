@@ -1,6 +1,6 @@
 import Foundation
 
-protocol Apiable {
+protocol ApiProtocol {
     @discardableResult
     func execute<E: Decodable>(
         endpoint: ApiEndpointExposable,
@@ -10,7 +10,7 @@ protocol Apiable {
     ) -> URLSessionTask?
 }
 
-extension Apiable {
+extension ApiProtocol {
     @discardableResult
     func execute<E: Decodable>(
         endpoint: ApiEndpointExposable,
