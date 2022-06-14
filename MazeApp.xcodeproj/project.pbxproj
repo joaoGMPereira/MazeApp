@@ -10,8 +10,8 @@
 		724103334A4D079846E2781D /* Pods_MazeApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 716A1056ED11D33739B527FC /* Pods_MazeApp.framework */; };
 		763B110A2858A7DA003DBEBF /* HTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B11092858A7DA003DBEBF /* HTTPStatusCode.swift */; };
 		763B110C2858A87B003DBEBF /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B110B2858A87B003DBEBF /* ApiError.swift */; };
-		763B11102858AF42003DBEBF /* DispatchDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B110E2858AF42003DBEBF /* DispatchDependencies.swift */; };
-		763B11112858AF42003DBEBF /* ApiDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B110F2858AF42003DBEBF /* ApiDependencies.swift */; };
+		763B11142858B082003DBEBF /* DispatchDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B11122858B082003DBEBF /* DispatchDependencies.swift */; };
+		763B11152858B082003DBEBF /* ApiDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B11132858B082003DBEBF /* ApiDependencies.swift */; };
 		76BF03842854560D00A2DBDC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76BF03822854560D00A2DBDC /* Main.storyboard */; };
 		76BF03862854561200A2DBDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76BF03852854561200A2DBDC /* Assets.xcassets */; };
 		76BF03892854561200A2DBDC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76BF03872854561200A2DBDC /* LaunchScreen.storyboard */; };
@@ -118,8 +118,8 @@
 		716A1056ED11D33739B527FC /* Pods_MazeApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MazeApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		763B11092858A7DA003DBEBF /* HTTPStatusCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
 		763B110B2858A87B003DBEBF /* ApiError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
-		763B110E2858AF42003DBEBF /* DispatchDependencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchDependencies.swift; sourceTree = "<group>"; };
-		763B110F2858AF42003DBEBF /* ApiDependencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiDependencies.swift; sourceTree = "<group>"; };
+		763B11122858B082003DBEBF /* DispatchDependencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchDependencies.swift; sourceTree = "<group>"; };
+		763B11132858B082003DBEBF /* ApiDependencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiDependencies.swift; sourceTree = "<group>"; };
 		76BF03792854560D00A2DBDC /* MazeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MazeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76BF03832854560D00A2DBDC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		76BF03852854561200A2DBDC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -234,15 +234,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		763B110D2858AF42003DBEBF /* Dependencies */ = {
-			isa = PBXGroup;
-			children = (
-				763B110E2858AF42003DBEBF /* DispatchDependencies.swift */,
-				763B110F2858AF42003DBEBF /* ApiDependencies.swift */,
-			);
-			path = Dependencies;
-			sourceTree = "<group>";
-		};
 		76BF03702854560D00A2DBDC = {
 			isa = PBXGroup;
 			children = (
@@ -408,7 +399,8 @@
 		76BF03D0285457A200A2DBDC /* Injection */ = {
 			isa = PBXGroup;
 			children = (
-				763B110D2858AF42003DBEBF /* Dependencies */,
+				763B11132858B082003DBEBF /* ApiDependencies.swift */,
+				763B11122858B082003DBEBF /* DispatchDependencies.swift */,
 				76BF03D1285457A200A2DBDC /* DependencyContainer.swift */,
 				76BF03D2285457A200A2DBDC /* Resolver.swift */,
 				76BF03D6285457A200A2DBDC /* DependencyOrchestrator.swift */,
@@ -840,9 +832,9 @@
 				76BF03E7285457A200A2DBDC /* ContentType.swift in Sources */,
 				76BF0452285506D600A2DBDC /* SerieViewController.swift in Sources */,
 				76BF049E285817B500A2DBDC /* SummaryViewModel.swift in Sources */,
-				763B11112858AF42003DBEBF /* ApiDependencies.swift in Sources */,
+				763B11152858B082003DBEBF /* ApiDependencies.swift in Sources */,
 				76BF047A2857594300A2DBDC /* FeedbackCell.swift in Sources */,
-				763B11102858AF42003DBEBF /* DispatchDependencies.swift in Sources */,
+				763B11142858B082003DBEBF /* DispatchDependencies.swift in Sources */,
 				76BF0478285753EF00A2DBDC /* LoadingCell.swift in Sources */,
 				76BF03DF285457A200A2DBDC /* DependencyStore.swift in Sources */,
 				76BF042B2854D68B00A2DBDC /* ReloadableView.swift in Sources */,
