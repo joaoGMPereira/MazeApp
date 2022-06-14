@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-final class SerieSummaryCell: UICollectionViewCell, ViewConfiguration {
+final class SummaryCell: UICollectionViewCell, ViewConfiguration {
     typealias Dependencies = HasMainQueue & HasURLSessionable & HasStorageable
     
     // MARK: - UI Properties
@@ -17,12 +17,12 @@ final class SerieSummaryCell: UICollectionViewCell, ViewConfiguration {
         return activityIndicatorView
     }()
     
-    private lazy var summaryInfo: InfoView = InfoView()
-    private lazy var scheduleInfo: InfoView = InfoView()
-    private lazy var genresInfo: InfoView = InfoView()
+//    private lazy var summaryInfo: InfoView = InfoView()
+//    private lazy var scheduleInfo: InfoView = InfoView()
+//    private lazy var genresInfo: InfoView = InfoView()
     
     private lazy var stackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [summaryInfo, scheduleInfo, genresInfo])
+        let stack = UIStackView()
         stack.axis = .vertical
         stack.distribution = .fillProportionally
         stack.spacing = 8
@@ -60,14 +60,15 @@ final class SerieSummaryCell: UICollectionViewCell, ViewConfiguration {
     }
     
     // MARK: - Setup
-    func setup(with viewModel: SerieSummaryViewModel, dependencies: Dependencies) {
+    func setup(with viewModel: SummaryViewModel, dependencies: Dependencies) {
         setupImage(viewModel.imageUrl, dependencies: dependencies)
-        summaryInfo.setup(title: viewModel.summary.title,
-                          subtitle: viewModel.summary.subtitle)
-        scheduleInfo.setup(title: viewModel.schedule.title, subtitle: viewModel.schedule.subtitle)
-        genresInfo.setup(title: viewModel.genres.title, subtitle: viewModel.genres.subtitle)
-        summaryInfo.isHidden = viewModel.summary.isHidden
-        genresInfo.isHidden = viewModel.genres.isHidden
+        viewModel.infos.forEach {
+            let infoView = InfoView()
+            infoView.setup(title: $0.title, subtitle: $0.subtitle)
+            stackView.addArrangedSubview(infoView)
+            infoView.isHidden = $0.isHidden
+            
+        }
     }
     
     func setupImage(_ imageUrl: String?, dependencies: Dependencies) {
@@ -86,6 +87,7 @@ final class SerieSummaryCell: UICollectionViewCell, ViewConfiguration {
     
     override func prepareForReuse() {
         imageView.image = nil
+        stackView.removeAllSubviews()
         task?.cancel()
     }
 }

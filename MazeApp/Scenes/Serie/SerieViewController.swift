@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 
 protocol SerieDisplaying: AnyObject {
-    func displaySummary(_ summary: SerieSummaryViewModel)
+    func displaySummary(_ summary: SummaryViewModel)
     func displayEpisodes(_ items: EpisodesViewModel, in section: Int)
     func displayEpisodesFailure(with feedback: FeedbackModel)
     func displayLoad()
@@ -34,7 +34,7 @@ open class SerieViewController: ViewController<SerieViewModeling, UIView> {
     private(set) lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
         collectionView.register(
-            cellType: SerieSummaryCell.self
+            cellType: SummaryCell.self
         )
         collectionView.register(
             cellType: SerieEpisodeCell.self
@@ -152,8 +152,8 @@ extension SerieViewController {
             return cell
         }
         
-        if let summary = item as? SerieSummaryViewModel {
-            let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: SerieSummaryCell.self)
+        if let summary = item as? SummaryViewModel {
+            let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: SummaryCell.self)
             cell.setup(with: summary, dependencies: self.dependencies)
             cell.backgroundConfiguration = backgroundConfiguration
             return cell
@@ -182,7 +182,7 @@ extension SerieViewController: SerieDisplaying {
         dataSource.update(items: [items], from: section)
     }
     
-    func displaySummary(_ summary: SerieSummaryViewModel) {
+    func displaySummary(_ summary: SummaryViewModel) {
         dataSource.set(items: [summary], to: .zero)
     }
     

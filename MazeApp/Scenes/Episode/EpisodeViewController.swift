@@ -2,9 +2,8 @@ import UIKit
 import SnapKit
 
 protocol EpisodeDisplaying: AnyObject {
-    func displayShow(_ show: Show)
-    func displayEpisodes(_ items: EpisodesViewModel, in section: Int)
-    func displayEpisodesFailure()
+    func displaySummary(_ summary: SummaryViewModel, title: String)
+    func displayEpisodeFailure(with feedback: FeedbackModel)
     func displayLoad()
 }
 open class EpisodeViewController: ViewController<EpisodeViewModeling, UIView> {
@@ -29,12 +28,6 @@ open class EpisodeViewController: ViewController<EpisodeViewModeling, UIView> {
         dataSource.itemProvider = { [weak self] view, indexPath, item in
             self?.setupCell(in: view, item: item, at: indexPath)
         }
-        //        dataSource.supplementaryViewProvider = { [weak self] view, kind, index in
-        //            guard let self = self else { return  UICollectionReusableView() }
-        //            let header = view.dequeueReusableSupplementaryView(ofKind: kind, for: index, viewType: CollectionViewHeader.self)
-        //            header.setup(title: self.title(for: index.section))
-        //            return header
-        //        }
         return dataSource
     }()
     
@@ -45,6 +38,9 @@ open class EpisodeViewController: ViewController<EpisodeViewModeling, UIView> {
         )
         collectionView.register(
             cellType: FeedbackCell.self
+        )
+        collectionView.register(
+            cellType: SummaryCell.self
         )
         collectionView.backgroundColor = .systemBackground
         collectionView.allowsSelection = false
@@ -136,26 +132,26 @@ extension EpisodeViewController {
             return cell
         }
         
+        if let summary = item as? SummaryViewModel {
+            let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: SummaryCell.self)
+            cell.setup(with: summary, dependencies: self.dependencies)
+            cell.backgroundConfiguration = backgroundConfiguration
+            return cell
+        }
+        
         return UICollectionViewCell()
     }
 }
 
 // MARK: - EpisodeDisplaying
 extension EpisodeViewController: EpisodeDisplaying {
-    func displayEpisodes(_ items: EpisodesViewModel, in section: Int) {
-        dataSource.update(items: [items], from: section)
+    func displaySummary(_ summary: SummaryViewModel, title: String) {
+        dataSource.set(items: [summary], to: .zero)
+        self.title = title
     }
     
-    func displayShow(_ show: Show) {
-       // dataSource.set(items: [show], to: .zero)
-    }
-    
-    func displayEpisodesFailure() {
-        dataSource.update(items: [FeedbackModel(title: "Something didn't go right while we searched for the episode",
-                                                subtitle: "Verify you connection and please try again",
-                                                buttonName: "Try again") { [weak self] in
-            self?.viewModel.loadScreen()
-        }], from: .zero)
+    func displayEpisodeFailure(with feedback: FeedbackModel) {
+        dataSource.update(items: [feedback], from: .zero)
     }
     
     func displayLoad() {

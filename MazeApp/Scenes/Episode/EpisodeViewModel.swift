@@ -39,9 +39,32 @@ extension EpisodeViewModel: EpisodeViewModeling {
             guard let self = self else { return }
             switch result {
             case .success(let response):
-                self.episode = response.model
+                let episode = response.model
+                self.episode = episode
+                let summarySubtitle = episode.summary?.htmlToAttributedString
+                self.displayer?.displaySummary(
+                    .init(imageUrl: episode.image?.original,
+                          infos: [
+                            .init(title: "Summary",
+                                  subtitle: summarySubtitle,
+                                  isHidden: summarySubtitle == nil),
+                            .init(title: "Season:",
+                                  subtitle: .init(string: "Season \(episode.season)")),
+                            .init(title: "Episode",
+                                  subtitle: .init(string: "Episode \(episode.number)")
+                                 )
+                          ]
+                         ),
+                    title: episode.name
+                )
             case .failure:
-                self.displayer?.displayEpisodesFailure()
+                self.displayer?.displayEpisodeFailure(
+                    with: FeedbackModel(
+                        title: "Something didn't go right while we searched for the episode",
+                        subtitle: "Verify you connection and please try again",
+                        buttonName: "Try again") { [weak self] in
+                            self?.loadScreen()
+                        })
             }
         }
     }

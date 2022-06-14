@@ -41,15 +41,15 @@ extension SerieViewModel: SerieViewModeling {
         }
         displayer?.displaySummary(
             .init(imageUrl: show.image?.original,
-                  summary: .init(title: "Summary",
-                                 subtitle: summarySubtitle,
-                                 isHidden: summarySubtitle == nil),
-                  schedule: .init(title: "Schedule:",
-                                  subtitle: .init(string: scheduleSubtitle),
-                                  isHidden: scheduleSubtitle.isEmpty),
-                  genres: .init(title: "Genres",
+                  infos: [.init(title: "Summary",
+                                subtitle: summarySubtitle,
+                                isHidden: summarySubtitle == nil),
+                          .init(title: "Schedule:",
+                                subtitle: .init(string: scheduleSubtitle),
+                                isHidden: scheduleSubtitle.isEmpty),
+                          .init(title: "Genres",
                                 subtitle: .init(string: show.genres.joined(separator: " | ")),
-                                isHidden: show.genres.isEmpty)))
+                                isHidden: show.genres.isEmpty)]))
         displayer?.displayLoad()
     }
     
