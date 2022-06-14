@@ -7,7 +7,6 @@ public protocol EpisodeViewModeling: AnyObject {
 final class EpisodeViewModel {
     typealias Dependencies = HasApi
     private let dependencies: Dependencies
-    private let coordinator: EpisodeCoordinating
     weak var displayer: EpisodeDisplaying?
     
     private var episode: Episode?
@@ -16,12 +15,10 @@ final class EpisodeViewModel {
     private let season: String
     private let episodeId: String
     
-    init(coordinator: EpisodeCoordinating,
-         dependencies: Dependencies,
+    init(dependencies: Dependencies,
          show: String,
          season: String,
          episodeId: String) {
-        self.coordinator = coordinator
         self.dependencies = dependencies
         self.show = show
         self.season = season

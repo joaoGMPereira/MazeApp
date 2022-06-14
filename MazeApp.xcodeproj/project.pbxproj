@@ -94,7 +94,6 @@
 		76BF0493285805E000A2DBDC /* EpisodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF048E285805E000A2DBDC /* EpisodeViewModel.swift */; };
 		76BF0494285805E000A2DBDC /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF048F285805E000A2DBDC /* Episode.swift */; };
 		76BF0495285805E100A2DBDC /* EpisodeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF0490285805E000A2DBDC /* EpisodeFactory.swift */; };
-		76BF0496285805E100A2DBDC /* EpisodeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF0491285805E000A2DBDC /* EpisodeCoordinator.swift */; };
 		76BF0497285805E100A2DBDC /* EpisodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF0492285805E000A2DBDC /* EpisodeViewController.swift */; };
 		76BF049A2858156100A2DBDC /* CommonModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF04992858156100A2DBDC /* CommonModels.swift */; };
 		76BF049E285817B500A2DBDC /* SummaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BF049D285817B500A2DBDC /* SummaryViewModel.swift */; };
@@ -206,7 +205,6 @@
 		76BF048E285805E000A2DBDC /* EpisodeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeViewModel.swift; sourceTree = "<group>"; };
 		76BF048F285805E000A2DBDC /* Episode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 		76BF0490285805E000A2DBDC /* EpisodeFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeFactory.swift; sourceTree = "<group>"; };
-		76BF0491285805E000A2DBDC /* EpisodeCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeCoordinator.swift; sourceTree = "<group>"; };
 		76BF0492285805E000A2DBDC /* EpisodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeViewController.swift; sourceTree = "<group>"; };
 		76BF04992858156100A2DBDC /* CommonModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonModels.swift; sourceTree = "<group>"; };
 		76BF049D285817B500A2DBDC /* SummaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewModel.swift; sourceTree = "<group>"; };
@@ -453,7 +451,6 @@
 			isa = PBXGroup;
 			children = (
 				76BF048F285805E000A2DBDC /* Episode.swift */,
-				76BF0491285805E000A2DBDC /* EpisodeCoordinator.swift */,
 				76BF0490285805E000A2DBDC /* EpisodeFactory.swift */,
 				76BF0492285805E000A2DBDC /* EpisodeViewController.swift */,
 				76BF048E285805E000A2DBDC /* EpisodeViewModel.swift */,
@@ -852,7 +849,6 @@
 				76BF04372854D6A200A2DBDC /* UIView+Border.swift in Sources */,
 				76BF0456285507F000A2DBDC /* Serie.swift in Sources */,
 				76BF03DA285457A200A2DBDC /* DependencyInjecting.swift in Sources */,
-				76BF0496285805E100A2DBDC /* EpisodeCoordinator.swift in Sources */,
 				763B110A2858A7DA003DBEBF /* HTTPStatusCode.swift in Sources */,
 				76BF041F2854D64100A2DBDC /* ShowsViewModelling.swift in Sources */,
 				76BF03ED285457A200A2DBDC /* DispatchDependencies.swift in Sources */,

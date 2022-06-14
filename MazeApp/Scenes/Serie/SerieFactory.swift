@@ -3,7 +3,7 @@ import UIKit
 enum SerieFactory {
     static func make(container: AppDependencies = DependencyContainer(),
                      show: Show) -> UIViewController {
-        let coordinator = SerieCoordinator(dependencies: container)
+        let coordinator = SerieCoordinator()
         let viewModel = SerieViewModel(coordinator: coordinator,
                                        dependencies: container,
                                        show: show)

@@ -5,14 +5,7 @@ protocol SerieCoordinating: AnyObject {
 }
 
 final class SerieCoordinator {
-    typealias Dependencies = HasNoDependency
-    private let dependencies: Dependencies
-    
     weak var viewController: UIViewController?
-    
-    init(dependencies: Dependencies) {
-        self.dependencies = dependencies
-    }
 }
 
 // MARK: - SerieCoordinating

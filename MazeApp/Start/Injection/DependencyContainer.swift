@@ -1,9 +1,6 @@
 import Foundation
 
-protocol HasNoDependency {}
-
 typealias AppDependencies =
-    HasNoDependency &
     // MARK: Dispatches
     HasMainQueue &
     HasGlobalQueue &
