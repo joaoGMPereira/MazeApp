@@ -1,5 +1,9 @@
 import Foundation
 
+protocol HasApi {
+    var api: ApiProtocol { get }
+}
+
 protocol ApiProtocol {
     @discardableResult
     func execute<E: Decodable>(
