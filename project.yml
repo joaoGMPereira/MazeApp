@@ -1,0 +1,29 @@
+name: MazeApp
+
+options:
+  xcodeVersion: '9999'
+
+targets:
+  MazeAppTests:
+    type: bundle.unit-test
+    platform: iOS
+    settings:
+      SWIFT_VERSION: 5
+      IPHONEOS_DEPLOYMENT_TARGET: 15.4
+
+    sources:
+      - path: MazeAppTests
+
+    dependencies:
+      - target: MazeApp
+
+  MazeApp:
+    type: application
+    platform: iOS
+    settings:
+      SWIFT_VERSION: 5
+      IPHONEOS_DEPLOYMENT_TARGET: 15.4
+    sources: [MazeApp]
+
+    dependencies:
+      - target: MazeApp
