@@ -128,6 +128,9 @@ final class ShowCell: UICollectionViewCell, ViewConfiguration {
             UIView.animate(withDuration: 0.3) {
                 self.imageView.alpha = 1
                 self.layoutIfNeeded()
+                self.label.snp.updateConstraints {
+                    $0.height.greaterThanOrEqualTo(max(20, self.label.text?.height(withConstrainedWidth: self.label.frame.width, font: self.label.font) ?? .zero))
+                }
             }
         }
     }

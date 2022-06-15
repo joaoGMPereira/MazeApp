@@ -36,10 +36,7 @@ extension NSAttributedString {
 
         self.init(attributedString: attr)
     }
-
-}
-
-extension NSAttributedString {
+    
     func trimmedAttributedString() -> NSAttributedString {
         let nonNewlines = CharacterSet.whitespacesAndNewlines.inverted
         let startRange = string.rangeOfCharacter(from: nonNewlines)
@@ -57,12 +54,5 @@ extension NSAttributedString {
         let boundingBox = boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, context: nil)
         
         return ceil(boundingBox.height)
-    }
-    
-    func width(withConstrainedHeight height: CGFloat) -> CGFloat {
-        let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
-        let boundingBox = boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, context: nil)
-        
-        return ceil(boundingBox.width)
     }
 }
