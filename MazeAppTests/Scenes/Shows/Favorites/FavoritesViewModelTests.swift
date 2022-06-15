@@ -166,8 +166,6 @@ class FavoritesViewModelTests: XCTestCase {
     
 }
 
-extension Show: AutoEquatable {}
-
 extension Show {
     static func showFixture(name: String? = nil, id: Int? = nil) -> Show {
         .init(id: id ?? .anyValue,

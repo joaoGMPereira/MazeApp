@@ -36,7 +36,7 @@ class Api: ApiProtocol {
         return task
     }
     
-    private func makeRequest(with endpoint: ApiEndpointExposable) throws -> URLRequest {
+    func makeRequest(with endpoint: ApiEndpointExposable) throws -> URLRequest {
         let urlString = endpoint.absoluteStringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? endpoint.absoluteStringUrl
         var urlComponent = URLComponents(string: urlString)
         if endpoint.method == .get && endpoint.parameters.isNotEmpty {

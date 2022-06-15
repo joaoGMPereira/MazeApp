@@ -12,6 +12,7 @@ class ApiProtocolSpy: ApiProtocol {
         if let response = response as? E {
             responses.append(response)
             completion(.success(.init(model: response, data: nil)))
+            return URLSessionDataTaskableSpy()
         }
         let error: ApiError = error ?? .unknown
         responses.append(error)
@@ -51,7 +52,13 @@ class URLSessionableSpy: URLSessionable {
     
     func task(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTaskable {
         messages.append(.dataTask(request))
-        completionHandler(data,urlResponse,error)
+        if let url = request.url {
+            urlResponse = HTTPURLResponse.init(url: url,
+                                               statusCode: data != nil ? 200 : 400,
+                                               httpVersion: nil,
+                                               headerFields: [:])
+        }
+        completionHandler(data, urlResponse, error)
         return URLSessionDataTaskableSpy()
     }
 }

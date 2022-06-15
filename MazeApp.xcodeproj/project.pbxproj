@@ -22,6 +22,8 @@
 		763B11332859FBF2003DBEBF /* ShowsCoordinatorSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B11322859FBF2003DBEBF /* ShowsCoordinatorSpy.swift */; };
 		763B1135285A0035003DBEBF /* Objects+Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B1134285A0035003DBEBF /* Objects+Fixtures.swift */; };
 		763B1137285A19F7003DBEBF /* TabControllingSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B1136285A19F7003DBEBF /* TabControllingSpy.swift */; };
+		763B113C285A1D92003DBEBF /* EpisodeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B113A285A1D92003DBEBF /* EpisodeViewModelTests.swift */; };
+		763B113E285A228A003DBEBF /* ApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B113D285A228A003DBEBF /* ApiTests.swift */; };
 		76BF03842854560D00A2DBDC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76BF03822854560D00A2DBDC /* Main.storyboard */; };
 		76BF03862854561200A2DBDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76BF03852854561200A2DBDC /* Assets.xcassets */; };
 		76BF03892854561200A2DBDC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76BF03872854561200A2DBDC /* LaunchScreen.storyboard */; };
@@ -140,6 +142,8 @@
 		763B11322859FBF2003DBEBF /* ShowsCoordinatorSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsCoordinatorSpy.swift; sourceTree = "<group>"; };
 		763B1134285A0035003DBEBF /* Objects+Fixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Objects+Fixtures.swift"; sourceTree = "<group>"; };
 		763B1136285A19F7003DBEBF /* TabControllingSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabControllingSpy.swift; sourceTree = "<group>"; };
+		763B113A285A1D92003DBEBF /* EpisodeViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeViewModelTests.swift; sourceTree = "<group>"; };
+		763B113D285A228A003DBEBF /* ApiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiTests.swift; sourceTree = "<group>"; };
 		76BF03792854560D00A2DBDC /* MazeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MazeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76BF03832854560D00A2DBDC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		76BF03852854561200A2DBDC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -275,6 +279,7 @@
 		763B11202859EDA5003DBEBF /* Api */ = {
 			isa = PBXGroup;
 			children = (
+				763B113D285A228A003DBEBF /* ApiTests.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -339,6 +344,7 @@
 		763B1138285A1D20003DBEBF /* Episode */ = {
 			isa = PBXGroup;
 			children = (
+				763B113A285A1D92003DBEBF /* EpisodeViewModelTests.swift */,
 			);
 			path = Episode;
 			sourceTree = "<group>";
@@ -1018,6 +1024,7 @@
 			files = (
 				763B11332859FBF2003DBEBF /* ShowsCoordinatorSpy.swift in Sources */,
 				763B11272859F113003DBEBF /* ApiSpy.swift in Sources */,
+				763B113C285A1D92003DBEBF /* EpisodeViewModelTests.swift in Sources */,
 				763B1137285A19F7003DBEBF /* TabControllingSpy.swift in Sources */,
 				763B112F2859FB1E003DBEBF /* AutoEquatable.swift in Sources */,
 				763B1135285A0035003DBEBF /* Objects+Fixtures.swift in Sources */,
@@ -1025,6 +1032,7 @@
 				763B111F2859ED9D003DBEBF /* FavoritesCoordinatorTests.swift in Sources */,
 				763B11242859EFE2003DBEBF /* DependencyContainer.swift in Sources */,
 				763B112D2859F6FC003DBEBF /* StorageSpy.swift in Sources */,
+				763B113E285A228A003DBEBF /* ApiTests.swift in Sources */,
 				76BF03942854561200A2DBDC /* FavoritesViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
