@@ -10,6 +10,13 @@ targets:
     settings:
       SWIFT_VERSION: 5
       IPHONEOS_DEPLOYMENT_TARGET: 15.4
+    info:
+      path: "./MazeApp/Info.plist"
+      properties:
+        CFBundleDisplayName: "MazeApp"
+        CFBundleShortVersionString: "1.0.0"
+        CFBundleVersion: "1.0.0"
+        CFBundleIdentifier: "com.mazeapp.joao"
 
     sources:
       - path: MazeAppTests
@@ -24,6 +31,3 @@ targets:
       SWIFT_VERSION: 5
       IPHONEOS_DEPLOYMENT_TARGET: 15.4
     sources: [MazeApp]
-
-    dependencies:
-      - target: MazeApp
