@@ -23,6 +23,32 @@ open class ShowsViewController: ViewController<ShowsViewModeling, UIView> {
     let dependencies: Dependencies
     
     // MARK: - Collection
+    
+    private(set) lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: compositionalLayout)
+        collectionView.register(
+            cellType: ShowCell.self
+        )
+        collectionView.backgroundColor = .clear
+        return collectionView
+    }()
+    
+    private lazy var compositionalLayout: UICollectionViewCompositionalLayout = {
+        let fraction: CGFloat = 1 / 2
+        let inset: CGFloat = 2.5
+        
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(fraction), heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: inset, trailing: inset)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(fraction))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: inset, trailing: inset)
+        return UICollectionViewCompositionalLayout(section: section)
+    }()
+    
     private(set) lazy var dataSource: CollectionViewDataSource<Int, Show> = {
         let dataSource = CollectionViewDataSource<Int, Show>(view: collectionView)
         dataSource.itemProvider = { [weak self] view, indexPath, item in
@@ -32,16 +58,6 @@ open class ShowsViewController: ViewController<ShowsViewModeling, UIView> {
             return cell
         }
         return dataSource
-    }()
-    
-    private(set) lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = Layout.sectionInset
-        layout.minimumInteritemSpacing = Layout.spacing
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.delegate = self
-        collectionView.register(cellType: ShowCell.self)
-        return collectionView
     }()
     
     // MARK: Loading
@@ -116,21 +132,9 @@ open class ShowsViewController: ViewController<ShowsViewModeling, UIView> {
 }
 
 // MARK: - UICollectionViewDelegate
-extension ShowsViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension ShowsViewController: UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewModel.didTap(at: indexPath)
-    }
-    
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let leftRightMargin = Layout.sectionInset.left + Layout.sectionInset.right
-        
-        let numberOfColumns = Layout.numberOfColumns
-        let totalCellSpace = Layout.spacing * (numberOfColumns - 1)
-        let screenWidth = view.bounds.width
-        let width = (screenWidth - leftRightMargin - totalCellSpace) / numberOfColumns
-        let height = view.bounds.height * 0.3
-        
-        return .init(width: width, height: height)
     }
 }
 
