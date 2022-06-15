@@ -42,9 +42,13 @@ extension EpisodeViewModel: EpisodeViewModeling {
                 self.episode = episode
                 self.displayer?.displaySummary(
                     .init(summary: .init(title: episode.summary ?? String(),
-                                         image: "tv",
                                          isHidden: episode.summary == nil),
                           imageUrl: episode.image?.original,
+                          score: .init(title: self.average(episode.rating.average),
+                                       font: .preferredFont(for: .footnote, weight: .bold),
+                                       alignment: .justified,
+                                       image: "star.fill",
+                                       isHidden: episode.rating.average == nil),
                           schedule: .init(title: self.schedule(with: episode),
                                           font: .preferredFont(for: .footnote, weight: .bold),
                                           alignment: .justified,
@@ -63,6 +67,14 @@ extension EpisodeViewModel: EpisodeViewModeling {
                         })
             }
         }
+    }
+    
+    func average(_ average: Double?) -> String {
+        var averageText = "-"
+        if let average = average {
+            averageText = "\(average)/10"
+        }
+        return averageText
     }
     
     func schedule(with episode: Episode) -> String {

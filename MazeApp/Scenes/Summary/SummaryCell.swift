@@ -30,7 +30,7 @@ final class SummaryCell: UICollectionViewCell, ViewConfiguration {
     }()
     
     private lazy var summaryLabel = Label()
-    
+    private lazy var scoreLabel = Label()
     private lazy var scheduleLabel = Label()
     
     private(set) lazy var collectionView: UICollectionView = {
@@ -105,9 +105,10 @@ final class SummaryCell: UICollectionViewCell, ViewConfiguration {
     
     // MARK: - Setup
     func setup(with viewModel: SummaryViewModel, dependencies: Dependencies) {
-        stackView.addArrangedSubviews(imageView, collectionView, summaryLabel, scheduleLabel)
+        stackView.addArrangedSubviews(imageView, collectionView, summaryLabel, scoreLabel, scheduleLabel)
         setupGenres(viewModel.genres)
         setupSummary(viewModel.summary)
+        setupScore(viewModel.score)
         setupSchedule(viewModel.schedule)
         setupImage(viewModel.imageUrl, dependencies: dependencies)
     }
@@ -154,10 +155,18 @@ final class SummaryCell: UICollectionViewCell, ViewConfiguration {
     }
     
     func setupSummary(_ summary: Content) {
-        summaryLabel.setupAttributed(text: summary.title.htmlToAttributedString,
-                                     imageName: summary.image,
-                                     imageColor: .systemTeal)
+        summaryLabel.setupAttributed(text: summary.title.htmlToAttributedString)
         summaryLabel.isHidden = summary.isHidden
+    }
+    
+    func setupScore(_ score: Content) {
+        scoreLabel.setup(text: score.title,
+                            font: score.font,
+                            alignment: score.alignment,
+                            imageName: score.image,
+                            imageColor: .systemTeal
+        )
+        scoreLabel.isHidden = score.isHidden
     }
     
     func setupSchedule(_ schedule: Content) {
@@ -167,7 +176,7 @@ final class SummaryCell: UICollectionViewCell, ViewConfiguration {
                             imageName: schedule.image,
                             imageColor: .systemTeal
         )
-        summaryLabel.isHidden = schedule.isHidden
+        scheduleLabel.isHidden = schedule.isHidden
     }
     
     override func prepareForReuse() {

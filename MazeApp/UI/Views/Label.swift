@@ -58,14 +58,15 @@ class Label: UIView, ViewConfiguration {
     }
     
     func setupAttributed(
-        text: NSAttributedString?,
-        imageName: String? = nil,
-        imageColor: UIColor = .systemGray2
+        text: NSAttributedString?
     ) {
         label.attributedText = text
         label.textColor = .label
-        imageView.tintColor = imageColor
-        configImage(imageName)
+        label.snp.remakeConstraints {
+            imageView.image = nil
+            $0.leading.equalToSuperview()
+            $0.bottom.top.trailing.equalToSuperview()
+        }
     }
     
     func configImage(_ imageName: String?) {

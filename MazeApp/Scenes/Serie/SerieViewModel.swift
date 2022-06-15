@@ -60,9 +60,13 @@ extension SerieViewModel: SerieViewModeling {
             loadSummary = false
             displayer?.displaySummary(
                 .init(summary: .init(title: show.summary ?? String(),
-                                     image: "tv",
                                      isHidden: show.summary == nil),
                       imageUrl: show.image?.original,
+                      score: .init(title: average(show.rating.average),
+                                   font: .preferredFont(for: .footnote, weight: .bold),
+                                   alignment: .justified,
+                                   image: "star.fill",
+                                   isHidden: show.rating.average == nil),
                       schedule: .init(title: schedule(),
                                       font: .preferredFont(for: .footnote, weight: .bold),
                                       alignment: .justified,
