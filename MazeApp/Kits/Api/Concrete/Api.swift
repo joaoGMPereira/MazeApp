@@ -17,6 +17,7 @@ class Api: ApiProtocol {
         do {
             try request = makeRequest(with: endpoint)
         } catch {
+            completion(.failure(.badRequest))
             return nil
         }
         let task = session.dataTask(with: request, completionHandler: { responseBody, response, error in
@@ -36,7 +37,8 @@ class Api: ApiProtocol {
     }
     
     private func makeRequest(with endpoint: ApiEndpointExposable) throws -> URLRequest {
-        var urlComponent = URLComponents(string: endpoint.absoluteStringUrl)
+        let urlString = endpoint.absoluteStringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? endpoint.absoluteStringUrl
+        var urlComponent = URLComponents(string: urlString)
         if endpoint.method == .get && endpoint.parameters.isNotEmpty {
             urlComponent?.queryItems = endpoint.parameters
                 .map { URLQueryItem(name: $0.key, value: "\($0.value)") }
