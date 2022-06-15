@@ -149,6 +149,9 @@ extension EpisodeViewController: EpisodeDisplaying, SummaryCellDelegate {
     }
     
     func downloadedImage() {
-        collectionView.reloadSections(.init(integer: .zero))
+        if !viewModel.hasUpdated {
+            viewModel.hasUpdated = true
+            collectionView.reloadSections(.init(integer: .zero))
+        }
     }
 }

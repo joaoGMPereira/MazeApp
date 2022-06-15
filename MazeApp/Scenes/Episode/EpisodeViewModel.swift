@@ -2,6 +2,7 @@ import Foundation
 
 public protocol EpisodeViewModeling: AnyObject {
     func loadScreen()
+    var hasUpdated: Bool { get set }
 }
 
 final class EpisodeViewModel {
@@ -14,6 +15,7 @@ final class EpisodeViewModel {
     private let show: String
     private let season: String
     private let episodeId: String
+    var hasUpdated: Bool = false
     
     init(dependencies: Dependencies,
          show: String,

@@ -121,13 +121,13 @@ final class SummaryCell: UICollectionViewCell, ViewConfiguration {
             guard let self = self else { return }
             self.loadingView.stopAnimating()
             self.imageView.image = self.imageView.image?.corner()
-            self.delegate?.downloadedImage()
-            self.imageView.snp.updateConstraints {
-                $0.height.equalTo(self.imageView.contentClippingRect.height)
-            }
             UIView.animate(withDuration: 0.3) {
                 self.imageView.alpha = 1
                 self.layoutIfNeeded()
+                self.delegate?.downloadedImage()
+                self.imageView.snp.updateConstraints {
+                    $0.height.equalTo(self.imageView.contentClippingRect.height)
+                }
             }
         }
     }
