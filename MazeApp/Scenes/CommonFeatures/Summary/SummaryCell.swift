@@ -61,7 +61,7 @@ final class SummaryCell: UICollectionViewCell, ViewConfiguration {
     }()
     
     // MARK: - Initializers
-    var task: URLSessionDataTask?
+    var task: URLSessionDataTaskable?
     var hasGenres = false
     weak var delegate: SummaryCellDelegate?
     

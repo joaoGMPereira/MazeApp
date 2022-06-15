@@ -7,7 +7,7 @@ extension UIImageView {
     func loadImage(urlString: String?,
                    placeholder: String? = nil,
                    dependencies: Dependencies,
-                   completion: (() -> Void)? = nil) -> URLSessionDataTask?  {
+                   completion: (() -> Void)? = nil) -> URLSessionDataTaskable?  {
         if let imageFromCache = imageCache.object(forKey: urlString as AnyObject) as? UIImage {
             dependencies.mainQueue.async {
                 self.image = imageFromCache
@@ -21,7 +21,7 @@ extension UIImageView {
                                      completion: completion)
             return nil
         }
-        let task = dependencies.session.dataTask(with: .init(url: url)) { [weak self] data, response, error in
+        let task = dependencies.session.task(with: .init(url: url)) { [weak self] data, response, error in
             guard let self = self else {
                 return
             }

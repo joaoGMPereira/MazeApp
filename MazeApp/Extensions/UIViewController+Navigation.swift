@@ -1,6 +1,7 @@
 import UIKit
 
 extension UIViewController {
+    @objc
     func pushViewController(_ viewController: UIViewController,
                             hidesBottomBar: Bool = true,
                             animated: Bool = true) {

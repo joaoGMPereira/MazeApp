@@ -11,7 +11,7 @@ protocol ApiProtocol {
         session: URLSessionable,
         jsonDecoder: JSONDecoder,
         completion: @escaping (Result<Success<E>, ApiError>) -> Void
-    ) -> URLSessionTask?
+    ) -> URLSessionDataTaskable?
 }
 
 extension ApiProtocol {
@@ -21,7 +21,7 @@ extension ApiProtocol {
         session: URLSessionable = DependencyContainer().session,
         jsonDecoder: JSONDecoder = JSONDecoder(),
         completion: @escaping (Result<Success<E>, ApiError>) -> Void
-    ) -> URLSessionTask? {
+    ) -> URLSessionDataTaskable? {
         execute(endpoint: endpoint,
                 session: session,
                 jsonDecoder: jsonDecoder,

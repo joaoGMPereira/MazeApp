@@ -12,7 +12,7 @@ class Api: ApiProtocol {
         session: URLSessionable,
         jsonDecoder: JSONDecoder,
         completion: @escaping (Result<Success<E>, ApiError>) -> Void
-    ) -> URLSessionTask? {
+    ) -> URLSessionDataTaskable? {
         let request: URLRequest
         do {
             try request = makeRequest(with: endpoint)
@@ -20,7 +20,7 @@ class Api: ApiProtocol {
             completion(.failure(.badRequest))
             return nil
         }
-        let task = session.dataTask(with: request, completionHandler: { responseBody, response, error in
+        let task = session.task(with: request, completionHandler: { responseBody, response, error in
             self.handle(
                 request: request,
                 responseBody: responseBody,

@@ -24,7 +24,7 @@ final class FavoritesShowsViewModel {
     
     private var isLoading = false
     private var shows = [Show]()
-    private var sort = FavoritesSort.none
+    private(set) var sort = FavoritesSort.none
     
     private var filteredShow: [Show] {
         switch sort {
@@ -50,24 +50,22 @@ final class FavoritesShowsViewModel {
 
 // MARK: - ShowsViewModeling
 extension FavoritesShowsViewModel: FavoritesShowsViewModeling {
-    func didTap(at indexPath: IndexPath) {
-        guard let show = filteredShow[safe: indexPath.row] else {
-            //error feedback
-            return
-        }
-        print(show)
-        coordinator.goToSerie(show)
-    }
-    
-    func goToShows() {
-        coordinator.goToShows()
-    }
-    
     func loadShows() {
         displayer?.displayLoad()
         getShows { [weak self] in
             self?.displayer?.hideLoad()
         }
+    }
+    
+    func didTap(at indexPath: IndexPath) {
+        guard let show = filteredShow[safe: indexPath.row] else {
+            return
+        }
+        coordinator.goToSerie(show)
+    }
+    
+    func goToShows() {
+        coordinator.goToShows()
     }
     
     func changeSort() {

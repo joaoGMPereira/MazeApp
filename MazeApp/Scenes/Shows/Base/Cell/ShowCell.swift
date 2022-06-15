@@ -59,7 +59,7 @@ final class ShowCell: UICollectionViewCell, ViewConfiguration {
     
     // MARK: - Initializers
     var viewModel: ShowCellViewModel?
-    var task: URLSessionDataTask?
+    var task: URLSessionDataTaskable?
 
     override init(frame: CGRect) {
         super.init(frame: frame)

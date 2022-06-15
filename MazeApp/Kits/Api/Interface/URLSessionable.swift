@@ -5,7 +5,18 @@ protocol HasURLSessionable {
 }
 
 protocol URLSessionable {
-    func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask
+    func task(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTaskable
 }
 
-extension URLSession: URLSessionable {}
+extension URLSession: URLSessionable {
+    func task(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTaskable {
+        dataTask(with: request, completionHandler: completionHandler)
+    }
+}
+
+protocol URLSessionDataTaskable {
+    func resume()
+    func cancel()
+}
+
+extension URLSessionDataTask: URLSessionDataTaskable {}
