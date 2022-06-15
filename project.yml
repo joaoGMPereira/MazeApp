@@ -8,15 +8,37 @@ targets:
     type: bundle.unit-test
     platform: iOS
     settings:
+      base:
+        INFOPLIST_FILE: ./MazeApp/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.maze.app
       SWIFT_VERSION: 5
       IPHONEOS_DEPLOYMENT_TARGET: 15.4
     info:
       path: "./MazeApp/Info.plist"
       properties:
-        CFBundleDisplayName: "MazeApp"
-        CFBundleShortVersionString: "1.0.0"
+        CFBundleDevelopmentRegion: $(DEVELOPMENT_LANGUAGE)
+        CFBundleExecutable: $(EXECUTABLE_NAME)
+        CFBundleIdentifier: $(PRODUCT_BUNDLE_IDENTIFIER)
+        CFBundleInfoDictionaryVersion: "6.0"
+        CFBundleName: $(PRODUCT_NAME)
+        CFBundlePackageType: "APPL"
+        CFBundleShortVersionString: "1.0"
         CFBundleVersion: "1.0.0"
-        CFBundleIdentifier: "com.mazeapp.joao"
+        LSRequiresIPhoneOS: true
+        UILaunchStoryboardName: "LaunchScreen"
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+          UISceneConfigurations:
+            - UIWindowSceneSessionRoleApplication:
+              - UISceneConfigurationName: "Default Configuration"
+                UISceneDelegateClassName: "$(PRODUCT_MODULE_NAME).SceneDelegate"
+                UISceneStoryboardFile: "Main"
+        UIRequiredDeviceCapabilities:
+          - "armv7"
+        UISupportedInterfaceOrientations:
+          - "UIInterfaceOrientationPortrait"
+          - "UIInterfaceOrientationLandscapeLeft"
+          - "UIInterfaceOrientationLandscapeRight"
 
     sources:
       - path: MazeAppTests
@@ -28,6 +50,35 @@ targets:
     type: application
     platform: iOS
     settings:
+      base:
+        INFOPLIST_FILE: ./MazeApp/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.maze.app
       SWIFT_VERSION: 5
       IPHONEOS_DEPLOYMENT_TARGET: 15.4
+    info:
+      path: "./MazeApp/Info.plist"
+      properties:
+        CFBundleDevelopmentRegion: $(DEVELOPMENT_LANGUAGE)
+        CFBundleExecutable: $(EXECUTABLE_NAME)
+        CFBundleIdentifier: $(PRODUCT_BUNDLE_IDENTIFIER)
+        CFBundleInfoDictionaryVersion: "6.0"
+        CFBundleName: $(PRODUCT_NAME)
+        CFBundlePackageType: "APPL"
+        CFBundleShortVersionString: "1.0"
+        CFBundleVersion: "1.0.0"
+        LSRequiresIPhoneOS: true
+        UILaunchStoryboardName: "LaunchScreen"
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+          UISceneConfigurations:
+            - UIWindowSceneSessionRoleApplication:
+              - UISceneConfigurationName: "Default Configuration"
+                UISceneDelegateClassName: "$(PRODUCT_MODULE_NAME).SceneDelegate"
+                UISceneStoryboardFile: "Main"
+        UIRequiredDeviceCapabilities:
+          - "armv7"
+        UISupportedInterfaceOrientations:
+          - "UIInterfaceOrientationPortrait"
+          - "UIInterfaceOrientationLandscapeLeft"
+          - "UIInterfaceOrientationLandscapeRight"
     sources: [MazeApp]
