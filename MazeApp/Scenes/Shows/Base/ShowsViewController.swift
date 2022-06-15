@@ -30,6 +30,7 @@ open class ShowsViewController: ViewController<ShowsViewModeling, UIView> {
             cellType: ShowCell.self
         )
         collectionView.backgroundColor = .clear
+        collectionView.delegate = self
         return collectionView
     }()
     

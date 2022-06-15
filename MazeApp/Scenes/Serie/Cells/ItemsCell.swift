@@ -12,17 +12,10 @@ final class ItemsCell: UICollectionViewCell, ViewConfiguration {
     
     private lazy var nameLabel = Label()
     
-    private lazy var scoreLabel: Label = {
-        let scoreLabel = Label()
-        scoreLabel.label.textAlignment = .left
-        return scoreLabel
-    }()
+    private lazy var scoreLabel = Label()
     
-    private lazy var dateLabel: Label = {
-        let dateLabel = Label()
-        dateLabel.label.textAlignment = .right
-        return dateLabel
-    }()
+    private lazy var dateLabel = Label()
+    
     private lazy var chevron: UIImageView = {
         let imageView = UIImageView(image: .init(systemName: "chevron.right"))
         imageView.contentMode = .scaleAspectFit
@@ -65,6 +58,7 @@ final class ItemsCell: UICollectionViewCell, ViewConfiguration {
     func setup(model: EpisodeCellViewModel) {
         dateLabel.setup(text: model.date.title,
                         font: model.date.font,
+                        alignment: .right,
                         imageName: model.date.image)
         nameLabel.setup(text: model.name.title,
                         font: model.name.font,
