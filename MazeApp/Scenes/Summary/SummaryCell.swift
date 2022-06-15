@@ -105,7 +105,7 @@ final class SummaryCell: UICollectionViewCell, ViewConfiguration {
     
     // MARK: - Setup
     func setup(with viewModel: SummaryViewModel, dependencies: Dependencies) {
-        stackView.addArrangedSubviews(imageView, collectionView)
+        stackView.addArrangedSubviews(imageView, collectionView, summaryLabel, scheduleLabel)
         setupGenres(viewModel.genres)
         setupSummary(viewModel.summary)
         setupSchedule(viewModel.schedule)
