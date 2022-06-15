@@ -8,5 +8,7 @@ struct Episode: Decodable {
     let rating: Rating
     let image: Image?
     let summary: String?
+    let airtime: String?
+    let runtime: Int?
 }
 

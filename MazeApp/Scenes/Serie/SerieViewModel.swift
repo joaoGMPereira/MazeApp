@@ -30,8 +30,16 @@ final class SerieViewModel {
 extension SerieViewModel: SerieViewModeling {
     func loadScreen() {
         displayer?.displaySummary(
-            .init(imageUrl: show.image?.original,
-                  infos: summaryInfos()))
+            .init(summary: .init(title: show.summary ?? String(),
+                                 image: "tv",
+                                 isHidden: show.summary == nil),
+                  imageUrl: show.image?.original,
+                  schedule: .init(title: schedule(),
+                                  font: .preferredFont(for: .footnote, weight: .bold),
+                                  alignment: .justified,
+                                  image: "tv",
+                                  isHidden: schedule().isEmpty),
+                  genres: genres()))
         displayer?.displayLoad()
     }
     
@@ -67,24 +75,15 @@ extension SerieViewModel: SerieViewModeling {
         }
     }
     func items(with series: [Serie]) -> EpisodesViewModel {
-        var items: [EpisodeCellViewModel] = [
-            .header(number: "Number",
-                    date: "Date",
-                    name: "Name",
-                    score: "Score")
-        ]
-        series.forEach {
-            items.append(
-                .body(
+        return EpisodesViewModel(
+            items: series.map {
+                .cell(
                     number: "\($0.number)",
                     date: AppDateFormatter.format($0.airdate),
-                    name: $0.name,
+                    name: "E\($0.number): \($0.name)",
                     score: average($0.rating.average),
                     season: $0.season)
-            )
-        }
-        return EpisodesViewModel(
-            items: items
+            }
         )
     }
     
@@ -100,7 +99,7 @@ extension SerieViewModel: SerieViewModeling {
     func average(_ average: Double?) -> String {
         var averageText = "-"
         if let average = average {
-            averageText = "\(average)"
+            averageText = "\(average)/10"
         }
         return averageText
     }
@@ -113,8 +112,7 @@ extension SerieViewModel: SerieViewModeling {
 }
 
 extension SerieViewModel {
-    func summaryInfos() -> [SummaryViewModel.Content] {
-        let summarySubtitle = show.summary?.htmlToAttributedString
+    func schedule() -> String {
         var scheduleSubtitle = String()
         let days = show.schedule.days.joined(separator: " | ")
         let time = show.schedule.time
@@ -124,14 +122,12 @@ extension SerieViewModel {
         if let runTime = show.averageRuntime {
             scheduleSubtitle += "(\(runTime) min)"
         }
-        return [.init(title: "Summary",
-                      subtitle: summarySubtitle,
-                      isHidden: summarySubtitle == nil),
-                .init(title: "Schedule:",
-                      subtitle: .init(string: scheduleSubtitle),
-                      isHidden: scheduleSubtitle.isEmpty),
-                .init(title: "Genres",
-                      subtitle: .init(string: show.genres.joined(separator: " | ")),
-                      isHidden: show.genres.isEmpty)]
+        return scheduleSubtitle
+    }
+    
+    func genres() -> [Content] {
+        show.genres.map {
+            .init(title: $0, font: .preferredFont(for: .footnote, weight: .bold), alignment: .center)
+        }
     }
 }

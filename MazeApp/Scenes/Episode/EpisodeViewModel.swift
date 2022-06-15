@@ -38,21 +38,18 @@ extension EpisodeViewModel: EpisodeViewModeling {
             case .success(let response):
                 let episode = response.model
                 self.episode = episode
-                let summarySubtitle = episode.summary?.htmlToAttributedString
                 self.displayer?.displaySummary(
-                    .init(imageUrl: episode.image?.original,
-                          infos: [
-                            .init(title: "Summary",
-                                  subtitle: summarySubtitle,
-                                  isHidden: summarySubtitle == nil),
-                            .init(title: "Season:",
-                                  subtitle: .init(string: "Season \(episode.season)")),
-                            .init(title: "Episode",
-                                  subtitle: .init(string: "Episode \(episode.number)")
-                                 )
-                          ]
+                    .init(summary: .init(title: episode.summary ?? String(),
+                                         image: "tv",
+                                         isHidden: episode.summary == nil),
+                          imageUrl: episode.image?.original,
+                          schedule: .init(title: self.schedule(with: episode),
+                                          font: .preferredFont(for: .footnote, weight: .bold),
+                                          alignment: .justified,
+                                          image: "tv"),
+                          genres: []
                          ),
-                    title: episode.name
+                    title: "E\(episode.number)S\(episode.season) \(episode.name)"
                 )
             case .failure:
                 self.displayer?.displayEpisodeFailure(
@@ -64,5 +61,17 @@ extension EpisodeViewModel: EpisodeViewModeling {
                         })
             }
         }
+    }
+    
+    func schedule(with episode: Episode) -> String {
+        var scheduleSubtitle = String()
+        
+        if let airTime = episode.airtime {
+            scheduleSubtitle = "\(airTime) - "
+        }
+        if let runTime = episode.runtime {
+            scheduleSubtitle += "(\(runTime) min)"
+        }
+        return scheduleSubtitle
     }
 }

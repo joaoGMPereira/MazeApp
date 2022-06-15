@@ -78,7 +78,7 @@ final class SerieEpisodeCell: UICollectionViewCell, ViewConfiguration {
 extension SerieEpisodeCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let item = dataSource.item(at: indexPath), let season = item.season {
-            delegate?.didTap(season: "\(season)", number: item.number.title)
+            delegate?.didTap(season: "\(season)", number: item.number)
         }
     }
 }

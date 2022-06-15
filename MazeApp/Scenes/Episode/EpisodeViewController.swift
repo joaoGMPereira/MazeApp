@@ -7,17 +7,6 @@ protocol EpisodeDisplaying: AnyObject {
     func displayLoad()
 }
 open class EpisodeViewController: ViewController<EpisodeViewModeling, UIView> {
-    enum Layout {
-        static let sectionInset = UIEdgeInsets(top: 8,
-                                               left: 16,
-                                               bottom: 8,
-                                               right: 16)
-        static let spacing: CGFloat = 8
-        static let paginationOffset: CGFloat = 100
-        static let numberOfColumns = CGFloat(1)
-        static let estimatedHeight = CGFloat(300)
-    }
-    
     typealias Dependencies = HasMainQueue & HasURLSessionable & HasStorageable
     // MARK: - Dependencies
     let dependencies: Dependencies
@@ -134,8 +123,9 @@ extension EpisodeViewController {
         
         if let summary = item as? SummaryViewModel {
             let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: SummaryCell.self)
-            cell.setup(with: summary, dependencies: self.dependencies)
+            cell.setup(with: summary, dependencies: dependencies)
             cell.backgroundConfiguration = backgroundConfiguration
+            cell.delegate = self
             return cell
         }
         
@@ -144,7 +134,7 @@ extension EpisodeViewController {
 }
 
 // MARK: - EpisodeDisplaying
-extension EpisodeViewController: EpisodeDisplaying {
+extension EpisodeViewController: EpisodeDisplaying, SummaryCellDelegate {
     func displaySummary(_ summary: SummaryViewModel, title: String) {
         dataSource.set(items: [summary], to: .zero)
         self.title = title
@@ -156,5 +146,9 @@ extension EpisodeViewController: EpisodeDisplaying {
     
     func displayLoad() {
         dataSource.update(items: [LoadingModel()], from: .zero)
+    }
+    
+    func downloadedImage() {
+        collectionView.reloadSections(.init(integer: .zero))
     }
 }

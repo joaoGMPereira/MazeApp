@@ -19,7 +19,7 @@ final class ShowCell: UICollectionViewCell, ViewConfiguration {
     
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.corner(8)
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
@@ -122,10 +122,12 @@ final class ShowCell: UICollectionViewCell, ViewConfiguration {
         task = imageView.loadImage(urlString: imageUrl,
                              placeholder: "photo.fill.on.rectangle.fill",
                              dependencies: dependencies) { [weak self] in
-            self?.loadingView.stopAnimating()
+            guard let self = self else { return }
+            self.loadingView.stopAnimating()
+            self.imageView.image = self.imageView.image?.corner()
             UIView.animate(withDuration: 0.3) {
-                self?.imageView.alpha = 1
-                self?.layoutIfNeeded()
+                self.imageView.alpha = 1
+                self.layoutIfNeeded()
             }
         }
     }

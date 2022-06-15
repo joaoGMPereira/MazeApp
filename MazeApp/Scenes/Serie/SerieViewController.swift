@@ -100,10 +100,6 @@ open class SerieViewController: ViewController<SerieViewModeling, UIView> {
         super.viewDidLoad()
         buildLayout()
         viewModel.loadScreen()
-    }
-    
-    open override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         viewModel.getSeries()
     }
     
@@ -156,6 +152,7 @@ extension SerieViewController {
             let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: SummaryCell.self)
             cell.setup(with: summary, dependencies: self.dependencies)
             cell.backgroundConfiguration = backgroundConfiguration
+            cell.delegate = self
             return cell
         }
         
@@ -177,7 +174,7 @@ extension SerieViewController: SerieEpisodeCellDelegate {
     }
 }
 // MARK: - SerieDisplaying
-extension SerieViewController: SerieDisplaying {
+extension SerieViewController: SerieDisplaying, SummaryCellDelegate {
     func displayEpisodes(_ items: EpisodesViewModel, in section: Int) {
         dataSource.update(items: [items], from: section)
     }
@@ -193,4 +190,9 @@ extension SerieViewController: SerieDisplaying {
     func displayLoad() {
         dataSource.update(items: [LoadingModel()], from: 1)
     }
+    
+    func downloadedImage() {
+       // collectionView.reloadSections(.init(integer: .zero))
+    }
+
 }
