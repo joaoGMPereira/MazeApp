@@ -154,14 +154,18 @@ final class SummaryCell: UICollectionViewCell, ViewConfiguration {
     }
     
     func setupSummary(_ summary: Content) {
-        summaryLabel.setupAttributed(text: summary.title.htmlToAttributedString)
+        summaryLabel.setupAttributed(text: summary.title.htmlToAttributedString,
+                                     imageName: summary.image,
+                                     imageColor: .systemTeal)
         summaryLabel.isHidden = summary.isHidden
     }
     
     func setupSchedule(_ schedule: Content) {
         scheduleLabel.setup(text: schedule.title,
                             font: schedule.font,
-                            alignment: schedule.alignment
+                            alignment: schedule.alignment,
+                            imageName: schedule.image,
+                            imageColor: .systemTeal
         )
         summaryLabel.isHidden = schedule.isHidden
     }

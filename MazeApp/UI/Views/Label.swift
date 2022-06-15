@@ -11,7 +11,6 @@ class Label: UIView, ViewConfiguration {
     }()
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.tintColor = .systemGray2
         return imageView
     }()
     
@@ -48,20 +47,24 @@ class Label: UIView, ViewConfiguration {
         text: String,
         font: UIFont,
         alignment: NSTextAlignment = .justified,
-        imageName: String? = nil
+        imageName: String? = nil,
+        imageColor: UIColor = .systemGray2
     ) {
         label.text = text
         label.font = font
         label.textAlignment = alignment
+        imageView.tintColor = imageColor
         configImage(imageName)
     }
     
     func setupAttributed(
         text: NSAttributedString?,
-        imageName: String? = nil
+        imageName: String? = nil,
+        imageColor: UIColor = .systemGray2
     ) {
         label.attributedText = text
         label.textColor = .label
+        imageView.tintColor = imageColor
         configImage(imageName)
     }
     
