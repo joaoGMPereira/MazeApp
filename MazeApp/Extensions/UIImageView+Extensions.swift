@@ -9,8 +9,10 @@ extension UIImageView {
                    dependencies: Dependencies,
                    completion: (() -> Void)? = nil) -> URLSessionDataTask?  {
         if let imageFromCache = imageCache.object(forKey: urlString as AnyObject) as? UIImage {
-            self.image = imageFromCache
-            completion?()
+            dependencies.mainQueue.async {
+                self.image = imageFromCache
+                completion?()
+            }
             return nil
         }
         guard let urlString = urlString, let url = URL(string: urlString) else {

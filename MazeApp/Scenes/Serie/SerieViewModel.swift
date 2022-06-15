@@ -1,7 +1,6 @@
 import Foundation
 
 public protocol SerieViewModeling: AnyObject {
-    func loadScreen()
     func getSeries()
     func goToEpisode(season: String, episode: String)
     var sections: [String] { get }
@@ -16,6 +15,7 @@ final class SerieViewModel {
     private var series: [Series] = []
     private(set) var sections: [String] = [String(), "Episodes"]
     private let show: Show
+    private var loadSummary: Bool = true
     
     init(coordinator: SerieCoordinating,
          dependencies: Dependencies,
@@ -28,24 +28,14 @@ final class SerieViewModel {
 
 // MARK: - SeriesViewModeling
 extension SerieViewModel: SerieViewModeling {
-    func loadScreen() {
-        displayer?.displaySummary(
-            .init(summary: .init(title: show.summary ?? String(),
-                                 image: "tv",
-                                 isHidden: show.summary == nil),
-                  imageUrl: show.image?.original,
-                  schedule: .init(title: schedule(),
-                                  font: .preferredFont(for: .footnote, weight: .bold),
-                                  alignment: .justified,
-                                  image: "tv",
-                                  isHidden: schedule().isEmpty),
-                  genres: genres()))
-        displayer?.displayLoad()
-    }
-    
     func getSeries() {
+        if loadSummary {
+            displayer?.displayLoad()
+        }
         dependencies.api.execute(endpoint: SerieEndpoint.episodes(id: show.id)) { [weak self] (result: Result<Success<Series>, ApiError>) in
             guard let self = self else { return }
+            
+            self.displaySummary()
             self.handleResponse(result)
         }
     }
@@ -53,17 +43,7 @@ extension SerieViewModel: SerieViewModeling {
     func handleResponse(_ result: Result<Success<Series>, ApiError>) {
         switch result {
         case .success(let response):
-            let episodesForSeason = Array(Dictionary(grouping:response.model){$0.season}.values).sorted{
-                guard let first = $0.first, let second = $1.first else {
-                    return false
-                }
-                return first.season < second.season
-            }
-            series = episodesForSeason
-            createTitles()
-            episodesForSeason.enumerated().forEach {
-                displayer?.displayEpisodes(items(with: $0.element), in: $0.offset + 1)
-            }
+            displayEpisodes(response: response)
         case .failure:
             displayer?.displayEpisodesFailure(
                 with: FeedbackModel(
@@ -74,6 +54,38 @@ extension SerieViewModel: SerieViewModeling {
                     })
         }
     }
+    
+    func displaySummary() {
+        if loadSummary {
+            loadSummary = false
+            displayer?.displaySummary(
+                .init(summary: .init(title: show.summary ?? String(),
+                                     image: "tv",
+                                     isHidden: show.summary == nil),
+                      imageUrl: show.image?.original,
+                      schedule: .init(title: schedule(),
+                                      font: .preferredFont(for: .footnote, weight: .bold),
+                                      alignment: .justified,
+                                      image: "tv",
+                                      isHidden: schedule().isEmpty),
+                      genres: genres()))
+        }
+    }
+    
+    func displayEpisodes(response: Success<Series>) {
+        let episodesForSeason = Array(Dictionary(grouping:response.model){$0.season}.values).sorted{
+            guard let first = $0.first, let second = $1.first else {
+                return false
+            }
+            return first.season < second.season
+        }
+        series = episodesForSeason
+        createTitles()
+        episodesForSeason.enumerated().forEach {
+            displayer?.displayEpisodes(items(with: $0.element), in: $0.offset + 1)
+        }
+    }
+    
     func items(with series: [Serie]) -> EpisodesViewModel {
         return EpisodesViewModel(
             items: series.map {

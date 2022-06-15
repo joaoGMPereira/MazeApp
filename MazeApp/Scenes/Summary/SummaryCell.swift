@@ -105,10 +105,11 @@ final class SummaryCell: UICollectionViewCell, ViewConfiguration {
     
     // MARK: - Setup
     func setup(with viewModel: SummaryViewModel, dependencies: Dependencies) {
-        stackView.addArrangedSubviews(imageView, collectionView, summaryLabel, scheduleLabel)
+        stackView.addArrangedSubviews(imageView, collectionView)
         setupGenres(viewModel.genres)
         setupSummary(viewModel.summary)
         setupSchedule(viewModel.schedule)
+        setupImage(viewModel.imageUrl, dependencies: dependencies)
     }
     
     func setupImage(_ imageUrl: String?, dependencies: Dependencies) {
@@ -120,13 +121,13 @@ final class SummaryCell: UICollectionViewCell, ViewConfiguration {
             guard let self = self else { return }
             self.loadingView.stopAnimating()
             self.imageView.image = self.imageView.image?.corner()
-            UIView.animate(withDuration: 1) {
+            self.delegate?.downloadedImage()
+            self.imageView.snp.updateConstraints {
+                $0.height.equalTo(self.imageView.contentClippingRect.height)
+            }
+            UIView.animate(withDuration: 0.3) {
                 self.imageView.alpha = 1
                 self.layoutIfNeeded()
-                self.delegate?.downloadedImage()
-                self.imageView.snp.updateConstraints {
-                    $0.height.equalTo(self.imageView.contentClippingRect.height)
-                }
             }
         }
     }
