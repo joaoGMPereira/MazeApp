@@ -28,4 +28,6 @@
 - or if you want to do manually you can run:
 - xcodegen -q -s project.yml & pod install
 
+## _Alterinative Setup_
+- if nothing goes right, i create a branch with everything setuped, the name is `fullProject`, just checkout and build
 
