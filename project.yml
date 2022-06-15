@@ -7,6 +7,7 @@ targets:
   MazeAppTests:
     type: bundle.unit-test
     platform: iOS
+    deploymentTarget: 15.4
     settings:
       base:
         INFOPLIST_FILE: ./MazeApp/Info.plist
@@ -27,12 +28,8 @@ targets:
         LSRequiresIPhoneOS: true
         UILaunchStoryboardName: "LaunchScreen"
         UIApplicationSceneManifest:
-          UIApplicationSupportsMultipleScenes: false
-          UISceneConfigurations:
-            - UIWindowSceneSessionRoleApplication:
-              - UISceneConfigurationName: "Default Configuration"
-                UISceneDelegateClassName: "$(PRODUCT_MODULE_NAME).SceneDelegate"
-                UISceneStoryboardFile: "Main"
+        UIApplicationSupportsMultipleScenes: false
+        UISceneConfigurations: { UIWindowSceneSessionRoleApplication: [{ UISceneConfigurationName: 'Default Configuration', UISceneDelegateClassName: $(PRODUCT_MODULE_NAME).SceneDelegate, UISceneStoryboardFile: Main }] }
         UIRequiredDeviceCapabilities:
           - "armv7"
         UISupportedInterfaceOrientations:
@@ -49,6 +46,7 @@ targets:
   MazeApp:
     type: application
     platform: iOS
+    deploymentTarget: 15.4
     settings:
       base:
         INFOPLIST_FILE: ./MazeApp/Info.plist
@@ -69,8 +67,8 @@ targets:
         LSRequiresIPhoneOS: true
         UILaunchStoryboardName: "LaunchScreen"
         UIApplicationSceneManifest:
-          UIApplicationSupportsMultipleScenes: false
-          UISceneConfigurations:
+        UIApplicationSupportsMultipleScenes: false
+        UISceneConfigurations:
             - UIWindowSceneSessionRoleApplication:
               - UISceneConfigurationName: "Default Configuration"
                 UISceneDelegateClassName: "$(PRODUCT_MODULE_NAME).SceneDelegate"
