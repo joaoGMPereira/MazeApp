@@ -1,0 +1,6 @@
+framework module Pods_MazeApp {
+  umbrella header "Pods-MazeApp-umbrella.h"
+
+  export *
+  module * { export * }
+}
